@@ -1,0 +1,19 @@
+Aggregate function -> 
+----------------------------------------------------------------
+SELECT COUNT(column_name) FROM table_name WHERE condition;
+
+SELECT COUNT(*) AS total_employees FROM employee;
+
++-----------------+
+| total_employees |
++-----------------+
+|              11 |
++-----------------+
+
+----------------------------------------------------------------
+
+sum -> Adds up all the numeric values in a column.
+SELECT SUM(column_name) FROM table_name WHERE condition;
+--------------
+SELECT SUM(salary) AS total_salary FROM employee;
+
