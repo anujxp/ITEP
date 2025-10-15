@@ -149,3 +149,4 @@ mysql> select employee.name , department.course_name
 +--------+-------------+
 2 rows in set (0.01 sec)
 
+
