@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dcument</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 4px dotted #008000;
+            text-align: center;
+        }
+
+        caption {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        th, td {
+            border: 2px solid #8ae03a; 
+        }
+
+        thead tr:first-child th {
+            background-color: #c1e1c1;
+        }
+
+        thead tr:nth-child(2) th {
+            background-color: #f9a66d;
+        }
+        
+        tbody td {
+            background-color: #fefecc;
+        }
+
+        #lunch {
+            background-color: #00ff00; 
+            color: black;
+        }
+
+        #rest {
+            background-color: #000080;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <table>
+      <caption>my school timetable</caption>
+      <thead>
+        <tr>
+          <th>day</th>
+          <th>session1</th>
+          <th>break</th>
+          <th>session2</th>
+          <th>break</th>
+          <th>session3</th>
+        </tr>
+        <tr>
+          <th></th>
+           <th>10:45 am</th>
+          <th>11:15 am to 12:15 pm</th>
+          <th>12:15 pm</th>
+          <th>1:45 pm to 5:00 pm</th>
+          <th>5:00 pm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monday</td>
+          <td>French or Computr</td>
+          <td rowspan="3" id="lunch">lunch</td>
+          <td>English</td>
+          <td rowspan="2" id="rest">rest</td>
+          <td rowspan="2">html</td>
+        </tr>
+        <tr>
+          <td>tuesday</td>
+          <td>s.st</td>
+          <td>hindi</td>
+        </tr>
+        <tr>
+          <td>wednesday</td>
+          <td>maths</td>
+          <td>gk/v.ed or French</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+</body>
+</html>

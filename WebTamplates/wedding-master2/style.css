@@ -1,0 +1,856 @@
+*{
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    /* background-color: black; */
+}
+#section-1{
+    height: 100vh;
+    width: 100%;
+    /* background-color: aqua; */
+    /* background-color: rgba(0, 0, 0, 0.); */
+    background-image: url("images/img_bg_2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.section-1-navbar{
+    height: 90px;
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+}
+.logo{
+    height: 100%;
+    width: 30%;
+    /* background-color: rgb(23,45,89); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu{
+    height: 100%;
+    width: 70%;
+    /* background-color: rgb(206, 224, 15); */
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+}
+.inner-menu{
+    height: 100%;
+    width: 600px;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 80px;
+}
+.inner-menu a{
+    color:#FFFFFF;
+}
+.section-part2{
+    height: 600px;
+    width: 100%;
+    /* background-color: darkgoldenrod; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-box{
+    height: 400px;
+    width: 600px;
+    /* background-color: cadetblue; */
+}
+.main-box-1{
+    height: 130px;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    row-gap: 10px;
+
+}
+.main-box-2{
+    height: 150px;
+    width: 80%;
+    margin-left: 70px;
+    /* background-color: darkorchid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.main-box-circle{
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    background-color: rgb(184, 48, 71);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 8px;
+}
+.main-box-3{
+    height: 80px;
+    width: 100%;
+    /* background-color: darksalmon; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #section-2{
+    height: 580px;
+    width: 100%;
+    background-color: #241f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#section-2-div1{
+    height: 200px;
+    width: 500px;
+    background-color: #7c427c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+   
+}
+#section-2-div1 h1{
+    font-family: "Sacramento", Arial, serif;
+}
+.section-2-div2{
+    height: 300px;
+    width: 1000px;
+    /* background-color: #e69e32; 
+    display: flex;
+}
+
+.section-2-div2-box1{
+    height: 100%;
+    width: 300px;
+    /* background-color: #14c764; 
+}
+.section-2-div2-box2{
+    height: 100%;
+    width: 400px;
+    background-color: #cebe30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section-2-div2-box3{
+    height: 100%;
+    width: 300px;
+    background-color: #7e36a8;
+}
+.section-2-div2-box1 >h1{
+    margin-top: 60px;
+}
+.section-2-div2-box2-img1{
+    border-radius: 50%;
+}
+.section-2-div2-box2-img2{
+    border-radius: 50%;
+}
+.section-2-heart-icon{
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    position: relative;
+    left: -250px;
+    top: 110px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+#section-2 {
+   
+    width: 100%;
+    padding: 100px 0;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.couple-wrap {
+    width: 95%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
+}
+
+.couple-half {
+    width: 46%;
+    display: flex;
+    align-items: center;
+}
+
+/* Groom Specifics */
+.couple-half.groom-panel {
+    justify-content: flex-end;
+    /* flex-direction: row-reverse; Flips order: Text Left, Image Right */
+}
+
+.desc-groom {
+    margin-right: 20px;
+    text-align: right;
+}
+
+/* Bride Specifics */
+.couple-half.bride-panel {
+    justify-content: flex-start;
+    /* Default direction: Image Left, Text Right */
+}
+
+.desc-bride {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.couple-half img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+
+/* ================= SECTION 3 STYLES ================= */
+
+#section-3 {
+    position: relative; /* Needed so the overlay sits inside this section */
+    width: 100%;
+    padding: 100px 0;
+    /* REPLACE THIS URL WITH YOUR IMAGE PATH (e.g., img_bg_3.jpg) */
+    background-image: url('./images/img_bg_3.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* OPTIONAL: Makes a cool parallax scrolling effect */
+    text-align: center;
+}
+
+#section-3 .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Darkens the photo by 50% */
+    z-index: 1;
+}
+
+.events-container {
+    position: relative; /* Puts content above the overlay */
+    z-index: 2;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto; /* Centers the container */
+}
+
+.event-row{
+    display: flex!important; 
+    flex-direction: row;
+    justify-content: center; 
+    gap: 30px; 
+        margin-top: 50px; 
+     flex-wrap: wrap;
+}
+
+.event-box {
+    /* background: white; */
+    background-color: rgba(255,255,255,.1);
+    width: 45%; /* Similar to col-md-6 in Bootstrap */
+    min-width: 300px; /* Prevents it from getting too skinny */
+    padding: 40px;
+    text-align: center;
+    border: 1px solid #ddd; /* Subtle border */
+}
+
+.event-box h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+.event-details {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee; /* Little line separator */
+    padding-bottom: 20px;
+}
+.detail-item {
+    display: flex;
+    flex-direction: column; /* Stacks Icon on top of Text */
+    align-items: center;
+    font-size: 14px;
+    color: #ffffff;
+}
+.detail-item .icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #F14E95; /* Pink accent */
+}
+.event-box p {
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* ================= SECTION 4: TIMELINE ================= */
+#section-4 {
+    padding: 100px 0;
+    width: 100%;
+}
+
+/* The main container for the timeline */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* THE VERTICAL LINE */
+/* We use ::before to draw a grey line down the exact center */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: #e0e0e0; /* Light grey line */
+    transform: translateX(-50%); /* Perfectly center the line */
+}
+
+/* A Single Row in the timeline */
+.timeline-item {
+    display: flex;
+    align-items: center; /* Vertically center text with the circle */
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* The 3 Parts of the Row */
+.timeline-content {
+    width: 45%; /* Text takes up 45% width */
+    padding: 20px;
+}
+
+.timeline-empty {
+    width: 45%; /* Empty space takes up 45% width */
+}
+
+/* The Center Circle (Badge) */
+.timeline-badge {
+    width: 10%; /* Middle 10% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Sits ON TOP of the vertical line */
+}
+
+.timeline-badge img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid #f2f2f2; /* Light grey border like original */
+    object-fit: cover;
+}
+
+/* TEXT STYLES */
+.timeline-content h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.timeline-content .date {
+    display: block;
+    font-size: 14px;
+    color: #ccc; /* Light grey date */
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.timeline-content p {
+    color: #777;
+    line-height: 1.6;
+}
+
+/* Helper classes for text alignment */
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+/* ================= SECTION 5: GALLERY ================= */
+
+/* Reusable class for grey background sections */
+.section-gray {
+    background-color: #f8f8f8; /* Matches Section 2 */
+    padding: 100px 0;
+    width: 100%;
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap; /* KEY: Allows items to drop to the next line */
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.gallery-item {
+    position: relative; /* Needed for the overlay positioning */
+    width: 32%; /* 3 images per row with small gap (32% * 3 = 96%) */
+    margin-bottom: 20px;
+    overflow: hidden; /* Ensures image doesn't spill out if zoomed */
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px; /* Forces all images to be same height */
+    object-fit: cover; /* Crops image nicely to fill the box */
+    display: block;
+    transition: transform 0.5s ease; /* Smooth zoom effect */
+}
+
+/* HOVER EFFECT: Zoom Image */
+.gallery-item:hover img {
+    transform: scale(1.1); /* Image gets slightly bigger */
+}
+
+/* THE OVERLAY (Hidden text that appears on hover) */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(241, 78, 149, 0.9); /* Pink with transparency */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1; /* Show on hover */
+}
+
+.gallery-overlay h3 {
+    color: white;
+    font-family: 'Sacramento', cursive;
+    font-size: 30px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay h3 {
+    transform: translateY(0); /* Text moves up slightly */
+}
+
+/* RESPONSIVE: Stack images on mobile */
+/* Since we are just simulating responsiveness for now, 
+   remember: purely vertical stacking happens when we remove width */
+
+/* ================= SECTION 6: COUNTER ================= */
+#counter {
+    position: relative;
+    width: 100%;
+    padding: 100px 0;
+    /* REPLACE with your image, maybe 'img_bg_5.jpg' */
+    background-image: url('images/img_bg_5.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* THE PARALLAX EFFECT */
+    color: white;
+    text-align: center;
+}
+
+/* Reuse the overlay logic again */
+#counter .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+.counter-container {
+    position: relative;
+    z-index: 2; /* Sit on top of overlay */
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex; /* Makes items horizontal */
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows stacking on small screens later */
+}
+
+.counter-item {
+    width: 25%; /* 4 items in a row */
+    padding: 20px;
+}
+
+.counter-item .icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #F14E95; /* Pink accent */
+}
+
+.counter-item .number {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Work Sans', sans-serif;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.counter-item .label {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+/* ================= SECTION 7: TESTIMONIALS (VERTICAL) ================= */
+#testimonials {
+    width: 100%;
+    padding: 100px 0;
+    background-color: white;
+    text-align: center;
+}
+
+.testimonial-row {
+    display: flex;
+    flex-direction: column; /* THIS changes it from Row to Column */
+    align-items: center;    /* Centers the items horizontally */
+    gap: 60px;              /* Adds vertical space between the 3 friends */
+    width: 90%;
+    max-width: 800px;       /* Constrain width so lines don't get too long to read */
+    margin: 0 auto;
+}
+
+.testimonial-item {
+    width: 100%; /* Takes up the full width of the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quote-box p {
+    font-style: italic;
+    color: #777;
+    line-height: 1.8;
+    font-size: 18px; /* Slightly larger font looks better in vertical layout */
+    margin-bottom: 20px;
+    max-width: 600px; /* Keeps the text from stretching too wide */
+}
+
+/* Author styles remain the same */
+.author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author img {
+    width: 70px; /* Slightly larger image */
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border: 3px solid #f0f0f0; /* Added a cute border */
+}
+
+.author .name {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+.author .via {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+
+
+/* ================= SECTION 7.5: SERVICES ================= */
+/* Note: .section-gray is already defined in your CSS from the Gallery section, 
+   so we don't need to write the background color again! */
+
+.services-row {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 30px; /* Space between Left list and Right video */
+    align-items: stretch; /* Ensures both sides are the same height */
+}
+
+/* --- LEFT SIDE STYLES --- */
+.services-list {
+    width: 50%; /* Takes up half the space */
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between items */
+}
+
+.service-item {
+    display: flex; /* Puts Icon next to Text */
+    align-items: flex-start;
+}
+
+.service-icon {
+    font-size: 40px;
+    color: #F14E95; /* Pink Accent */
+    margin-right: 20px;
+    width: 50px; /* Fixed width so text aligns perfectly */
+    text-align: center;
+}
+
+.service-text h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.service-text p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* --- RIGHT SIDE STYLES (VIDEO) --- */
+.services-video {
+    width: 50%; /* Takes up the other half */
+    /* REPLACE with an image, e.g., 'img_bg_3.jpg' */
+    background-image: url('images/img_bg_3.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Needed for centering the play button */
+    min-height: 300px; /* Ensures it has height even if empty */
+    border-radius: 4px;
+}
+
+/* The Play Button Overlay */
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfectly centers it */
+    
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-decoration: none;
+    color: #F14E95; /* Pink Arrow */
+    font-size: 30px;
+    padding-left: 5px; /* Optical adjustment for the triangle arrow */
+    
+    box-shadow: 0 0 20px rgba(0,0,0,0.2); /* Drop shadow */
+    transition: transform 0.3s ease;
+}
+
+.play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1); /* Grows slightly on hover */
+}
+
+
+
+
+/* ================= SECTION 8: RSVP ================= */
+#rsvp {
+    position: relative;
+    width: 100%;
+    padding: 100px 0;
+    /* REPLACE with your image, maybe 'img_bg_4.jpg' from the template */
+    background-image: url('images/img_bg_4.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+    text-align: center;
+}
+
+/* Overlay re-use */
+#rsvp .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.form-container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Flexbox Form Layout */
+.rsvp-form {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    flex-wrap: wrap; /* Allows stacking on mobile */
+}
+
+.form-group {
+    flex: 1; 
+    min-width: 250px; 
+}
+
+
+.rsvp-form input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    border: 1px solid white; /* Thin white border */
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    outline: none; /* Removes the blue glow on click */
+    font-family: 'Work Sans', sans-serif;
+}
+
+/* Change Placeholder Text Color */
+.rsvp-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Focus Effect (When you click inside) */
+.rsvp-form input:focus {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #F14E95;
+}
+
+/* Styling the Button */
+.btn-submit {
+    flex: 1; /* Takes up equal space as inputs */
+    min-width: 250px;
+    padding: 15px 20px;
+    background-color: #F14E95; /* Pink Theme Color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #d1367a; /* Darker pink on hover */
+}
+
+/* ================= FOOTER ================= */
+#footer {
+    padding: 50px 0;
+    background-color: white;
+    text-align: center; /* Centers all text */
+}
+
+.copyright p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.copyright a {
+    color: #F14E95; /* Pink Accent */
+    text-decoration: none;
+}
+
+/* Social Icons List */
+.social-icons {
+    padding: 0;
+    list-style: none; /* Removes bullet points */
+    display: flex;
+    justify-content: center; /* Centers the row of icons */
+    gap: 20px; /* Space between icons */
+}
+
+.social-icons li a {
+    font-size: 24px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+    color: #F14E95; /* Pink on hover */
+}
+
+/* ================= GO TO TOP BUTTON ================= */
+.gototop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    opacity: 0.8;
+}
+
+.gototop a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #F14E95;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px; /* Vertically centers the arrow */
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.gototop a:hover {
+    transform: translateY(-5px); /* Moves up slightly on hover */
+}

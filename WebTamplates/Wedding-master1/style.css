@@ -1,0 +1,151 @@
+/* =======================================================
+* WEDDING WEBSITE STYLES
+* ======================================================= */
+
+body {
+    font-family: "Work Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #828282;
+    background: #fff;
+    overflow-x: hidden; 
+}
+
+
+.animate-box {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+h1, h2, h3, h4, h5, h6, figure {
+    color: #000;
+    font-family: "Work Sans", Arial, sans-serif;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+}
+.btn {
+    background: #F14E95;
+    color: #fff;
+    border: none !important;
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+.btn:hover { background: #d43b7e; color: #fff; }
+
+
+/* --- NAVBAR STYLES (NON-FIXED, TRANSPARENT OVER IMAGE) --- */
+.site-nav.navbar-default {
+    background: transparent; /* Makes it transparent to sit over the image */
+    border: none;
+    top: 0;
+    padding: 20px 0;
+    z-index: 1001;
+    transition: 0.5s;
+    margin-bottom: 0; /* Important: removes default Bootstrap margin */
+}
+.site-nav .navbar-brand {
+    height: auto;
+    padding-top: 5px;
+}
+.site-nav #site-logo {
+    font-size: 40px;
+    line-height: 40px;
+    font-family: "Sacramento", Arial, serif;
+}
+.site-nav #site-logo a {
+    color: #F14E95; 
+    font-weight: bold;
+}
+.site-nav .navbar-nav > li > a {
+    font-size: 14px;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    color: #fff; 
+    transition: 0.5s;
+}
+.site-nav .navbar-nav > li > a:hover { 
+    color: #F14E95; 
+    background: transparent;
+}
+.site-nav .navbar-toggle .icon-bar {
+    background-color: #fff; 
+}
+
+
+
+.hero-header {
+    height: 800px; 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    
+   
+    margin-top: -80px; 
+}
+.hero-header .overlay {
+    position: absolute;
+    bottom: 0; top: 0; left: 0; right: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+.hero-header .display-t, .hero-header .display-tc {
+    height: 800px; 
+    display: table;
+    width: 100%;
+}
+.display-tc {
+    display: table-cell !important;
+    vertical-align: middle;
+}
+.hero-header .display-tc h1 {
+    font-size: 80px;
+    font-family: "Sacramento", Arial, serif;
+    color: white;
+    margin-top: 0; /* Resetting margin */
+}
+.hero-header .display-tc h2 {
+    font-size: 20px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* --- WEDDING COUNTDOWN CIRCLES --- */
+.wedding-countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+    /* border: 3px solid rgba(255, 255, 255, 0.5); */
+    border-radius: 50%;
+    background: #F14E95;
+    color: white;
+    text-align: center;
+}
+.unit-number {
+    font-family: "Sacramento", Arial, serif;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: bold;
+}
+.unit-text {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+

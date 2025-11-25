@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            border: 2px solid #a0a0a0;
+        }
+
+        th, td {
+            border: 1px solid #a0a0a0;
+            padding: 12px;
+            text-align: center;
+        }
+
+        thead th {
+            background-color: #e0e0e0;
+        }
+
+        tbody th {
+            background-color: #e0e0e0;
+            text-align: left;
+        }
+        
+        #lunch {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            writing-mode:verticle-rl; 
+            letter-spacing: 2px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <table>
+      <caption>Time-Table</caption>
+      <thead>
+        <tr>
+          <th>Days</th>
+          <th>1</th>
+          <th>2</th>
+          <th class="empty-header"></th>
+          <th>3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Monday</th>
+          <td>English</td>
+          <td>Social Science</td>
+          <td id="lunch" rowspan="3">L U N C H</td>
+          <td>Sanskrit</td>
+        </tr>
+        <tr>
+          <th>Wednesday</th>
+          <td>Maths</td>
+          <td>G.K</td>
+          <td>English</td>
+        </tr>
+        <tr>
+          <th>Friday</th>
+          <td>Science</td>
+          <td>Hindi</td>
+          <td>Computer</td>
+        </tr>
+      </tbody>
+    </table>
+
+</body>
+</html>

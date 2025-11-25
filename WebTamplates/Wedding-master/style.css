@@ -1,0 +1,334 @@
+/* =======================================================
+* WEDDING WEBSITE STYLES
+* Save this file as "style.css" in the same folder as index.html
+* ======================================================= */
+
+body {
+    font-family: "Work Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #828282;
+    background: #fff;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- UTILITY & FIXES --- */
+/* .animate-box {
+    opacity: 1 !important;
+    visibility: visible !important;
+} */
+/* .site-loader { 
+    display: none !important;
+} */
+
+a { color: #F14E95; transition: 0.5s; }
+a:hover, a:active, a:focus { color: #F14E95; text-decoration: none; }
+
+/* h1, h2, h3, h4, h5, h6, figure {
+    color: #000;
+    font-family: "Work Sans", Arial, sans-serif;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+} */
+
+/* --- NAVBAR STYLES --- */
+.site-nav.navbar-default {
+    background: transparent; /* Make it transparent */
+    border: none;
+    top: 0;
+    padding: 20px 0;
+    z-index: 1001;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.site-nav.navbar-default .navbar-brand {
+    height: auto;
+    padding-top: 5px;
+}
+.site-nav #site-logo {
+    font-size: 40px;
+    margin: 0;
+    line-height: 40px;
+    font-family: "Sacramento", Arial, serif;
+}
+.site-nav #site-logo a {
+    color: #F14E95; 
+    font-weight: bold;
+}
+.site-nav .navbar-nav > li > a {
+    font-size: 14px;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9); /* White text on dark header */
+    transition: 0.5s;
+}
+.site-nav .navbar-nav > li > a:hover { 
+    color: #F14E95; 
+    background: transparent;
+}
+.site-nav .navbar-nav > li.active > a { 
+    color: #F14E95 !important; 
+    background: transparent;
+}
+.site-nav .navbar-toggle .icon-bar {
+    background-color: #fff; /* White bars for mobile menu */
+}
+
+/* --- HEADER / HERO STYLES --- */
+.hero-header {
+    height: 900px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+}
+.hero-header .overlay {
+    position: absolute;
+    bottom: 0; top: 0; left: 0; right: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+.hero-header .display-t, .hero-header .display-tc {
+    height: 900px;
+    display: table;
+    width: 100%;
+}
+.display-tc {
+    display: table-cell !important;
+    vertical-align: middle;
+}
+.hero-header .display-tc h1 {
+    margin-bottom: 0px;
+    font-size: 80px;
+    line-height: 1.5;
+    font-family: "Sacramento", Arial, serif;
+    color: white;
+}
+.hero-header .display-tc h2 {
+    font-size: 20px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.btn {
+    background: #F14E95;
+    color: #fff;
+    border: none !important;
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+.btn:hover { background: #d43b7e; color: #fff; }
+
+/* --- WEDDING COUNTDOWN CIRCLES --- */
+.wedding-countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    margin: 0 10px;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+}
+.unit-number {
+    font-family: "Sacramento", Arial, serif;
+    font-size: 40px;
+    line-height: 1;
+    font-weight: bold;
+}
+.unit-text {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+
+/* --- SECTION BASE STYLES --- */
+.section-gray { background: rgba(0, 0, 0, 0.04); }
+.section-background {
+    background-size: cover; background-position: center; position: relative; width: 100%; float: left;
+    padding: 7em 0;
+}
+.section-background .overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5);
+}
+.section-heading { margin-bottom: 3em; }
+.section-heading h2 {
+    font-size: 50px;
+    color: #F14E95;
+    font-family: "Sacramento", Arial, serif;
+}
+
+/* --- COUPLE SECTION --- */
+.couple-wrap { width: 90%; margin: 0 auto; position: relative; margin-bottom: 50px;}
+.couple-half { width: 50%; float: left; }
+.couple-half h3 { font-family: "Sacramento", cursive; color: #F14E95; font-size: 30px; }
+.couple-half .groom-photo, .couple-half .bride-photo {
+    float: left;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+.couple-half .groom-photo img, .couple-half .bride-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.couple-half .groom-photo { float: right; margin-right: 20px; }
+.couple-half .bride-photo { float: left; margin-left: 20px; }
+.couple-half .desc-groom { padding-right: 180px; text-align: right; }
+.couple-half .desc-bride { padding-left: 180px; text-align: left; }
+
+.heart {
+    position: absolute; top: 30px; left: 0; right: 0; z-index: 99; text-align: center;
+}
+.heart i {
+    font-size: 20px; background: #fff; padding: 15px; color: #F14E95; border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* --- EVENTS SECTION --- */
+.event-wrap {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    color: white;
+    margin-bottom: 20px;
+}
+.event-wrap h3 { color: white; font-size: 24px; font-family: "Sacramento", cursive; }
+.event-col { width: 50%; float: left; margin-bottom: 20px; }
+.event-col i { font-size: 24px; display: block; margin-bottom: 10px; }
+
+/* --- STORY / TIMELINE --- */
+.timeline { list-style: none; padding: 20px 0; position: relative; }
+.timeline:before {
+    top: 0; bottom: 0; position: absolute; content: " "; width: 1px; background-color: #d4d4d4; left: 50%; margin-left: 0px;
+}
+.timeline > li { margin-bottom: 20px; position: relative; }
+.timeline > li:after { content: ""; display: table; clear: both; }
+.timeline > li > .timeline-panel {
+    width: 45%; float: left; border: 1px solid #d4d4d4; padding: 20px; border-radius: 4px; position: relative;
+}
+.timeline > li > .timeline-badge {
+    color: #fff; width: 120px; height: 120px; line-height: 50px; font-size: 1.4em; text-align: center;
+    position: absolute; top: 16px; left: 50%; margin-left: -60px; background-color: #999999; z-index: 100;
+    border-radius: 50%; border: 5px solid #fff;
+    background-size: cover; background-position: center;
+}
+.timeline > li.timeline-inverted > .timeline-panel { float: right; }
+
+/* --- GALLERY --- */
+.gallery-grid { list-style: none; padding: 0; margin: 0; }
+.gallery-grid li {
+    display: block; width: 32%; float: left; margin: 0 1% 20px 0; height: 300px;
+    background-size: cover; background-position: center; position: relative; border-radius: 5px;
+}
+.gallery-grid li:nth-child(3n) { margin-right: 0; }
+.gallery-grid li a {
+    display: block; width: 100%; height: 100%; position: relative;
+}
+.case-studies-summary {
+    position: absolute; bottom: 20px; left: 20px; color: white; opacity: 0; transition: 0.3s;
+}
+.gallery-grid li:hover .case-studies-summary { opacity: 1; }
+
+/* --- FOOTER --- */
+.site-footer {
+    padding: 5em 0; 
+    text-align:center;
+}
+.site-footer .social-icons {
+    list-style:none; 
+    padding:0;
+}
+.site-footer .social-icons li {
+    display:inline; 
+    margin:0 10px;
+}
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+@media screen and (max-width: 768px) {
+    .hero-header .display-tc h1 { font-size: 40px; }
+    
+    /* Navbar Mobile Fix */
+    .site-nav.navbar-default {
+        background: #fff; /* White background when mobile menu is collapsed */
+    }
+    .site-nav .navbar-nav > li > a {
+        color: rgba(0, 0, 0, 0.7); /* Dark text on white background */
+    }
+
+    /* Couple Section */
+    .couple-half { width: 100%; text-align: center !important; margin-bottom: 20px; }
+    .couple-half .groom-photo, .couple-half .bride-photo { float: none; margin: 0 auto; }
+    .couple-half .desc-groom, .couple-half .desc-bride { padding: 0; }
+    
+    /* Timeline */
+    .timeline:before { left: 40px; }
+    .timeline > li > .timeline-badge { left: 40px; width: 60px; height: 60px; margin-left: -30px; }
+    .timeline > li > .timeline-panel { width: 75%; float: right; }
+    
+    /* Gallery */
+    .gallery-grid li { width: 100%; margin-right: 0; }
+
+    /* Countdown Mobile Adjustments */
+    .wedding-countdown {
+        flex-wrap: wrap;
+    }
+    .countdown-unit {
+        width: 80px;
+        height: 80px;
+        margin: 5px;
+    }
+    .unit-number {
+        font-size: 30px;
+    }
+    .unit-text {
+        font-size: 10px;
+    }
+}
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+/*
+@media screen and (max-width: 768px) {
+    .hero-header .display-tc h1 { font-size: 40px; }
+    
+    /* Mobile Navbar fix - changes to solid white when collapsed */
+    /* .site-nav.navbar-default {
+        background: rgba(255, 255, 255, 0.95);
+    }
+    .site-nav .navbar-nav > li > a {
+        color: rgba(0, 0, 0, 0.7); /* Dark text on white background when menu open */
+    /* }
+    .site-nav .navbar-toggle .icon-bar {
+        background-color: #000; /* Black bars when menu open */
+    /* } */
+
+    /* Countdown Mobile Adjustments */
+    /* .wedding-countdown {
+        flex-wrap: wrap;
+    }
+    .countdown-unit {
+        width: 80px;
+        height: 80px;
+        margin: 5px;
+    }
+    .unit-number {
+        font-size: 30px;
+    } */
+/* }  */
