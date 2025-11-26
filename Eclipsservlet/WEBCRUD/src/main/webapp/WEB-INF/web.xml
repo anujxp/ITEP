@@ -12,6 +12,9 @@
     <servlet-name>AddProductServlet</servlet-name>
     <servlet-class>com.info.webcrud.controller.AddProductServlet</servlet-class>
   </servlet>
+  
+   
+ 
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
@@ -20,4 +23,5 @@
     <servlet-name>AddProductServlet</servlet-name>
     <url-pattern>/AddProductServlet</url-pattern>
   </servlet-mapping>
+
 </web-app>
