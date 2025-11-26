@@ -30,4 +30,22 @@ public class BookDao {
     	e.printStackTrace();
     }
 }
+	public static void updateBookPrice() {
+		Scanner sc = new Scanner(System.in);
+		 EntityManagerFactory emf = JpaUtil.getFactory();
+		int bookId = sc.nextInt();
+		System.out.println("enternew price");
+		int newPrice = sc.nextInt();
+		 try(EntityManager em = emf.createEntityManager()){
+			 EntityTransaction transaction = em.getTransaction();
+			 transaction.begin();
+    Book book = em.find(Book.class, bookId);
+    if (book != null) {
+        System.out.println("Updating " + book.getTitle() + " to $" + newPrice);
+        book.setPrice(newPrice);
+    }
+    transaction.commit();
 }
+
+	}}
+

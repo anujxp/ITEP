@@ -8,7 +8,7 @@ public class DatabaseConnection {
 	   public static Connection getConnection() {
 		  try {
 			  Class.forName("com.mysql.cj.jdbc.Driver");
-			  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/curdweb","root","");
+			  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/webcrud","root","root");
 		      return con;
 		  }
 		  catch(Exception e) {

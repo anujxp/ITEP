@@ -30,19 +30,10 @@ public class App {
         case 1: CategoryDao.createCategoryWithBooks();break;
         case 2: CategoryDao.listBooksByCategory();break;
         case 3: BookDao.deleteBookOnly();break;
-        case 4: CategoryDao.deleteCategoryCascading() break;
-//        case 5: insertStudentCourse();break;
+        case 5: CategoryDao.deleteCategoryCascading(); break;
+        case 4: BookDao.updateBookPrice();break;
         case 0: System.exit(choice);
         }
-		// Assuming IDs generated are 1, 2, 3. Let's update Book ID 1.
-//		updateBookPrice(em, 1L, 29.99);
-//
-//		// Delete Book ID 2
-//		deleteBookOnly(em, 2L);
-//		listBooksByCategory(em, catId); // Verify deletion
-//
-//		Long catId = createCategoryWithBooks(em);
-//		listBooksByCategory(em, catId);
-//		deleteCategoryCascading(em, catId);
+		
 	}
 }

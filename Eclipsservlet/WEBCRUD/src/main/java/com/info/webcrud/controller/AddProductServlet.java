@@ -10,7 +10,7 @@ import java.io.IOException;
 import com.info.webcrud.dao.ProductDAO;
 import com.info.webcrud.model.Product;
 
-@WebServlet(description = "for handing product", urlPatterns = { "/AddProductServlet" })
+//@WebServlet(description = "for handing product", urlPatterns = { "/AddProductServlet" })
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

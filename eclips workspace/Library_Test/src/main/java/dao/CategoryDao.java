@@ -25,22 +25,24 @@ public class CategoryDao {
 		        cat.setName(sc.next());
 		        System.out.println("Enter category detaiil");
 		        cat.setDescription(sc.next());
-		        Book b1 = new Book();
+		        
 				System.out.println("how many book you want to add (min 3");
 				int n = sc.nextInt();
 				for(int i = 0; i<n;i++) {
+					Book b1 = new Book();
 					System.out.println("Entr book"+i+1+"Title");
 					b1.setTitle(sc.next());
 					System.out.println("Enter book author");
 					b1.setAuthor(sc.next());
 					System.out.println("Enter price");
 					b1.setPrice(sc.nextDouble());
+					em.persist(b1);				
 					b1.setCategory(cat);
 					cat.addBook(b1);
 				}
-		        // Using helper method ensures 'category' field in Book is set
-		        em.persist(cat); // Cascades to books
-		        em.getTransaction().commit();
+		       
+		        em.persist(cat); 
+		        transaction.commit();
 		        
 		        System.out.println("Created Category: " + cat.getName());
 		        return cat.getId();
@@ -62,9 +64,10 @@ public class CategoryDao {
 		        Category cat = em.find(Category.class, categoryId);
 		        if (cat != null) {
 		            System.out.println("Deleting Category: " + cat.getName());
-		            em.remove(cat); // Will delete all books due to CascadeType.ALL
+		            em.remove(cat); 
 		        }
 		        em.getTransaction().commit();
+			 }
 		    }
 		 public static void listBooksByCategory() {
 			 System.out.println("Enter category id ");
@@ -76,7 +79,7 @@ public class CategoryDao {
 			 try(EntityManager em = emf.createEntityManager()){
 //				 EntityTransaction transaction = em.getTransaction();
 //		        transaction.begin();
-		        em.clear(); // Clear cache to force DB fetch
+		        
 		        Category cat = em.find(Category.class, categoryId);
 		        if (cat != null) {
 		            System.out.println("Category: " + cat.getName());

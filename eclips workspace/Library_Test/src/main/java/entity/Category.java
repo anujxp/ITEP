@@ -22,8 +22,7 @@ public class Category {
     private String name;
     private String description;
 
-    // mappedBy tells JPA that 'Book' owns the relationship.
-    // CascadeType.ALL allows deleting a Category to delete its Books automatically.
+    
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<>();
 
