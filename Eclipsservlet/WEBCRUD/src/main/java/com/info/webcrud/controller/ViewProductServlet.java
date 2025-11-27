@@ -26,6 +26,7 @@ public class ViewProductServlet extends HttpServlet {
 		  out.print("<body>");
 		  out.print(" <a href='add_product.html'>Add product</a>&nbsp;&nbsp;&nbsp;\n"
 		  		+ "  <a href='./ViewProductServlet'>View product</a>");
+		  out.print("<h1>Product table</h>");
 		  ArrayList<Product> list =  ProductDAO.getProductList();
 		  out.print("<table border='1' width='100%'>");
 		  out.print("<tr>");
@@ -42,7 +43,7 @@ public class ViewProductServlet extends HttpServlet {
 			  out.print("<td>"+p.getTitle()+"</td>");
 			  out.print("<td>"+p.getBrand()+"</td>");
 			  out.print("<td>"+p.getPrice()+"</td>");
-			  out.print("<td><button>Edit</button></td>");
+			  out.print("<td><a href='./DeleteProductServlet?id="+p.getId()+"'><button>Edit</button></a></td>");
 			  out.print("<td><a href='./DeleteProductServlet?id="+p.getId()+"'><button>Delete</button></a></td>");
 			  out.print("</tr>");
 			     
