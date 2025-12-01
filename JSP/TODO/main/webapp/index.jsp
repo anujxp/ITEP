@@ -1,9 +1,9 @@
-
+<%@page import="jakarta.persistence.EntityManagerFactory"%>
+<%@page import="com.info.todo.util.JpaUtil"%>
+	<% JpaUtil.getFactory();%>
 <html>
 <head>
-<%@page import="com.info.todo.util.JPAUtil"%>
-<% JPAUtil.getFactory();%>
-<% %>
+  <%@include file="__bootstrap_link.jsp" %>
   <style>
      .form-container{
        width: 50%;
