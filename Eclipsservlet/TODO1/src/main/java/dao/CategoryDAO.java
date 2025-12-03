@@ -13,11 +13,68 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 public class CategoryDAO {
+	
+	public static Category findById(Category category) {
+		  EntityManagerFactory factory = JPAUtil.getFactory();
+		  try(EntityManager manager = factory.createEntityManager();) {
+			 Category c =  manager.find(Category.class, category.getId());
+		     return c;
+		  }
+		  catch(Exception e) {
+			  e.printStackTrace();
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  }
+		
+	public static boolean update(Category c) {
+		  EntityManagerFactory factory = JPAUtil.getFactory();
+		  EntityTransaction transaction = null;
+		  try(EntityManager manager = factory.createEntityManager();) {
+			  transaction = manager.getTransaction();
+			  transaction.begin();
+			  Category dbCategory =  manager.find(Category.class, c.getId());
+		      if(dbCategory == null)
+		    	  return false;
+			  dbCategory.setCategoryName(c.getCategoryName());
+		      manager.persist(dbCategory);
+		      transaction.commit();
+		      return true;
+		  }
+		  catch(Exception e) {
+			  if(transaction != null && transaction.isActive())
+				  transaction.rollback();
+			  e.printStackTrace();
+			  throw new RuntimeException(e.getMessage());
+		  }
+	  }
+	
+	
+	public static boolean delete(Category category) {
+		EntityManagerFactory factory = JPAUtil.getFactory();
+		EntityTransaction transaction = null;
+		
+		try(EntityManager manager = factory.createEntityManager();){
+		transaction = manager.getTransaction();
+		transaction.begin();
+		Category cat = manager.find(Category.class, category.getId());
+		if(cat!= null) {
+			manager.remove(cat);
+			transaction.commit();
+			return true;
+		}
+		throw new RuntimeException("Runtime resources not found....");
+		}catch(Exception e) {
+			if(transaction != null && transaction.isActive())
+				transaction.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		}
+	}
 
 	public static List<Category> getList() {
 		EntityManagerFactory factory = JPAUtil.getFactory();
 		try (EntityManager manager = factory.createEntityManager()) {
-			TypedQuery<Category> query = manager.createQuery("from Cateogry", Category.class);
+			TypedQuery<Category> query = manager.createQuery("from Category", Category.class);
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
