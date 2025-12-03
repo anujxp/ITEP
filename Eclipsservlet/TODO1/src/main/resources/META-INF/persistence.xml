@@ -8,7 +8,10 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
    
     <!-- List all your entity classes -->
-    <class>com.info.todoapp.entity.Admin</class>
+    <class>com.info.todo.entity.Admin</class>
+    <class>com.info.todo.entity.Category</class>
+    <class>com.info.todo.entity.Task</class>
+    <class>com.info.todo.entity.User</class>
     
     <properties>
       <!-- JDBC connection properties -->

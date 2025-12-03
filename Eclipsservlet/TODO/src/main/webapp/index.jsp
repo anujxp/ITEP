@@ -1,7 +1,6 @@
-
+<%@page import="com.info.todo.util.JPAUtil"%>
 <html>
 <head>
-<%@page import="com.info.todo.util.JPAUtil"%>
 <% JPAUtil.getFactory();%>
 <% %>
   <style>
