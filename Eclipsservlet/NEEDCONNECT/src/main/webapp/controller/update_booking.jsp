@@ -26,11 +26,10 @@
         try {
             tx.begin();
             
-            // 1. Update Booking Status
+            
             Booking booking = em.find(Booking.class, bookingId);
             booking.setStatus(status);
-            
-            // 2. If Confirmed, Update Listing Status to 'Booked'
+           
             if("Confirmed".equalsIgnoreCase(status)) {
                 Listing listing = booking.getListing();
                 listing.setStatus("Booked");
