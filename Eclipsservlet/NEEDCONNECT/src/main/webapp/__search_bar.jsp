@@ -1,28 +1,44 @@
 <%@page import="com.needconnect.dao.CategoryDAO"%>
 <%@page import="com.needconnect.entity.Category"%>
+<%@page import="com.needconnect.dao.ListingDAO"%> 
 <%@page import="java.util.List"%>
 
 <%
-    // Fetch categories for the dropdown
+    // 1. Fetch Categories
     CategoryDAO searchCatDao = new CategoryDAO();
     List<Category> searchCats = searchCatDao.getAllCategories();
     
-    // Check if a search was already done (to keep the value selected)
+    // 2. Fetch Cities (NEW)
+    ListingDAO searchListDao = new ListingDAO();
+    List<String> cityList = searchListDao.getAllCities();
+    
+    // 3. Keep selected values
     String selectedCity = request.getParameter("city");
     String selectedCatId = request.getParameter("category");
-    if(selectedCity == null) selectedCity = "";
 %>
 
 <form action="view_listings.jsp" method="get">
     <div class="form-row align-items-end">
         
         <div class="col-md-5 mb-3 mb-md-0">
-            <label class="font-weight-bold small text-muted text-uppercase">City / Area</label>
+            <label class="font-weight-bold small text-muted text-uppercase">City</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-white"><i class="fa-solid fa-location-dot text-danger"></i></span>
                 </div>
-                <input type="text" name="city" class="form-control" placeholder="e.g. Indore" value="<%= selectedCity %>">
+                <select name="city" class="form-control">
+                    <option value="">All Cities</option>
+                    <%
+                        if(cityList != null) {
+                            for(String city : cityList) {
+                                String isSelected = (selectedCity != null && selectedCity.equals(city)) ? "selected" : "";
+                    %>
+                        <option value="<%= city %>" <%= isSelected %>><%= city %></option>
+                    <%
+                            }
+                        }
+                    %>
+                </select>
             </div>
         </div>
 
@@ -33,7 +49,6 @@
                 <%
                     if(searchCats != null){
                         for(Category c : searchCats){
-                            // Check if this category was selected previously
                             String isSelected = (selectedCatId != null && selectedCatId.equals(String.valueOf(c.getId()))) ? "selected" : "";
                 %>
                     <option value="<%= c.getId() %>" <%= isSelected %>><%= c.getName() %></option>

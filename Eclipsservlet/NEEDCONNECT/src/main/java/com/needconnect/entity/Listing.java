@@ -21,11 +21,20 @@ public class Listing {
 	
 	@Column(length = 2000)
 	private String image;
+	private String adminStatus = "Pending";
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id") // This creates the foreign key column
 	private Category category;
 	
+	public String getAdminStatus() {
+		return adminStatus;
+	}
+
+	public void setAdminStatus(String adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "partner_id")
 	private Partner partner;

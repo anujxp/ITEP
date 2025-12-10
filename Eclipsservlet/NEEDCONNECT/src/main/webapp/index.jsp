@@ -82,7 +82,7 @@
                     <a href="add_listing.jsp" class="btn btn-info btn-lg font-weight-bold px-4 shadow mr-3">
                         <i class="fa-solid fa-plus-circle"></i> Post a Room
                     </a>
-                    <a href="#" class="btn btn-light btn-lg font-weight-bold px-4 shadow">My Listings</a>
+                    <a href="partner_dashboard.jsp" class="btn btn-light btn-lg font-weight-bold px-4 shadow">My Listings</a>
                 </div>
 
             <% } else { %>
@@ -93,16 +93,32 @@
                     <div class="col-md-10 col-lg-8">
                         <div class="search-card text-dark text-left">
                             
-                            <form action="view_listing.jsp" method="get">
+                            <form action="view_listings.jsp" method="get">
                                 <div class="form-row align-items-end">
                                     
-                                    <div class="col-md-5 mb-3 mb-md-0">
-                                        <label class="font-weight-bold">City / Area</label>
+                                   <div class="col-md-5 mb-3 mb-md-0">
+                                        <label class="font-weight-bold">City</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text bg-white"><i class="fa-solid fa-location-dot text-danger"></i></span>
                                             </div>
-                                            <input type="text" name="city" class="form-control" placeholder="e.g. Indore, Vijay Nagar">
+                                            <select name="city" class="form-control">
+                                                <option value="">All Cities</option>
+                                                <%
+                                                    // Note: We are reusing the ListingDAO from the listings section below
+                                                    // But to be safe, let's instantiate it here or use the one if already declared
+                                                    ListingDAO cityDao = new ListingDAO();
+                                                    List<String> cities = cityDao.getAllCities();
+                                                    
+                                                    if(cities != null) {
+                                                        for(String c : cities) {
+                                                %>
+                                                    <option value="<%= c %>"><%= c %></option>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -143,7 +159,7 @@
             <h3 class="font-weight-bold border-left pl-3" style="border-width: 5px !important; border-color: #ffc107 !important;">
                 Latest Additions
             </h3>
-            <a href="view_listing.jsp" class="btn btn-outline-primary btn-sm">View All</a>
+            <a href="view_listings.jsp" class="btn btn-outline-primary btn-sm">View All</a>
         </div>
         
         <div class="row">
@@ -197,12 +213,6 @@
         </div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-4 mt-auto">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 Need Connect.</p>
-            <small class="text-muted">Made with <i class="fa-solid fa-heart text-danger"></i> in Java JSP</small>
-        </div>
-    </footer>
-
+    <%@ include file="__footer.jsp" %>
 </body>
 </html>
