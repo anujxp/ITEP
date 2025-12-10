@@ -12,15 +12,15 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	// e.g., "PG", "Hostel", "Room", "Flat"
+	
 	@Column(nullable = false, unique = true)
 	private String name;
 
-	// RELATIONSHIP: One Category -> Many Listings
+
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Listing> listings = new ArrayList<>();
 
-	// --- Constructors ---
+	
 	public Category() {
 	}
 

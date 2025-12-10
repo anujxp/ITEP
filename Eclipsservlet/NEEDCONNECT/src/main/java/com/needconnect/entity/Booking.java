@@ -10,16 +10,14 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String bookingDate; // Format: "YYYY-MM-DD"
+	private String bookingDate; 
+	private String status; 
 
-	private String status; // e.g., "Pending", "Confirmed", "Cancelled"
-
-	// --- RELATIONSHIP 1: Which User made the booking? ---
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	// --- RELATIONSHIP 2: Which Room was booked? ---
+	
 	@ManyToOne
 	@JoinColumn(name = "listing_id")
 	private Listing listing;

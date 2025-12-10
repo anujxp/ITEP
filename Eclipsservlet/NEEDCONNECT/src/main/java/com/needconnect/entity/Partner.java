@@ -21,12 +21,11 @@ public class Partner {
 
 	private String phone;
 
-	// RELATIONSHIP: One Partner -> Many Listings
-	// 'mappedBy' MUST match the field name 'partner' in Listing.java
+
 	@OneToMany(mappedBy = "partner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Listing> listings = new ArrayList<>();
 
-	// --- Constructors ---
+	
 	public Partner() {
 	}
 
