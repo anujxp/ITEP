@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="3.1" xmlns="https://jakarta.ee/xml/ns/persistence">
+
+  <!-- persistence-unit name must match the one used in your Java code -->
+  <persistence-unit name="jainzbitesproject-persistence" transaction-type="RESOURCE_LOCAL">
+
+    <!-- JPA provider (Hibernate 6 as JPA implementation) -->
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+   
+    <!-- List all your entity classes -->
+    <class>com.info.jainzbitesproject.entity.Admin</class>
+    <class>com.info.jainzbitesproject.entity.Cart</class>
+    <class>com.info.jainzbitesproject.entity.Category</class>
+    <class>com.info.jainzbitesproject.entity.Food</class>
+    <class>com.info.jainzbitesproject.entity.Order</class>
+    <class>com.info.jainzbitesproject.entity.OrderItem</class>
+    <class>com.info.jainzbitesproject.entity.Customer</class>
+    
+    <properties>
+      <!-- JDBC connection properties -->
+      <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jainzbitesprojectdb"/>
+      <property name="jakarta.persistence.jdbc.user" value="root"/>
+      <property name="jakarta.persistence.jdbc.password" value="root"/>
+      
+      <!-- Hibernate-specific properties -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      
+   
+    </properties>
+  </persistence-unit>
+</persistence>
+         
