@@ -1,5 +1,11 @@
 package com.info.config;
 
-public class webmvc {
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+
+
+@Configuration
+public class webmvc implements WebMvcConfigurer{
 
 }
