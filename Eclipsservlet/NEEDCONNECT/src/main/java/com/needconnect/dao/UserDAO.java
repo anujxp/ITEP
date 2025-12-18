@@ -23,7 +23,8 @@ public class UserDAO {
 			if (transaction != null && transaction.isActive()) {
 				transaction.rollback();
 			}
-			e.printStackTrace();
+			e
+                    .printStackTrace();
 			return false;
 		}
 
