@@ -18,7 +18,7 @@ public class JPAConfig {
 		datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		datasource.setUrl("jdbc:mysql://localhost:3306/mvc");
 		datasource.setUsername("root");
-		datasource.setPassword("root");
+		datasource.setPassword("root");// TODO Auto-generated meth// TODO Auto-gene// TODO Auto-gene// TODO Auto-gene// TODO Auto-gene// TODO Auto-gene// TODO Auto-generated method stubrated method stubrated method stubrated method stubrated method stubrated method stubod stub
 		return datasource;
 		
 	}
