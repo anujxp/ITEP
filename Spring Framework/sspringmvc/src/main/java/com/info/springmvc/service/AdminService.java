@@ -17,10 +17,10 @@ public class AdminService {
 	   return adminRepo.save(admin);
    }
    public Admin authenticateAdmin(Admin admin) {
-//	 Optional<Admin> optional = adminRepo.findByEmailAndPassword(admin.getEmail(), admin.getPassword());
-//     if(optional.isPresent())
-//    	 return optional.get();
-//     return null;
-     return adminRepo.findByEmailAndPassword(admin.getEmail(), admin.getPassword()).orElse(null);
+	 Optional<Admin> optional = adminRepo.findByEmailAndPassword(admin.getEmail(), admin.getPassword());
+     if(optional.isPresent())
+    	 return optional.get();
+     return null;
+//     return adminRepo.findByEmailAndPassword(admin.getEmail(), admin.getPassword()).orElse(null);
    }
 }
