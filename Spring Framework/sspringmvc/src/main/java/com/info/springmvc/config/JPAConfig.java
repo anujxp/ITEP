@@ -12,9 +12,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@ComponentScan(basePackages = {"com.info.testmvc.service"})
+@ComponentScan(basePackages = {"com.info.springmvc.service"})
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.info.testmvc.repo"})
+@EnableJpaRepositories(basePackages = {"com.info.springmvc.repo"})
 @Configuration
 public class JPAConfig {
     @Bean
@@ -30,7 +30,7 @@ public class JPAConfig {
     public LocalContainerEntityManagerFactoryBean getFactory(DriverManagerDataSource dataSource) {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setDataSource(dataSource);
-        factory.setPackagesToScan("com.info.testmvc.entity");
+        factory.setPackagesToScan("com.info.springmvc.entity");
 
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 
