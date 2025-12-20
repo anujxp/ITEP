@@ -21,7 +21,6 @@ public class ProductService {
 	@Transactional
 	public Product saveProduct(Product p) {
 		return productRepo.save(p);
-		
 	}
 	
 	public List<Product> getProductList(){
