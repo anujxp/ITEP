@@ -1,6 +1,3 @@
-Here is the **README.md** file content formatted with professional GitHub styling. I have used code blocks, tables, and a clear hierarchy so it looks like a real project dashboard when you paste it into GitHub.
-
----
 
 # 🛍️ Spring Boot Product Management API
 
@@ -98,6 +95,3 @@ To test the **POST** functionality, send a request with the following configurat
 * **Developer:** Pawan (BCA Student, Holkar Science College)
 * **Status:** In Development (Next: Service & Repository Layer)
 
----
-
-**Would you like me to help you create the "Service Layer" logic to handle the business rules before saving to the database?**

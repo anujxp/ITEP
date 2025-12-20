@@ -1,8 +1,4 @@
-Since you are already using GitHub to track your progress (Commit: `6cc66cb`), a professional **README.md** file is the best way to showcase your learning to recruiters or your teachers at Holkar Science College.
 
-Here is a detailed template you can copy and paste into your repository.
-
----
 
 # 🚀 Spring Boot Foundation - 100 Days of Java
 
@@ -182,6 +178,4 @@ spring.jpa.show-sql=true
 
 ### **Next Step for you:**
 
-I have noticed you are using GitHub to track your progress (Commit: `6cc66cb`).
 
-**Would you like me to create a "README.md" template for your GitHub repository that explains today's concepts to anyone viewing your code?**
