@@ -12,7 +12,9 @@ public class Product {
     private float price;
     private String brand;
     private float discount;
-
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     public int getId() {
         return id;
     }
@@ -25,7 +27,15 @@ public class Product {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public void setTitle(String title) {
         this.title = title;
     }
 
