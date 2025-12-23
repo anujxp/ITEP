@@ -15,11 +15,12 @@ import java.util.Optional;
 public class ProductService {
 
 	private final Productepository productRepo;
-	private final CategoryRepo categoryRepo;
+	@Autowired
+	private  CategoryRepo categoryRepo;
 
 	@Autowired
-	public ProductService(Productepository productRepo,CategoryRepo categoryRepo) {
-		this.categoryRepo = categoryRepo;
+	public ProductService(Productepository productRepo) {
+	
 		this.productRepo = productRepo;
 	}
 
@@ -29,7 +30,8 @@ public class ProductService {
 
 	public Optional<Product> getProductById(int id) {
 		Optional<Product> product = this.productRepo.findById(id);
-		return product;
+		return product;	        
+
 	}
 
 	public List<Product> getList() {
@@ -52,9 +54,9 @@ public class ProductService {
 		if (newDetails.getCategory() != null) {
 	        int catId = newDetails.getCategory().getId();
 	        // Fetch the REAL category from DB
-	        Category managedCategory = categoryRepo.findById(catId).orElse(null);
+	        Optional<Category> managedCategory = categoryRepo.findById(null);
 	        
-	        existingProduct.setCategory(managedCategory);
+	        existingProduct.setCategory(managedCategory.get());
 	    }
 
 		// 3. Save updated entity
