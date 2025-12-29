@@ -1,4 +1,4 @@
-package com.info.ecommerce.controller.dto;
+package com.info.ecommerce.dto;
 
 public class UserResponseDTO {
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.info.ecommerce.controller.dto.UserResponseDTO;
+import com.info.ecommerce.dto.UserResponseDTO;
 import com.info.ecommerce.entity.User;
 import com.info.ecommerce.service.UserService;
 
@@ -28,6 +28,17 @@ public class UserController {
 		userDto.setEmail(dbUser.getEmail());
 		userDto.setUserName(dbUser.getUserName());
 		return ResponseEntity.status(HttpStatus.CREATED).body(userDto);
-		
 	}
+
+
+	@PostMapping("/login")
+	public ResponseEntity<UserResponseDTO> authenticateUser(@RequestBody User user){
+		User dbUser =  userService.authenticateUser(user);
+		UserResponseDTO userDTO = new UserResponseDTO();
+		userDTO.setId(dbUser.getId());
+		userDTO.setEmail(dbUser.getEmail());
+		userDTO.setUserName(dbUser.getUserName());
+		return ResponseEntity.ok().body(userDTO);
+	}
+
 }
