@@ -12,6 +12,8 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -36,5 +38,12 @@ public class Cart {
         this.user = user;
     }
 
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
 
 }
