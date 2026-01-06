@@ -1,4 +1,6 @@
-package com.info.Exception;
+package com.info.excption;
+
+import java.util.HashMap;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,10 +8,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<String> handleInternalServer(Exception e){
+	public ResponseEntity<HashMap<String,Object>> habdleInternalserver(Exception e){
 		e.printStackTrace();
-		return ResponseEntity.internalServerError().body(e.getMessage());
-				}
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("error ", "Oops! something went wrong");
+		return ResponseEntity.internalServerError().body(hm);
+	}
 }
