@@ -38,7 +38,6 @@ public class UserDAO {
             TypedQuery<User> query = manager.createQuery(jpql, User.class);
             query.setParameter("email", email);
             query.setParameter("password", password);
-
             List<User> list = query.getResultList();
             
             if (list.isEmpty()) {
