@@ -25,11 +25,12 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests(auth -> auth
                 
-            		.requestMatchers("/users/tenants/register").permitAll()
+            		.requestMatchers("/users/tenants/register","users/tenants/{id}").permitAll()
                     
                     // 3. FIX: Add this line! The path must match your Controller EXACTLY.
                     .requestMatchers("/users/tenants/login").permitAll()
-                    .requestMatchers("/users/hosts").permitAll()
+                    .requestMatchers("/users/hosts/login","/users/hosts/{id}","/users/hosts/{id}/exists").permitAll()
+                    .requestMatchers("/users/hosts/register").permitAll()
 //                .anyRequest().authenticated()
             );
 

@@ -32,7 +32,7 @@ public class AuthController {
 		   this.jwt = jwt;
 	   }
 	   
-	   @PostMapping
+	   @PostMapping("/register")
 	   public ResponseEntity<?> registerUser(@RequestBody User user){
 		   return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(user));
 	   }

@@ -8,11 +8,11 @@
 		<version>4.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.info.settlespot.propertyservice</groupId>
+	<groupId>com.info.settlespot.bookingservice</groupId>
 	<artifactId>SettlespotBookingService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SettlespotBookingService</name>
-	<description>Booking service for the settlespot</description>
+	<description>this is for booking service </description>
 	<url/>
 	<licenses>
 		<license/>
