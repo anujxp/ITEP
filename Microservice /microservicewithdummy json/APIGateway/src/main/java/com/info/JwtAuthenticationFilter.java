@@ -36,8 +36,10 @@ public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
 		System.out.println(authHeader);
 		
 		String token =  authHeader.substring(7);
-		if(authHeader == null || !authHeader.startsWith("Bearer "))
+		if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+			System.out.println("under the bearrer");
 			   return unauthorized(exchange,"Invalid Authorization Header");
+		}
 		try {
 			jwt.validateToken(token);
 		}
