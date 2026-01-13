@@ -19,6 +19,7 @@ public class UserService {
    }
    @Transactional
    public UserDTO registerUser(User user) {
+	   System.out.println(user.getUsername());
 	   String encryptedPassword = passwordEncoder.encode(user.getPassword());
 	   user.setPassword(encryptedPassword);
 	   User dbUser =  userRepo.save(user);
@@ -27,6 +28,7 @@ public class UserService {
 	   dto.setEmail(dbUser.getEmail());
 	   dto.setUsername(dbUser.getUsername());
 	   dto.setRole(dbUser.getRole());
+	   System.out.println(dbUser.getUsername() + dto.getUsername());
 	   return dto;
    }
 }

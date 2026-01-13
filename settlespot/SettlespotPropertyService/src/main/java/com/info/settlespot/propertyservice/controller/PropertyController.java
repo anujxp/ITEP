@@ -69,4 +69,15 @@ public class PropertyController {
         propertyService.updateAvailability(id, isAvailable);
         return ResponseEntity.ok().build();
     }
+    
+    @GetMapping("/filter")
+    public ResponseEntity<List<PropertyDTO>> filterProperties(
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice) 
+    {
+        List<PropertyDTO> results = propertyService.getFilteredProperties(city, type, minPrice, maxPrice);
+        return ResponseEntity.ok(results);
+    }
 }

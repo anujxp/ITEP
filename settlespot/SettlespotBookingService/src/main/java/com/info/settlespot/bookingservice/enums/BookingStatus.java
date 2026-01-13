@@ -1,7 +1,8 @@
 package com.info.settlespot.bookingservice.enums;
 
 public enum BookingStatus {
-    PENDING,
-    CONFIRMED,
+	PENDING,    
+    APPROVED,   
+    REJECTED,
     CANCELLED
 }

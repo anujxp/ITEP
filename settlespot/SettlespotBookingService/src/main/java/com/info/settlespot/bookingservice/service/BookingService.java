@@ -26,6 +26,7 @@ public class BookingService {
         this.propertyClient = propertyClient;
         this.userClient = userClient;
     }
+    
     @Transactional
     public Booking createBooking(BookingRequestDTO request) {
 
@@ -38,7 +39,6 @@ public class BookingService {
         if (days <= 0) throw new BookingException("Invalid dates provided.");
         
         double totalAmount = property.getRentAmount() * days;
-
         Booking booking = new Booking();
         booking.setPropertyId(request.getPropertyId());
         booking.setTenantId(request.getTenantId());
@@ -46,10 +46,7 @@ public class BookingService {
         booking.setCheckInDate(request.getCheckInDate());
         booking.setCheckOutDate(request.getCheckOutDate());
         booking.setTotalAmount(totalAmount);
-        booking.setStatus(BookingStatus.CONFIRMED);
-
-        propertyClient.updateAvailability(request.getPropertyId(), false);
-
+        booking.setStatus(BookingStatus.PENDING);
         return bookingRepository.save(booking);
     }
     
@@ -64,16 +61,23 @@ public class BookingService {
     
     @Transactional
     public void cancelBooking(Integer bookingId) {
-        // 1. Find the booking
-        Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(() -> new ResourceNotFoundException("Booking not found with ID: " + bookingId));
-
-        // 2. Update status to CANCELLED
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(() -> new ResourceNotFoundException("Booking not found with ID: " + bookingId));
         booking.setStatus(BookingStatus.CANCELLED);
         bookingRepository.save(booking);
-
-        // 3. IMPORTANT: Tell Property Service to make it available again
         propertyClient.updateAvailability(booking.getPropertyId(), true);
+    }
+    
+    @Transactional
+    public Booking updateBookingStatus(Integer bookingId, BookingStatus newStatus) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new ResourceNotFoundException("Booking not found"));
+        if (newStatus == BookingStatus.APPROVED) {
+            propertyClient.updateAvailability(booking.getPropertyId(), false);
+            booking.setStatus(BookingStatus.APPROVED);
+        } else if (newStatus == BookingStatus.REJECTED) {
+            booking.setStatus(BookingStatus.REJECTED);
+        }
+        return bookingRepository.save(booking);
     }
     
 }

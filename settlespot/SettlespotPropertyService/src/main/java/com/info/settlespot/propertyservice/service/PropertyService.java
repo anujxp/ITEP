@@ -81,4 +81,9 @@ public class PropertyService {
         property.setAvailable(isAvailable);
         propertyRepository.save(property);
     }
+    
+    public List<PropertyDTO> getFilteredProperties(String city, String type, Double min, Double max) {
+        List<Property> properties = propertyRepository.findByFilters(city, type, min, max);
+        return properties.stream().map(PropertyDTO::new).collect(Collectors.toList());
+    }
 }

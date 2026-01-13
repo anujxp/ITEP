@@ -28,8 +28,8 @@ public class User {
   public String getUsername() {
 	return userName;
   }
-  public void setUsername(String username) {
-	this.userName = username;
+  public void setUsername(String userName) {
+	this.userName = userName;
   }
   public String getEmail() {
 	return email;
