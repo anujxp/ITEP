@@ -1,0 +1,41 @@
+<!-- 3. The given input is a string of multiple words with a single space between each of them. Abbreviate the name and return the name initials.
+
+ const input = "George Raymond Richard Martin";
+ output :- "GRRM" -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <script>
+        const input = "George Raymond Richard Martin";
+        const arr = input.split(" ");
+        document.write(arr);
+
+        let str = "";
+        for (const key of arr) {
+           str += key.charAt(0)
+        }
+
+        document.write(str);
+
+
+
+
+        const input1 = "George Raymond Richard Martin";
+
+const output = input1
+  .split(" ")         
+  .map(word => word[0])
+  .join("");         
+
+document.write(output);
+    </script>
+
+ </body>
+ </html>
