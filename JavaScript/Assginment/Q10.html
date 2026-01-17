@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const employees = [
+  { name: "John", salary: 50000, department: "IT" },
+  { name: "Jane", salary: 60000, department: "HR" },
+  { name: "Bob", salary: 55000, department: "IT" },
+  { name: "Sophie", salary: 75000, department: "HR" },
+  { name: "Mike", salary: 65000, department: "IT" },
+  { name: "Emily", salary: 80000, department: "HR" },
+  { name: "David", salary: 70000, department: "IT" },
+];
+
+const deptAverages = employees.reduce((acc, emp) => {
+  if (!acc[emp.department]) {
+    acc[emp.department] = { totalSalary: 0, count: 0 };
+  }
+  acc[emp.department].totalSalary += emp.salary;
+  acc[emp.department].count += 1;
+  return acc;
+}, {});
+
+const highSalaryDepts = Object.keys(deptAverages)
+  .map(dept => ({
+    department: dept,
+    average: Math.floor(deptAverages[dept].totalSalary / deptAverages[dept].count)
+  }))
+  .filter(d => d.average > 65000);
+
+document.write(highSalaryDepts);
+    </script>
+</body>
+</html>

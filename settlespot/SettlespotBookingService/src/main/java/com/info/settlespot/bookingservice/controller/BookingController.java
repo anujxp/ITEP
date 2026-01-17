@@ -25,22 +25,19 @@ public class BookingController {
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
-    // 2. Get Bookings for a Tenant
-    // Endpoint: GET /bookings/tenant/{tenantId}
+
     @GetMapping("/tenant/{tenantId}")
     public ResponseEntity<List<Booking>> getByTenant(@PathVariable Integer tenantId) {
         return ResponseEntity.ok(bookingService.getBookingsByTenant(tenantId));
     }
 
     // 3. Get Bookings for a Host
-    // Endpoint: GET /bookings/host/{hostId}
     @GetMapping("/host/{hostId}")
     public ResponseEntity<List<Booking>> getByHost(@PathVariable Integer hostId) {
         return ResponseEntity.ok(bookingService.getBookingsByHost(hostId));
     }
 
     // 4. Cancel a Booking
-    // Endpoint: DELETE /bookings/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<String> cancelBooking(@PathVariable Integer id) {
         bookingService.cancelBooking(id);

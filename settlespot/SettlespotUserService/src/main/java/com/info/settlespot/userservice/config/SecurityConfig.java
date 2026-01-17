@@ -1,3 +1,5 @@
+
+
 package com.info.settlespot.userservice.config;
 
 import org.springframework.context.annotation.Bean;

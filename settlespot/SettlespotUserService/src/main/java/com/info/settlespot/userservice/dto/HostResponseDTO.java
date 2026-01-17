@@ -22,7 +22,6 @@ public class HostResponseDTO {
 		this.isVerified = host.isVerified();
 	}
 
-	// --- Getters Only (Setters not strictly needed for response) ---
 	public Integer getId() {
 		return id;
 	}

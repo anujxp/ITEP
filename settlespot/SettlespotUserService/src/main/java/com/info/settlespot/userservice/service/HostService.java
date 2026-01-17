@@ -1,6 +1,6 @@
 package com.info.settlespot.userservice.service;
 
-import com.info.settlespot.userservice.dto.HostResponseDTO; // Import DTO
+import com.info.settlespot.userservice.dto.HostResponseDTO; 
 import com.info.settlespot.userservice.dto.LoginRequestDTO;
 import com.info.settlespot.userservice.entity.Host;
 import com.info.settlespot.userservice.exception.InvalidCredentialsException;
@@ -21,19 +21,16 @@ public class HostService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // --- 1. REGISTER ---
     @Transactional
     public HostResponseDTO registerHost(Host host) {
-        // Hash password
+
         String encryptedPassword = passwordEncoder.encode(host.getPassword());
         host.setPassword(encryptedPassword);
-        
-        // Default verification is false
+
         host.setVerified(false);
 
         Host savedHost = hostRepository.save(host);
-        
-        // Convert to DTO
+
         return new HostResponseDTO(savedHost);
     }
 
@@ -49,13 +46,11 @@ public class HostService {
         return new HostResponseDTO(host);
     }
 
-    // --- 3. GET PROFILE ---
     public HostResponseDTO getHostById(Integer id) {
         Host host = hostRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Host", "id", id));
         return new HostResponseDTO(host);
     }
 
-    // --- 4. INTERNAL CHECK (Returns boolean, so no DTO needed) ---
     public boolean hostExists(Integer id) {
         return hostRepository.existsById(id);
     }

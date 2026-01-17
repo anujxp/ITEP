@@ -7,7 +7,7 @@ public class PropertyDTO {
 	private Integer hostId;
 	private boolean isAvailable;
 
-	// --- Getters and Setters ---
+
 
 	public Integer getId() {
 		return id;

@@ -1,0 +1,35 @@
+<!-- 6. If the given input is a number, you should return the factorial of that number. The factorial of a natural number n is the product of the positive integers less than or equal to n. So, 2! = 2, 3! = 6, 4! = 24 and so on.
+
+const input = 6;
+output: 720 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let n = +prompt("Enter a number to get the factorial");
+        let result = 1;
+            for (let index = 1; index <=n; index++) {
+                result *= index;
+            }
+            
+
+        function factorial(n){
+            if(n<0) return 'invalid ';
+            if(n=== 0 || n === 1 ) return 1;
+            return n * factorial(n-1);
+        }
+
+        document.write(factorial(n));
+        document.write(" <br>" + result);
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const students = [
+  { name: "Alice", scores: [90, 85, 92] },
+  { name: "Bob", scores: [75, 80, 85] },
+  { name: "Charlie", scores: [90, 95, 85] },
+  { name: "David", scores: [100, 100, 100] }
+];
+
+const highPerformers = students
+  .map(student => {
+    const sum = student.scores.reduce((acc, score) => acc + score, 0);
+    const average = sum / student.scores.length;
+    return { name: student.name, average: average };
+  })
+  .filter(student => student.average > 90);
+
+document.write(highPerformers); 
+    </script>
+</body>
+</html>

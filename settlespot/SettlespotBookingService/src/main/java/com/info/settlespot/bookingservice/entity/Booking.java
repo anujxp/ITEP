@@ -13,7 +13,6 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	// References to other services
 	private Integer propertyId;
 	private Integer tenantId;
 	private Integer hostId;

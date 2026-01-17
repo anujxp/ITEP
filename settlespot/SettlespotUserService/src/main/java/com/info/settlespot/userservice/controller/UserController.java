@@ -40,9 +40,9 @@ public class UserController {
         TenantResponseDTO tenantDTO = tenantService.getTenantById(id);
         return ResponseEntity.ok(tenantDTO);
     }
-    // ==========================================
-    //              HOST APIs
-    // ==========================================
+    // =============================================================================================================
+    //                                                   HOST APIs
+    // ==============================================================================================================
 
     @PostMapping("/hosts/register")
     public ResponseEntity<HostResponseDTO> registerHost(@RequestBody Host host) {
