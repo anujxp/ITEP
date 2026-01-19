@@ -27,15 +27,15 @@ public class AuthService {
         return userRepository.save(user);
     }
 
-    public String login(String username, String password) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        // Use matches() to check the plain text password against the hashed one
-        if (passwordEncoder.matches(password, user.getPassword())) {
-            return jwtUtil.generateToken(username);
-        } else {
-            throw new RuntimeException("Invalid Credentials");
-        }
-    }
+//    public String login(String username, String password) {
+//        User user = userRepository.findByUsername(username)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        // Use matches() to check the plain text password against the hashed one
+//        if (passwordEncoder.matches(password, user.getPassword())) {
+//            return jwtUtil.generateToken(username);
+//        } else {
+//            throw new RuntimeException("Invalid Credentials");
+//        }
+//    }
 }
