@@ -1,17 +1,18 @@
 package com.user.util;
 
+import java.util.Date;
+import java.util.Map;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 @Component
 public class JwtUtil {
-  private final String SECRETKEY = "fadklfdrerieriovnmvncmmbberhkhgfkhkfhghdfghdfreriogflhjfk";
+  private final String SECRETKEY = "qwertyusdfghjkiopasdfgqwertyuiopashjklzxcvbnm";
   
   public String generateToken(UserDetails user) {
 	  String token = Jwts.builder()
@@ -24,3 +25,9 @@ public class JwtUtil {
 	  return token;  
   }
 }
+
+
+
+
+
+
