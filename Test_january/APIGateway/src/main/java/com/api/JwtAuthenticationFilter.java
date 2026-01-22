@@ -38,7 +38,7 @@ public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
 			return chain.filter(exchange);
 		
 		if(!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
-		  unauthorized(exchange, "Authorization header is missing");
+		  return unauthorized(exchange, "Authorization header is missing");
 		
 		String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 		System.out.println(authHeader);
