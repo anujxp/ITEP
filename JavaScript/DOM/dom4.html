@@ -7,11 +7,18 @@
 </head>
 <body>
     
-    <div style="width: 200px; height: 200px; background-color: black;"></div>
+    <div id = "magicBox" style="width: 200px; height: 200px; background-color: black;"></div>
     <br>
     <br>
     <input id ="color" type="text">
-    <button>Do magic</button>
+    <button onclick="changeColor()">Do magic</button>
     
+    <script>
+        function changeColor() {
+            let color = document.getElementById("color").value;
+            let box = document.getElementById("magicBox");
+            box.style.backgroundColor = color;
+        }
+    </script>
 </body>
 </html>
