@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculater</title>
+</head>
+<body>
+   <input id = "in1"type="text"><br>
+   <input  id = "in2"type="text"><br>
+    <button onclick="add()"> + </button>
+    <button onclick = "sub()"> - </button>
+    <button onclick="multiply()"> * </button>
+    <button onclick="devide()"> / </button>
+<br>
+   <span>Result : </span> <span>onclick</span>&nbsp;<span id = "res">0</span>
+<script>
+    function getValue1() {
+        let val1 = document.getElementById("in1").value * 1 ||0;
+        return val1;        
+    }
+    function getValue2() {
+        let val2 = document.getElementById("in2").value * 1 || 0;
+        return val2;       
+    }
+    function changeResult(result) {
+        let res = document.getElementById("res");
+        res.innerText = result;
+    }
+    function add() {
+        changeResult(getValue1()+getValue2());
+    }
+    function sub(){
+        changeResult(getValue1()-getValue2());
+    }
+    function multiply(){
+        changeResult(getValue1()*getValue2());
+    }
+    function devide(){
+        changeResult(getValue1()/getValue2());
+    }
+
+</script>
+</body>
+</html>

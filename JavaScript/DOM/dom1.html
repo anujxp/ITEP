@@ -1,1 +1,25 @@
-es**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id = "f1" onkeyup= "add()" type="text" ><br>
+    <input id = "f2" onkeyup= "add()" type="text"><br>
+    <input id = "f3" onkeyup= "add()" type="text"><br>
+    <span>Result : </span><span id = "result">0</span>
+    <script>
+        
+        function add() {
+            let val1 = document.getElementById("f1").value *1 || 0 ;
+            let val2 = document.getElementById("f2").value *1 || 0 ;
+            let val3 = document.getElementById("f3").value *1 || 0 ;
+            let sum = val1 + val2 + val3;
+            let res = document.getElementById("result");
+            res.innerText = sum;
+        }
+    </script>       
+</body>
+</html>

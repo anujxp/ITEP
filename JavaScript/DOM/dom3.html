@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wordcounter</title>
+</head>
+<body>
+    <textarea name="demo" id="text" onkeyup="count()"></textarea>
+    <br>
+    <span id = "count">0</span>
+
+    <script>
+        function count() {
+            let count = document.getElementById("text").value.length;
+            document.getElementById("count").innerText = count;
+
+        }
+    </script>
+</body>
+</html>
