@@ -7,7 +7,8 @@ function mathManager(x, y, operation) {
     return operation(x, y); 
 }
 
-console.log(mathManager(50, 20,substract));substract = (a,b) =>  a-b;
+console.log(mathManager(50, 20,substract));
+// substract = (a,b) =>  a-b;
 
 console.log(substract(8,6));
 

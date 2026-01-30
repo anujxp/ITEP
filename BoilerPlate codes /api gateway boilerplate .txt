@@ -1,0 +1,174 @@
+------------------------------------------------------------------------------------------------------------
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+		
+----------------------------------------------------------------------------------------============
+
+
+----------------------------------------
+for api gateway
+
+
+spring.application.name=Apigateway
+server.port=8080
+
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.instance.prefer-ip-address=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
+
+spring.cloud.gateway.routes[0].id=product-service
+spring.cloud.gateway.routes[0].uri=lb://PRODUCTMICROSERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/product/**
+
+spring.cloud.gateway.routes[1].id=category-service
+spring.cloud.gateway.routes[1].uri=lb://CATEGORYMICROSERVICE
+spring.cloud.gateway.routes[1].predicates[0]=Path=/category/**
+
+spring.cloud.gateway.routes[2].id=user-service
+spring.cloud.gateway.routes[2].uri=lb://USERMICROSERVICE
+spring.cloud.gateway.routes[2].predicates[0]=Path=/auth/**
+------------------------------------------------------------------------------------------------------------------------------------
+apigateway
+
+package com.api.util;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtUtil {
+  private final String SECRETKEY = "qwertyusdfghjkiopasdfgqwertyuiopashjklzxcvbnm";
+  
+  public Claims extractClaims(String token) {
+	  return Jwts.parserBuilder()
+	  .setSigningKey(Keys.hmacShaKeyFor(SECRETKEY.getBytes()))
+	  .build()
+	  .parseClaimsJws(token)
+	  .getBody();
+  }
+  public void validateToken(String token) {
+	  extractClaims(token);
+  }
+}
+---------------------------------------------------------------------------------------------------------------
+authentication filter
+
+package com.api;
+
+
+import java.net.http.HttpRequest;
+
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+
+import com.api.util.JwtUtil;
+
+import reactor.core.publisher.Mono;
+import reactor.netty.http.server.HttpServer;
+
+@Component
+public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
+    private final JwtUtil jwt;
+	public JwtAuthenticationFilter(JwtUtil jwt) {
+		this.jwt = jwt;
+	}
+	@Override
+	public int getOrder() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		ServerHttpRequest request =  exchange.getRequest();
+		String requestedRoute =  request.getURI().getPath();
+		
+		if(requestedRoute.startsWith("/auth/signup") || requestedRoute.startsWith("/auth/signin"))
+			return chain.filter(exchange);
+		
+		if(!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
+		  return unauthorized(exchange, "Authorization header is missing");
+		
+		String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+		System.out.println(authHeader);
+		if(authHeader == null || !authHeader.startsWith("Bearer "))
+		   return unauthorized(exchange,"Invalid Authorization Header");
+		
+		String token =  authHeader.substring(7);
+		try {
+			jwt.validateToken(token);
+		}
+		catch(Exception e) {
+		 return	unauthorized(exchange, "Invalid Jwt Token");
+		}
+		return chain.filter(exchange);
+	}
+    public Mono<Void> unauthorized(ServerWebExchange exchange, String message){
+	   exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+	   return exchange.getResponse().setComplete();
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,5 +42,317 @@
 		</dependencies>
 -------------------------------------------------------------------------------------------------------------------
 
+for Eureka server
+
+spring.application.name=Eurekaserver
+server.port=8761
+eureka.instance.hostname=localhost
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+
+
+----------------------------------------
+for api gateway
+
+
+spring.application.name=Apigateway
+server.port=8080
+
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.instance.prefer-ip-address=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
+
+spring.cloud.gateway.routes[0].id=product-service
+spring.cloud.gateway.routes[0].uri=lb://PRODUCTMICROSERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/product/**
+
+spring.cloud.gateway.routes[1].id=category-service
+spring.cloud.gateway.routes[1].uri=lb://CATEGORYMICROSERVICE
+spring.cloud.gateway.routes[1].predicates[0]=Path=/category/**
+
+spring.cloud.gateway.routes[2].id=user-service
+spring.cloud.gateway.routes[2].uri=lb://USERMICROSERVICE
+spring.cloud.gateway.routes[2].predicates[0]=Path=/auth/**
+
+
+for client ---------------------------------
+
+eureka.instance.prefer-ip-address=true
+eureka.client.fetch-registry=true
+eureka.client.register-with-eureka=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+----------------------------------------------------------------------------------------
+utils
+-----------------------------------------------
+user
+package com.user.util;
+
+import java.util.Date;
+import java.util.Map;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtUtil {
+  private final String SECRETKEY = "qwertyusdfghjkiopasdfgqwertyuiopashjklzxcvbnm";
+  
+  public String generateToken(UserDetails user) {
+	  String token = Jwts.builder()
+	  .setSubject(user.getUsername())
+	  .setClaims(Map.of("role",user.getAuthorities()))
+	  .setIssuedAt(new Date())
+	  .setExpiration(new Date(System.currentTimeMillis()+60*60*1000))
+	  .signWith(Keys.hmacShaKeyFor(SECRETKEY.getBytes()), SignatureAlgorithm.HS256)
+	  .compact();
+	  return token;  
+  }
+}
+-------------------------------------------
+apigateway
+
+package com.api.util;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtUtil {
+  private final String SECRETKEY = "qwertyusdfghjkiopasdfgqwertyuiopashjklzxcvbnm";
+  
+  public Claims extractClaims(String token) {
+	  return Jwts.parserBuilder()
+	  .setSigningKey(Keys.hmacShaKeyFor(SECRETKEY.getBytes()))
+	  .build()
+	  .parseClaimsJws(token)
+	  .getBody();
+  }
+  public void validateToken(String token) {
+	  extractClaims(token);
+  }
+}
+
+----------------------------------------------------------------
+
+SecurityConfig
+
+package com.user.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+   @Bean	
+   public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+	   http.csrf(csrf->csrf.disable())
+	   .authorizeHttpRequests(auth->auth.requestMatchers("/auth/signup","/auth/signin","/auth/user/{id}").permitAll());
+	   return http.build();
+   }
+   
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+	   return new BCryptPasswordEncoder();
+   }
+   
+   @Bean
+   public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
+	   return config.getAuthenticationManager();
+   }
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+custom user detail service 
+
+
+package com.user.service;
+
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.user.entity.User;
+import com.user.exception.ResourceNotFoundException;
+import com.user.repo.UserRepository;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService{
+    private final UserRepository userRepo;
+    public CustomUserDetailsService(UserRepository userRepo) {
+    	this.userRepo = userRepo;
+    }
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		User dbUser =  userRepo.findByEmail(username)
+				.orElseThrow(()->new ResourceNotFoundException("Username not found"));
+		
+		GrantedAuthority authority = new SimpleGrantedAuthority("USER");
+		
+		return new org.springframework.security.core.userdetails
+				.User(dbUser.getEmail(), dbUser.getPassword(), List.of(authority));
+	}
+ 
+}
+------------------------------------------------------------------------------------------------------------
+controller
+
+
+package com.user.controller;
+
+import java.util.HashMap;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.user.dto.UserDTO;
+import com.user.entity.User;
+import com.user.service.UserService;
+import com.user.util.JwtUtil;
+
+@RestController
+@RequestMapping("/auth")
+public class Controller {
+
+	private final UserService userService;
+	private final AuthenticationManager authenticationManager;
+	private final UserDetailsService detailsService;
+	private final JwtUtil jwt;
+
+	public Controller(UserService userService,AuthenticationManager authenticationManager,UserDetailsService detailsService,JwtUtil jwt) {
+		this.userService = userService;
+		this.authenticationManager = authenticationManager;
+        this.detailsService = detailsService;
+        this.jwt = jwt;
+	}
+
+	@PostMapping("/signup")
+	public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(userService.registerUser(user));
+	}
+
+	@PostMapping("/signin")
+	public ResponseEntity<?> signIn(@RequestBody User user) {
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+		UserDetails userDetails = detailsService.loadUserByUsername(user.getEmail());
+		String token = jwt.generateToken(userDetails);
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("message", "Sign in success");
+		hm.put("token", token);
+		return ResponseEntity.ok(hm);
+	}
+
+	
+
+	@GetMapping("/user/{id}")
+	public ResponseEntity<UserDTO> getTenant(@PathVariable Integer id) {
+		UserDTO userDto = userService.getUserById(id);
+		return ResponseEntity.ok(userDto);
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------
+
+package com.api;
+
+
+import java.net.http.HttpRequest;
+
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+
+import com.api.util.JwtUtil;
+
+import reactor.core.publisher.Mono;
+import reactor.netty.http.server.HttpServer;
+
+@Component
+public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
+    private final JwtUtil jwt;
+	public JwtAuthenticationFilter(JwtUtil jwt) {
+		this.jwt = jwt;
+	}
+	@Override
+	public int getOrder() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		ServerHttpRequest request =  exchange.getRequest();
+		String requestedRoute =  request.getURI().getPath();
+		
+		if(requestedRoute.startsWith("/auth/signup") || requestedRoute.startsWith("/auth/signin"))
+			return chain.filter(exchange);
+		
+		if(!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
+		  return unauthorized(exchange, "Authorization header is missing");
+		
+		String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+		System.out.println(authHeader);
+		if(authHeader == null || !authHeader.startsWith("Bearer "))
+		   return unauthorized(exchange,"Invalid Authorization Header");
+		
+		String token =  authHeader.substring(7);
+		try {
+			jwt.validateToken(token);
+		}
+		catch(Exception e) {
+		 return	unauthorized(exchange, "Invalid Jwt Token");
+		}
+		return chain.filter(exchange);
+	}
+    public Mono<Void> unauthorized(ServerWebExchange exchange, String message){
+	   exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+	   return exchange.getResponse().setComplete();
+	}
+	
+}
+
+------------------------------------------------------------------------------------------------
+
 
 

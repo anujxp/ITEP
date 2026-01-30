@@ -1,0 +1,8 @@
+what is th difference b.w ioc an ddependency injection 
+2 - why is application conext preffered over bean factory 
+3 - what is a bean Definition in spring ?
+4 - what hapens internally when spring application starts ?
+5 - Explain the complete spring bean lifecycle.
+6 - at which phase are aio proxies created ?
+7 - what does singelton scop mean in spring
+

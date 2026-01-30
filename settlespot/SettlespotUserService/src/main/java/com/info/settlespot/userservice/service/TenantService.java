@@ -28,7 +28,6 @@ public class TenantService {
         tenant.setPassword(encryptedPassword);
 
         Tenant savedTenant = tenantRepository.save(tenant);
-        
         // Convert Entity -> DTO
         return new TenantResponseDTO(savedTenant);
     }
