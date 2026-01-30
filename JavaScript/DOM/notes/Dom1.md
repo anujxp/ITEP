@@ -129,4 +129,109 @@ Create three checkboxes for food items (e.g., Poha - ₹20, Samosa - ₹15, Tea 
 
 > **Note for Anuj:** When practicing these in VS Code, always keep your **Console (F12)** open. If your code doesn't work, the console will tell you exactly which line has the "Uncaught ReferenceError" or "null" value!
 
-**Would you like me to provide the "Starter HTML" for any of these questions to help you get started?**
+
+
+This lecture marks the transition from selecting single elements to managing groups of elements. The core focus is moving beyond `getElementById` to handle multiple items simultaneously using modern selectors and understanding the technical differences between the collections they return.
+
+---
+
+# 📜 JavaScript Lecture Notes: DOM Collections & Modern Selectors
+
+**Topic:** Targeting Multiple Elements and Collection Types
+
+**Date:** January 28, 2026
+
+### **1. Advanced Selection Methods**
+
+While `getElementById` is fast, it is limited to one item. To manage lists (like a menu in **JainZBites** or property cards in **SettleSpot**), we use:
+
+* **`getElementsByClassName('name')`**: Returns an **HTMLCollection** of all elements with that class.
+* **`getElementsByTagName('tag')`**: Returns an **HTMLCollection** of all elements of that type (e.g., all `<li>` or `<h1>`).
+* **`querySelector('.class / #id / tag')`**: The "Swiss Army Knife." It returns the **first** element that matches a CSS selector.
+* **`querySelectorAll('.class / tag')`**: Returns a **NodeList** of all matching elements.
+
+---
+
+### **2. HTMLCollection vs. NodeList (The Interview Favorite)**
+
+This is a critical technical distinction. Both look like arrays, but they behave differently.
+
+| Feature | HTMLCollection | NodeList |
+| --- | --- | --- |
+| **Returned By** | `getElementsByClassName/TagName` | `querySelectorAll` |
+| **Live vs Static** | **Live**: Updates automatically if the DOM changes. | **Static**: A snapshot of the DOM at that moment. |
+| **Methods** | No built-in `forEach` (Must convert to Array). | Has a built-in `forEach` method. |
+
+---
+
+### **3. The Array Conversion Trick**
+
+Since `HTMLCollection` doesn't support modern array methods like `map` or `forEach`, we often convert it to a real array using `Array.from()`.
+
+```javascript
+const items = document.getElementsByClassName('item'); 
+// items.forEach(...) would throw an error!
+
+const itemsArray = Array.from(items);
+itemsArray.forEach(el => el.style.color = 'orange');
+
+```
+
+---
+
+### **4. Recall Code Snippets**
+
+#### **A. Using querySelectorAll with forEach**
+
+This is the cleanest modern pattern for styling multiple elements at once.
+
+```javascript
+// Target all paragraphs inside a specific div
+const allParas = document.querySelectorAll('.content-box p');
+
+allParas.forEach((para, index) => {
+    para.innerText = `Updating paragraph number: ${index + 1}`;
+    para.style.fontWeight = 'bold';
+    para.style.padding = '10px';
+});
+
+```
+
+#### **B. Mastering querySelector (CSS Syntax)**
+
+You can use the same selectors you use in your `.css` files.
+
+```javascript
+// Targets the first <li> that is a child of a <ul> with class 'menu'
+const firstMenuItem = document.querySelector('ul.menu > li:first-child');
+firstMenuItem.style.backgroundColor = 'yellow';
+
+```
+
+#### **C. Accessing Attribute Nodes via Selectors**
+
+The commit highlights how we can interact with non-text elements.
+
+```javascript
+const myImage = document.querySelector('#profile-pic');
+// Directly manipulating attribute nodes
+myImage.src = 'new-image.jpg';
+myImage.alt = 'Updated Profile';
+myImage.style.border = '2px solid blue';
+
+```
+
+---
+
+### **Key Takeaway for Lab Practice**
+
+When working in the browser console, always check the **Prototype** of the result.
+
+1. If it says `HTMLCollection`, you cannot use `.forEach()` directly.
+2. If it says `NodeList`, you are good to go with `.forEach()`.
+3. If you only need to change **one** thing, `querySelector` is more efficient than the legacy methods.
+
+**Would you like a mini-project scenario where you have to use `querySelectorAll` to build a "Dark Mode" toggle for a list of items?**
+
+
+

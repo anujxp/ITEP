@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Mirror (Syncing)</title>
+</head>
+<body>
+    <input id = "input" onkeyup="mirror()" type="text">
+    <br>
+    <h1 id = "mirror">waisting for input</h1>
+    <script> 
+        function mirror() {
+            let input = document.getElementById("input").value;
+            let reflect = document.getElementById("mirror")
+            input!== "" ? reflect.innerText = input :reflect.innerText = "waiting for input";
+        }
+    </script>
+
+</body>
+</html>

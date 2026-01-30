@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Desk</title>
+</head>
+<body>
+    <button id = "b1" onclick="addItem(20)">Poha(20)</button>
+    <button id = "b2" onclick="addItem(10)">Chai(10)</button>
+    <button id = "b3" onclick="reset()">Reset</button><br>
+    <span id = "total">0</span>
+    <script>
+
+        function addItem(price){
+            let total = document.getElementById("total");
+            let currentTotal = total.innerText*1;
+            total.innerText = currentTotal + price*1 ;
+       }
+       function reset(){
+        document.getElementById("total").innerText = 0;
+       }
+    </script>
+</body>
+</html>
