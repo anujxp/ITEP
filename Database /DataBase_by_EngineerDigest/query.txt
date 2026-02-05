@@ -1,0 +1,1491 @@
+anuj-xp@anuj:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.44-0ubuntu0.24.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use customer_db_sql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++------------------------+
+| Database               |
++------------------------+
+| Library                |
+| blog_microservice_db2  |
+| bootjpa                |
+| bootjpatest            |
+| categorymicroservicedb |
+| college                |
+| company_db             |
+| crudapp                |
+| customer_db_sql        |
+| ecomboot               |
+| ecomhibernate          |
+| empdb                  |
+| hostel_db              |
+| information_schema     |
+| itep_springwebmvc      |
+| microservicetest       |
+| mvc                    |
+| my_bank                |
+| myprojectdb            |
+| mysql                  |
+| needconnect            |
+| order_service_db1      |
+| performance_schema     |
+| product_service_db1    |
+| productmicroservicedb  |
+| settlespot_booking_db  |
+| settlespot_property_db |
+| settlespot_user_db     |
+| sportsdb               |
+| spring_db              |
+| spring_jpa             |
+| students               |
+| sys                    |
+| testblogdb             |
+| testblogdb1            |
+| testdb                 |
+| testfeign              |
+| testuserdb             |
+| testuserdb1            |
+| tododb                 |
+| university_db          |
+| user_service_db1       |
+| user_service_db2       |
+| usermicroservicedb     |
+| webcrud                |
++------------------------+
+45 rows in set (0.00 sec)
+
+mysql> customer_db_sql
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customer_db_sql' at line 1
+mysql> use customer_db_sql
+Database changed
+mysql> select * from employees where department = "it" oreder by salary Desc limit 1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'oreder by salary Desc limit 1' at line 1
+mysql> desc employees
+    -> ;
++--------------+---------------+------+-----+-----------+-------------------+
+| Field        | Type          | Null | Key | Default   | Extra             |
++--------------+---------------+------+-----+-----------+-------------------+
+| employee_id  | int           | NO   | PRI | NULL      | auto_increment    |
+| first_name   | varchar(50)   | NO   |     | NULL      |                   |
+| last_name    | varchar(50)   | NO   |     | NULL      |                   |
+| hire_date    | date          | YES  |     | curdate() | DEFAULT_GENERATED |
+| email        | varchar(100)  | YES  | UNI | NULL      |                   |
+| phone_number | varchar(100)  | YES  | UNI | NULL      |                   |
+| salary       | decimal(10,2) | YES  |     | NULL      |                   |
++--------------+---------------+------+-----+-----------+-------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employeesl
+    -> ;
+ERROR 1146 (42S02): Table 'customer_db_sql.employeesl' doesn't exist
+mysql> select * from employees;
++-------------+------------+-----------+------------+------------------------+--------------+----------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   |
++-------------+------------+-----------+------------+------------------------+--------------+----------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 |
+|          10 | Vijay      | Verma     | 2026-02-04 | vijay.v@gmail.com      | 9111055555   | 42000.00 |
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com      | 9111066666   | 43000.00 |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com  | 9827077777   |     NULL |
++-------------+------------+-----------+------------+------------------------+--------------+----------+
+12 rows in set (0.01 sec)
+
+mysql> ALTER TABLE employees 
+    -> ADD column Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE employees  ADD column Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Alter TABLE employees
+    -> ADD column department CHAR(4) NOT NULL DEFAULT "IT"
+    -> ;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEES;
+ERROR 1146 (42S02): Table 'customer_db_sql.EMPLOYEES' doesn't exist
+mysql> DESC employeesl;
+ERROR 1146 (42S02): Table 'customer_db_sql.employeesl' doesn't exist
+mysql> DESC employees;
++--------------+---------------+------+-----+-----------+-------------------+
+| Field        | Type          | Null | Key | Default   | Extra             |
++--------------+---------------+------+-----+-----------+-------------------+
+| employee_id  | int           | NO   | PRI | NULL      | auto_increment    |
+| first_name   | varchar(50)   | NO   |     | NULL      |                   |
+| last_name    | varchar(50)   | NO   |     | NULL      |                   |
+| hire_date    | date          | YES  |     | curdate() | DEFAULT_GENERATED |
+| email        | varchar(100)  | YES  | UNI | NULL      |                   |
+| phone_number | varchar(100)  | YES  | UNI | NULL      |                   |
+| salary       | decimal(10,2) | YES  |     | NULL      |                   |
+| department   | char(4)       | NO   |     | IT        |                   |
++--------------+---------------+------+-----+-----------+-------------------+
+8 rows in set (0.01 sec)
+
+mysql> select * from employees;
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   | department |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 | IT         |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 | IT         |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 | IT         |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 | IT         |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 | IT         |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 | IT         |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 | IT         |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 | IT         |
+|          10 | Vijay      | Verma     | 2026-02-04 | vijay.v@gmail.com      | 9111055555   | 42000.00 | IT         |
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com      | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com  | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+12 rows in set (0.01 sec)
+
+mysql> update table employees 
+    -> SET MECH where employee_id = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employees 
+SET MECH where employee_id = 4' at line 1
+mysql> update table employees  SET department to "mech" where employee_id = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employees  SET department to "mech" where employee_id = 4' at line 1
+mysql> mysql> update table employees  SET department to "mech" where employee_id = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> update table employees  SET department to "mech" where employee_id = 4' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employees  SET department to "mech" where employee_id = 4' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> 
+    -> 
+    -> ^C
+mysql> update employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> update employees
+    -> set department = "MECH" 
+    -> where employee_id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employees;
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   | department |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 | IT         |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 | IT         |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 | MECH       |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 | IT         |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 | IT         |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 | IT         |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 | IT         |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 | IT         |
+|          10 | Vijay      | Verma     | 2026-02-04 | vijay.v@gmail.com      | 9111055555   | 42000.00 | IT         |
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com      | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com  | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from employee limit 2
+    -> ;
+ERROR 1146 (42S02): Table 'customer_db_sql.employee' doesn't exist
+mysql> select * from employees limit 2;
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                | phone_number | salary   | department |
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com    | 9826054321   | 62000.50 | IT         |
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employees limit 9;
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   | department |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 | IT         |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 | IT         |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 | MECH       |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 | IT         |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 | IT         |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 | IT         |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 | IT         |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 | IT         |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employees limit 11;
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   | department |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 | IT         |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 | IT         |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 | MECH       |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 | IT         |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 | IT         |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 | IT         |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 | IT         |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 | IT         |
+|          10 | Vijay      | Verma     | 2026-02-04 | vijay.v@gmail.com      | 9111055555   | 42000.00 | IT         |
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com      | 9111066666   | 43000.00 | IT         |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employees limit 50;
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   | department |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 | IT         |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 | IT         |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 | MECH       |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 | IT         |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 | IT         |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 | IT         |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 | IT         |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 | IT         |
+|          10 | Vijay      | Verma     | 2026-02-04 | vijay.v@gmail.com      | 9111055555   | 42000.00 | IT         |
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com      | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com  | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from employees limit 50 offset 10
+    -> ;
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                 | phone_number | salary   | department |
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com     | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employees Order by Desc limit 50 offset 10
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Desc limit 50 offset 10' at line 1
+mysql> select * from employees Order by employee_id  Desc limit 50 offset 10
+    -> ;
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                | phone_number | salary   | department |
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com    | 9826054321   | 62000.50 | IT         |
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com | 9826012345   | 55000.00 | IT         |
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employees Order by employee_id limit 50 offset 10
+    -> ;
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                 | phone_number | salary   | department |
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com     | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employees Order by employee_id limit 50 offset 10;
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                 | phone_number | salary   | department |
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com     | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+-----------------------+--------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employees Order by employee_id DESC limit 50 offset 10;
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                | phone_number | salary   | department |
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com    | 9826054321   | 62000.50 | IT         |
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com | 9826012345   | 55000.00 | IT         |
++-------------+------------+-----------+------------+----------------------+--------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT departent from employees;
+ERROR 1054 (42S22): Unknown column 'departent' in 'field list'
+mysql> SELECT DISTINCT department from employees;
++------------+
+| department |
++------------+
+| IT         |
+| MECH       |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name , salary from employees;
++------------+-----------+----------+
+| first_name | last_name | salary   |
++------------+-----------+----------+
+| Aditya     | Sharma    | 55000.00 |
+| Priya      | Singh     | 62000.50 |
+| Rahul      | Verma     | 48000.00 |
+| Sneha      | Patel     | 75000.00 |
+| Vikram     | Rathore   | 95000.00 |
+| Amit       | Jain      | 45000.00 |
+| Sagar      | Mishra    | 52000.00 |
+| Anjali     | Sharma    | 61000.00 |
+| Karan      | Mehta     | 38000.00 |
+| Vijay      | Verma     | 42000.00 |
+| Vinay      | Vyas      | 43000.00 |
+| Pooja      | Chopra    |     NULL |
++------------+-----------+----------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name , salary*1.1 from employees;
++------------+-----------+------------+
+| first_name | last_name | salary*1.1 |
++------------+-----------+------------+
+| Aditya     | Sharma    |  60500.000 |
+| Priya      | Singh     |  68200.550 |
+| Rahul      | Verma     |  52800.000 |
+| Sneha      | Patel     |  82500.000 |
+| Vikram     | Rathore   | 104500.000 |
+| Amit       | Jain      |  49500.000 |
+| Sagar      | Mishra    |  57200.000 |
+| Anjali     | Sharma    |  67100.000 |
+| Karan      | Mehta     |  41800.000 |
+| Vijay      | Verma     |  46200.000 |
+| Vinay      | Vyas      |  47300.000 |
+| Pooja      | Chopra    |       NULL |
++------------+-----------+------------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name , salary*1.1 as salary after rais  from employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'after rais  from employees' at line 1
+mysql> SELECT first_name, last_name , salary*1.1 as 'salary after rais'  from employees;
++------------+-----------+-------------------+
+| first_name | last_name | salary after rais |
++------------+-----------+-------------------+
+| Aditya     | Sharma    |         60500.000 |
+| Priya      | Singh     |         68200.550 |
+| Rahul      | Verma     |         52800.000 |
+| Sneha      | Patel     |         82500.000 |
+| Vikram     | Rathore   |        104500.000 |
+| Amit       | Jain      |         49500.000 |
+| Sagar      | Mishra    |         57200.000 |
+| Anjali     | Sharma    |         67100.000 |
+| Karan      | Mehta     |         41800.000 |
+| Vijay      | Verma     |         46200.000 |
+| Vinay      | Vyas      |         47300.000 |
+| Pooja      | Chopra    |              NULL |
++------------+-----------+-------------------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT first_name, last_name , salary*1.1 as 'salary after raise'  from employees;
++------------+-----------+--------------------+
+| first_name | last_name | salary after raise |
++------------+-----------+--------------------+
+| Aditya     | Sharma    |          60500.000 |
+| Priya      | Singh     |          68200.550 |
+| Rahul      | Verma     |          52800.000 |
+| Sneha      | Patel     |          82500.000 |
+| Vikram     | Rathore   |         104500.000 |
+| Amit       | Jain      |          49500.000 |
+| Sagar      | Mishra    |          57200.000 |
+| Anjali     | Sharma    |          67100.000 |
+| Karan      | Mehta     |          41800.000 |
+| Vijay      | Verma     |          46200.000 |
+| Vinay      | Vyas      |          47300.000 |
+| Pooja      | Chopra    |               NULL |
++------------+-----------+--------------------+
+12 rows in set (0.00 sec)
+
+mysql> 
+mysql> SELECT concat(first_name," ",last_name) , salary*1.1 as 'salary after raise'  from employees;
++----------------------------------+--------------------+
+| concat(first_name," ",last_name) | salary after raise |
++----------------------------------+--------------------+
+| Aditya Sharma                    |          60500.000 |
+| Priya Singh                      |          68200.550 |
+| Rahul Verma                      |          52800.000 |
+| Sneha Patel                      |          82500.000 |
+| Vikram Rathore                   |         104500.000 |
+| Amit Jain                        |          49500.000 |
+| Sagar Mishra                     |          57200.000 |
+| Anjali Sharma                    |          67100.000 |
+| Karan Mehta                      |          41800.000 |
+| Vijay Verma                      |          46200.000 |
+| Vinay Vyas                       |          47300.000 |
+| Pooja Chopra                     |               NULL |
++----------------------------------+--------------------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT concat(first_name," ",last_name) as full name  , salary*1.1 as 'salary after raise'  from employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name  , salary*1.1 as 'salary after raise'  from employees' at line 1
+mysql> SELECT concat(first_name," ",last_name) as 'full name'  , salary*1.1 as 'salary after raise'  from employees;
++----------------+--------------------+
+| full name      | salary after raise |
++----------------+--------------------+
+| Aditya Sharma  |          60500.000 |
+| Priya Singh    |          68200.550 |
+| Rahul Verma    |          52800.000 |
+| Sneha Patel    |          82500.000 |
+| Vikram Rathore |         104500.000 |
+| Amit Jain      |          49500.000 |
+| Sagar Mishra   |          57200.000 |
+| Anjali Sharma  |          67100.000 |
+| Karan Mehta    |          41800.000 |
+| Vijay Verma    |          46200.000 |
+| Vinay Vyas     |          47300.000 |
+| Pooja Chopra   |               NULL |
++----------------+--------------------+
+12 rows in set (0.00 sec)
+
+mysql> select hire_date from employees;
++------------+
+| hire_date  |
++------------+
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2025-12-15 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
+| 2026-02-04 |
++------------+
+12 rows in set (0.00 sec)
+
+mysql> select YEAR(hire_date) from employees;
++-----------------+
+| YEAR(hire_date) |
++-----------------+
+|            2026 |
+|            2026 |
+|            2026 |
+|            2025 |
+|            2026 |
+|            2026 |
+|            2026 |
+|            2026 |
+|            2026 |
+|            2026 |
+|            2026 |
+|            2026 |
++-----------------+
+12 rows in set (0.00 sec)
+
+mysql> select YEAR(hire_date) AS 'year'from employees;
++------+
+| year |
++------+
+| 2026 |
+| 2026 |
+| 2026 |
+| 2025 |
+| 2026 |
+| 2026 |
+| 2026 |
+| 2026 |
+| 2026 |
+| 2026 |
+| 2026 |
+| 2026 |
++------+
+12 rows in set (0.00 sec)
+
+mysql> select concat(first_name,' ',last_name) as "full name" ,salary from employees;
++----------------+----------+
+| full name      | salary   |
++----------------+----------+
+| Aditya Sharma  | 55000.00 |
+| Priya Singh    | 62000.50 |
+| Rahul Verma    | 48000.00 |
+| Sneha Patel    | 75000.00 |
+| Vikram Rathore | 95000.00 |
+| Amit Jain      | 45000.00 |
+| Sagar Mishra   | 52000.00 |
+| Anjali Sharma  | 61000.00 |
+| Karan Mehta    | 38000.00 |
+| Vijay Verma    | 42000.00 |
+| Vinay Vyas     | 43000.00 |
+| Pooja Chopra   |     NULL |
++----------------+----------+
+12 rows in set (0.00 sec)
+
+mysql> select concat(first_name,' ',last_name) as "full name" , ROUND(salary) from employees;
++----------------+---------------+
+| full name      | ROUND(salary) |
++----------------+---------------+
+| Aditya Sharma  |         55000 |
+| Priya Singh    |         62001 |
+| Rahul Verma    |         48000 |
+| Sneha Patel    |         75000 |
+| Vikram Rathore |         95000 |
+| Amit Jain      |         45000 |
+| Sagar Mishra   |         52000 |
+| Anjali Sharma  |         61000 |
+| Karan Mehta    |         38000 |
+| Vijay Verma    |         42000 |
+| Vinay Vyas     |         43000 |
+| Pooja Chopra   |          NULL |
++----------------+---------------+
+12 rows in set (0.00 sec)
+
+mysql> select concat(first_name,' ',last_name) as "full name" , ROUND(salary) as 'souund slaary' from employees;
++----------------+---------------+
+| full name      | souund slaary |
++----------------+---------------+
+| Aditya Sharma  |         55000 |
+| Priya Singh    |         62001 |
+| Rahul Verma    |         48000 |
+| Sneha Patel    |         75000 |
+| Vikram Rathore |         95000 |
+| Amit Jain      |         45000 |
+| Sagar Mishra   |         52000 |
+| Anjali Sharma  |         61000 |
+| Karan Mehta    |         38000 |
+| Vijay Verma    |         42000 |
+| Vinay Vyas     |         43000 |
+| Pooja Chopra   |          NULL |
++----------------+---------------+
+12 rows in set (0.00 sec)
+
+mysql> select concat(first_name,' ',last_name) as "full name" , ROUND(salary,1) as 'souund slaary' from employees;
++----------------+---------------+
+| full name      | souund slaary |
++----------------+---------------+
+| Aditya Sharma  |       55000.0 |
+| Priya Singh    |       62000.5 |
+| Rahul Verma    |       48000.0 |
+| Sneha Patel    |       75000.0 |
+| Vikram Rathore |       95000.0 |
+| Amit Jain      |       45000.0 |
+| Sagar Mishra   |       52000.0 |
+| Anjali Sharma  |       61000.0 |
+| Karan Mehta    |       38000.0 |
+| Vijay Verma    |       42000.0 |
+| Vinay Vyas     |       43000.0 |
+| Pooja Chopra   |          NULL |
++----------------+---------------+
+12 rows in set (0.00 sec)
+
+mysql> select concat(first_name,' ',last_name) as "full name" , ROUND(salary,1) as 'souund slaary' from employees where salary > 7000;
++----------------+---------------+
+| full name      | souund slaary |
++----------------+---------------+
+| Aditya Sharma  |       55000.0 |
+| Priya Singh    |       62000.5 |
+| Rahul Verma    |       48000.0 |
+| Sneha Patel    |       75000.0 |
+| Vikram Rathore |       95000.0 |
+| Amit Jain      |       45000.0 |
+| Sagar Mishra   |       52000.0 |
+| Anjali Sharma  |       61000.0 |
+| Karan Mehta    |       38000.0 |
+| Vijay Verma    |       42000.0 |
+| Vinay Vyas     |       43000.0 |
++----------------+---------------+
+11 rows in set (0.00 sec)
+
+mysql> select concat(first_name,' ',last_name) as "full name" , ROUND(salary,1) as 'souund slaary' from employees where salary > 70000; 
++----------------+---------------+
+| full name      | souund slaary |
++----------------+---------------+
+| Sneha Patel    |       75000.0 |
+| Vikram Rathore |       95000.0 |
++----------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select AVG(salary) from emplyees;
+ERROR 1146 (42S02): Table 'customer_db_sql.emplyees' doesn't exist
+mysql> select AVG(salary) from employees;
++--------------+
+| AVG(salary)  |
++--------------+
+| 56000.045455 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employees where ( select AVG(salary) from employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from employees where ( select AVG(salary) from employees);
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+| employee_id | first_name | last_name | hire_date  | email                  | phone_number | salary   | department |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+|           1 | Aditya     | Sharma    | 2026-02-04 | aditya@infobeans.com   | 9826012345   | 55000.00 | IT         |
+|           2 | Priya      | Singh     | 2026-02-04 | priya.s@gmail.com      | 9826054321   | 62000.50 | IT         |
+|           3 | Rahul      | Verma     | 2026-02-04 | rverma@outlook.com     | 9009011223   | 48000.00 | IT         |
+|           4 | Sneha      | Patel     | 2025-12-15 | sneha.p@yahoo.com      | NULL         | 75000.00 | MECH       |
+|           5 | Vikram     | Rathore   | 2026-02-04 | vikram.r@infobeans.com | 7000123456   | 95000.00 | IT         |
+|           6 | Amit       | Jain      | 2026-02-04 | amit.j@infobeans.com   | 9893011111   | 45000.00 | IT         |
+|           7 | Sagar      | Mishra    | 2026-02-04 | sagar.m@gmail.com      | 9893022222   | 52000.00 | IT         |
+|           8 | Anjali     | Sharma    | 2026-02-04 | anjali.s@outlook.com   | 9893033333   | 61000.00 | IT         |
+|           9 | Karan      | Mehta     | 2026-02-04 | karan.m@infobeans.com  | 9893044444   | 38000.00 | IT         |
+|          10 | Vijay      | Verma     | 2026-02-04 | vijay.v@gmail.com      | 9111055555   | 42000.00 | IT         |
+|          11 | Vinay      | Vyas      | 2026-02-04 | vinay.v@yahoo.com      | 9111066666   | 43000.00 | IT         |
+|          12 | Pooja      | Chopra    | 2026-02-04 | pooja.c@infobeans.com  | 9827077777   |     NULL | IT         |
++-------------+------------+-----------+------------+------------------------+--------------+----------+------------+
+12 rows in set (0.00 sec)
+
+mysql> select first_name , last_name from employees where department = 'it' Union
+    -> select first_name , last_name from employeees where department = 'hr';
+ERROR 1146 (42S02): Table 'customer_db_sql.employeees' doesn't exist
+mysql> select first_name , last_name from employees where department = 'it' Union select first_name , last_name from employees where department = 'hr';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Aditya     | Sharma    |
+| Priya      | Singh     |
+| Rahul      | Verma     |
+| Vikram     | Rathore   |
+| Amit       | Jain      |
+| Sagar      | Mishra    |
+| Anjali     | Sharma    |
+| Karan      | Mehta     |
+| Vijay      | Verma     |
+| Vinay      | Vyas      |
+| Pooja      | Chopra    |
++------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> select count(*) from employees group by department 
+    -> ;
++----------+
+| count(*) |
++----------+
+|       11 |
+|        1 |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE bookstore;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use bookstore;
+Database changed
+mysql> CREATE TABLE books (
+    -> book_id INT PRIMARY KEY,
+    -> title VARCHAR(10),
+    -> author varchar(50),
+    -> price Decima(10,2),
+    -> publication_date DATE,
+    -> category varchar(30),
+    -> in_stock INT 
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Decima(10,2),
+publication_date DATE,
+category varchar(30),
+in_stock INT
+)' at line 5
+mysql> CREATE TABLE books ( book_id INT PRIMARY KEY, title VARCHAR(100), author varchar(50), price Decimal(10,2), publication_date DATE, category varchar(30), in_stock INT );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_bookstore |
++---------------------+
+| books               |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from employees;
+ERROR 1146 (42S02): Table 'bookstore.employees' doesn't exist
+mysql> desc books;
++------------------+---------------+------+-----+---------+-------+
+| Field            | Type          | Null | Key | Default | Extra |
++------------------+---------------+------+-----+---------+-------+
+| book_id          | int           | NO   | PRI | NULL    |       |
+| title            | varchar(100)  | YES  |     | NULL    |       |
+| author           | varchar(50)   | YES  |     | NULL    |       |
+| price            | decimal(10,2) | YES  |     | NULL    |       |
+| publication_date | date          | YES  |     | NULL    |       |
+| category         | varchar(30)   | YES  |     | NULL    |       |
+| in_stock         | int           | YES  |     | NULL    |       |
++------------------+---------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> INSERT INTO books (book_id, title, author, price, publication_date, category, in_stock)
+    -> VALUES
+    -> -- Programming & Tech
+    -> (1, 'Java: The Complete Reference', 'Herbert Schildt', 950.00, '2023-01-15', 'Tech', 15),
+    -> (2, 'Clean Code', 'Robert C. Martin', 1200.00, '2020-08-10', 'Tech', 10),
+    -> (3, 'Head First Java', 'Kathy Sierra', 850.00, '2022-05-20', 'Tech', 20),
+    -> (4, 'SQL for Beginners', 'Mosh Hamedani', 500.00, '2021-11-11', 'Tech', 50),
+    -> (5, 'The Pragmatic Programmer', 'Andrew Hunt', 1100.00, '2019-10-30', 'Tech', 12),
+    -> (6, 'Introduction to Algorithms', 'Cormen', 1500.00, '2009-07-31', 'Tech', 8),
+    -> (7, 'Design Patterns', 'Erich Gamma', 1300.00, '1994-10-21', 'Tech', 5),
+    -> (8, 'Python Crash Course', 'Eric Matthes', 700.00, '2023-03-01', 'Tech', 25),
+    -> (9, 'JavaScript: The Good Parts', 'Douglas Crockford', 600.00, '2008-05-01', 'Tech', 14),
+    -> (10, 'Cracking the Coding Interview', 'Gayle Laakmann', 900.00, '2015-07-01', 'Tech', 30),
+    -> 
+    -> -- Fiction & Literature
+    -> (11, 'The Alchemist', 'Paulo Coelho', 350.00, '1988-01-01', 'Fiction', 100),
+    -> (12, 'The Great Gatsby', 'F. Scott Fitzgerald', 250.00, '1925-04-10', 'Fiction', 40),
+    -> (13, '1984', 'George Orwell', 400.00, '1949-06-08', 'Fiction', 60),
+    -> (14, 'To Kill a Mockingbird', 'Harper Lee', 450.00, '1960-07-11', 'Fiction', 35),
+    -> (15, 'The Hobbit', 'J.R.R. Tolkien', 550.00, '1937-09-21', 'Fiction', 25),
+    -> (16, 'Brave New World', 'Aldous Huxley', 380.00, '1932-01-01', 'Fiction', 20),
+    -> (17, 'The Catcher in the Rye', 'J.D. Salinger', 300.00, '1951-07-16', 'Fiction', 15),
+    -> (18, 'Harry Potter 1', 'J.K. Rowling', 600.00, '1997-06-26', 'Fiction', 80),
+    -> (19, 'The Kite Runner', 'Khaled Hosseini', 420.00, '2003-05-29', 'Fiction', 45),
+    -> (20, 'Life of Pi', 'Yann Martel', 390.00, '2001-09-11', 'Fiction', 50),
+    -> 
+    -> -- Non-Fiction & Self-Help
+    -> (21, 'Atomic Habits', 'James Clear', 500.00, '2018-10-16', 'Self-Help', 150),
+    -> (22, 'Deep Work', 'Cal Newport', 450.00, '2016-01-05', 'Self-Help', 40),
+    -> (23, 'Sapiens', 'Yuval Noah Harari', 700.00, '2011-01-01', 'History', 90),
+    -> (24, 'Thinking, Fast and Slow', 'Daniel Kahneman', 650.00, '2011-10-25', 'Psychology', 30),
+    -> (25, 'The Power of Habit', 'Charles Duhigg', 480.00, '2012-02-28', 'Self-Help', 55),
+    -> (26, 'Rich Dad Poor Dad', 'Robert Kiyosaki', 400.00, '1997-04-01', 'Finance', 200),
+    -> (27, 'The Psychology of Money', 'Morgan Housel', 450.00, '2020-09-08', 'Finance', 120),
+    -> (28, 'Man Search for Meaning', 'Viktor Frankl', 350.00, '1946-01-01', 'Psychology', 65),
+    -> (29, 'Guns, Germs, and Steel', 'Jared Diamond', 600.00, '1997-01-01', 'History', 20),
+    -> (30, 'Educated', 'Tara Westover', 500.00, '2018-02-20', 'Biography', 40),
+    -> 
+    -> -- Mystery & Thriller
+    -> (31, 'The Da Vinci Code', 'Dan Brown', 500.00, '2003-03-18', 'Thriller', 75),
+    -> (32, 'Gone Girl', 'Gillian Flynn', 450.00, '2012-05-24', 'Thriller', 30),
+    -> (33, 'The Girl with the Dragon Tattoo', 'Stieg Larsson', 550.00, '2005-08-01', 'Mystery', 20),
+    -> (34, 'Sherlock Holmes', 'Arthur Conan Doyle', 300.00, '1892-10-14', 'Mystery', 100),
+    -> (35, 'And Then There Were None', 'Agatha Christie', 350.00, '1939-11-06', 'Mystery', 85),
+    -> (36, 'Digital Fortress', 'Dan Brown', 480.00, '1998-01-01', 'Thriller', 40),
+    -> (37, 'The Silent Patient', 'Alex Michaelides', 520.00, '2019-02-05', 'Thriller', 60),
+    -> (38, 'Big Little Lies', 'Liane Moriarty', 400.00, '2014-07-29', 'Mystery', 25),
+    -> (39, 'The Woman in the Window', 'A.J. Finn', 440.00, '2018-01-02', 'Thriller', 15),
+    -> (40, 'Inferno', 'Dan Brown', 550.00, '2013-05-14', 'Thriller', 50),
+    -> 
+    -> -- Science & Nature
+    -> (41, 'A Brief History of Time', 'Stephen Hawking', 600.00, '1988-04-01', 'Science', 30),
+    -> (42, 'Cosmos', 'Carl Sagan', 650.00, '1980-10-01', 'Science', 25),
+    -> (43, 'The Selfish Gene', 'Richard Dawkins', 580.00, '1976-01-01', 'Science', 15),
+    -> (44, 'Astrophysics for People in a Hurry', 'Neil deGrasse Tyson', 400.00, '2017-05-02', 'Science', 100),
+    -> (45, 'The Elegant Universe', 'Brian Greene', 700.00, '1999-01-01', 'Science', 12),
+    -> (46, 'Brief Answers to the Big Questions', 'Stephen Hawking', 500.00, '2018-10-16', 'Science', 40),
+    -> (47, 'The Gene', 'Siddhartha Mukherjee', 750.00, '2016-05-17', 'Science', 18),
+    -> (48, 'Silent Spring', 'Rachel Carson', 400.00, '1962-09-27', 'Science', 10),
+    -> (49, 'Pale Blue Dot', 'Carl Sagan', 600.00, '1994-01-01', 'Science', 22),
+    -> (50, 'The Origin of Species', 'Charles Darwin', 500.00, '1859-11-24', 'Science', 50);
+Query OK, 50 rows affected (0.02 sec)
+Records: 50  Duplicates: 0  Warnings: 0
+
+mysql> mysql> desc books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> desc books' at line 1
+mysql> +------------------+---------------+------+-----+---------+-------+
+    -> | Field            | Type          | Null | Key | Default | Extra |
+    -> +------------------+---------------+------+-----+---------+-------+
+    -> | book_id          | int           | NO   | PRI | NULL    |       |
+    -> | title            | varchar(100)  | YES  |     | NULL    |       |
+    -> | author           | varchar(50)   | YES  |     | NULL    |       |
+    -> | price            | decimal(10,2) | YES  |     | NULL    |       |
+    -> | publication_date | date          | YES  |     | NULL    |       |
+    -> | category         | varchar(30)   | YES  |     | NULL    |       |
+    -> | in_stock         | int           | YES  |     | NULL    |       |
+    -> +------------------+---------------+------+-----+---------+-------+
+    -> select * from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------------+---------------+------+-----+---------+-------+
+| Field     ' at line 1
+mysql> +------------------+---------------+------+-----+---------+-------+ | Field            | Type          | Null | Key | Default |
+Extra | +------------------+---------------+------+-----+---------+-------+ | book_id          | int           | NO   | PRI | NULL    |       | | title            | varchar(100)  | YES  |     | NULL    |       | | author           | varchar(50)   | YES  |     | NULL
+|       | | price            | decimal(10,2) | YES  |     | NULL    |       | | publication_date | date          | YES  |     | NULL
+ |       | | category         | varchar(30)   | YES  |     | NULL    |       | | in_stock         | int           | YES  |     | NULL
+  |       | +------------------+---------------+------+-----+---------+-------+ select * from books;^C
+mysql> select * from books;
++---------+------------------------------------+----------------------+---------+------------------+------------+----------+
+| book_id | title                              | author               | price   | publication_date | category   | in_stock |
++---------+------------------------------------+----------------------+---------+------------------+------------+----------+
+|       1 | Java: The Complete Reference       | Herbert Schildt      |  950.00 | 2023-01-15       | Tech       |       15 |
+|       2 | Clean Code                         | Robert C. Martin     | 1200.00 | 2020-08-10       | Tech       |       10 |
+|       3 | Head First Java                    | Kathy Sierra         |  850.00 | 2022-05-20       | Tech       |       20 |
+|       4 | SQL for Beginners                  | Mosh Hamedani        |  500.00 | 2021-11-11       | Tech       |       50 |
+|       5 | The Pragmatic Programmer           | Andrew Hunt          | 1100.00 | 2019-10-30       | Tech       |       12 |
+|       6 | Introduction to Algorithms         | Cormen               | 1500.00 | 2009-07-31       | Tech       |        8 |
+|       7 | Design Patterns                    | Erich Gamma          | 1300.00 | 1994-10-21       | Tech       |        5 |
+|       8 | Python Crash Course                | Eric Matthes         |  700.00 | 2023-03-01       | Tech       |       25 |
+|       9 | JavaScript: The Good Parts         | Douglas Crockford    |  600.00 | 2008-05-01       | Tech       |       14 |
+|      10 | Cracking the Coding Interview      | Gayle Laakmann       |  900.00 | 2015-07-01       | Tech       |       30 |
+|      11 | The Alchemist                      | Paulo Coelho         |  350.00 | 1988-01-01       | Fiction    |      100 |
+|      12 | The Great Gatsby                   | F. Scott Fitzgerald  |  250.00 | 1925-04-10       | Fiction    |       40 |
+|      13 | 1984                               | George Orwell        |  400.00 | 1949-06-08       | Fiction    |       60 |
+|      14 | To Kill a Mockingbird              | Harper Lee           |  450.00 | 1960-07-11       | Fiction    |       35 |
+|      15 | The Hobbit                         | J.R.R. Tolkien       |  550.00 | 1937-09-21       | Fiction    |       25 |
+|      16 | Brave New World                    | Aldous Huxley        |  380.00 | 1932-01-01       | Fiction    |       20 |
+|      17 | The Catcher in the Rye             | J.D. Salinger        |  300.00 | 1951-07-16       | Fiction    |       15 |
+|      18 | Harry Potter 1                     | J.K. Rowling         |  600.00 | 1997-06-26       | Fiction    |       80 |
+|      19 | The Kite Runner                    | Khaled Hosseini      |  420.00 | 2003-05-29       | Fiction    |       45 |
+|      20 | Life of Pi                         | Yann Martel          |  390.00 | 2001-09-11       | Fiction    |       50 |
+|      21 | Atomic Habits                      | James Clear          |  500.00 | 2018-10-16       | Self-Help  |      150 |
+|      22 | Deep Work                          | Cal Newport          |  450.00 | 2016-01-05       | Self-Help  |       40 |
+|      23 | Sapiens                            | Yuval Noah Harari    |  700.00 | 2011-01-01       | History    |       90 |
+|      24 | Thinking, Fast and Slow            | Daniel Kahneman      |  650.00 | 2011-10-25       | Psychology |       30 |
+|      25 | The Power of Habit                 | Charles Duhigg       |  480.00 | 2012-02-28       | Self-Help  |       55 |
+|      26 | Rich Dad Poor Dad                  | Robert Kiyosaki      |  400.00 | 1997-04-01       | Finance    |      200 |
+|      27 | The Psychology of Money            | Morgan Housel        |  450.00 | 2020-09-08       | Finance    |      120 |
+|      28 | Man Search for Meaning             | Viktor Frankl        |  350.00 | 1946-01-01       | Psychology |       65 |
+|      29 | Guns, Germs, and Steel             | Jared Diamond        |  600.00 | 1997-01-01       | History    |       20 |
+|      30 | Educated                           | Tara Westover        |  500.00 | 2018-02-20       | Biography  |       40 |
+|      31 | The Da Vinci Code                  | Dan Brown            |  500.00 | 2003-03-18       | Thriller   |       75 |
+|      32 | Gone Girl                          | Gillian Flynn        |  450.00 | 2012-05-24       | Thriller   |       30 |
+|      33 | The Girl with the Dragon Tattoo    | Stieg Larsson        |  550.00 | 2005-08-01       | Mystery    |       20 |
+|      34 | Sherlock Holmes                    | Arthur Conan Doyle   |  300.00 | 1892-10-14       | Mystery    |      100 |
+|      35 | And Then There Were None           | Agatha Christie      |  350.00 | 1939-11-06       | Mystery    |       85 |
+|      36 | Digital Fortress                   | Dan Brown            |  480.00 | 1998-01-01       | Thriller   |       40 |
+|      37 | The Silent Patient                 | Alex Michaelides     |  520.00 | 2019-02-05       | Thriller   |       60 |
+|      38 | Big Little Lies                    | Liane Moriarty       |  400.00 | 2014-07-29       | Mystery    |       25 |
+|      39 | The Woman in the Window            | A.J. Finn            |  440.00 | 2018-01-02       | Thriller   |       15 |
+|      40 | Inferno                            | Dan Brown            |  550.00 | 2013-05-14       | Thriller   |       50 |
+|      41 | A Brief History of Time            | Stephen Hawking      |  600.00 | 1988-04-01       | Science    |       30 |
+|      42 | Cosmos                             | Carl Sagan           |  650.00 | 1980-10-01       | Science    |       25 |
+|      43 | The Selfish Gene                   | Richard Dawkins      |  580.00 | 1976-01-01       | Science    |       15 |
+|      44 | Astrophysics for People in a Hurry | Neil deGrasse Tyson  |  400.00 | 2017-05-02       | Science    |      100 |
+|      45 | The Elegant Universe               | Brian Greene         |  700.00 | 1999-01-01       | Science    |       12 |
+|      46 | Brief Answers to the Big Questions | Stephen Hawking      |  500.00 | 2018-10-16       | Science    |       40 |
+|      47 | The Gene                           | Siddhartha Mukherjee |  750.00 | 2016-05-17       | Science    |       18 |
+|      48 | Silent Spring                      | Rachel Carson        |  400.00 | 1962-09-27       | Science    |       10 |
+|      49 | Pale Blue Dot                      | Carl Sagan           |  600.00 | 1994-01-01       | Science    |       22 |
+|      50 | The Origin of Species              | Charles Darwin       |  500.00 | 1859-11-24       | Science    |       50 |
++---------+------------------------------------+----------------------+---------+------------------+------------+----------+
+50 rows in set (0.00 sec)
+
+mysql> select * from books where category = 'Tech';
++---------+-------------------------------+-------------------+---------+------------------+----------+----------+
+| book_id | title                         | author            | price   | publication_date | category | in_stock |
++---------+-------------------------------+-------------------+---------+------------------+----------+----------+
+|       1 | Java: The Complete Reference  | Herbert Schildt   |  950.00 | 2023-01-15       | Tech     |       15 |
+|       2 | Clean Code                    | Robert C. Martin  | 1200.00 | 2020-08-10       | Tech     |       10 |
+|       3 | Head First Java               | Kathy Sierra      |  850.00 | 2022-05-20       | Tech     |       20 |
+|       4 | SQL for Beginners             | Mosh Hamedani     |  500.00 | 2021-11-11       | Tech     |       50 |
+|       5 | The Pragmatic Programmer      | Andrew Hunt       | 1100.00 | 2019-10-30       | Tech     |       12 |
+|       6 | Introduction to Algorithms    | Cormen            | 1500.00 | 2009-07-31       | Tech     |        8 |
+|       7 | Design Patterns               | Erich Gamma       | 1300.00 | 1994-10-21       | Tech     |        5 |
+|       8 | Python Crash Course           | Eric Matthes      |  700.00 | 2023-03-01       | Tech     |       25 |
+|       9 | JavaScript: The Good Parts    | Douglas Crockford |  600.00 | 2008-05-01       | Tech     |       14 |
+|      10 | Cracking the Coding Interview | Gayle Laakmann    |  900.00 | 2015-07-01       | Tech     |       30 |
++---------+-------------------------------+-------------------+---------+------------------+----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select title,price where price > 1000
+    -> ;
+ERROR 1054 (42S22): Unknown column 'title' in 'field list'
+mysql> select title,price from bookswhere price > 1000
+    -> ^C
+mysql> select title,price from books where price > 1000
+    -> ;
++----------------------------+---------+
+| title                      | price   |
++----------------------------+---------+
+| Clean Code                 | 1200.00 |
+| The Pragmatic Programmer   | 1100.00 |
+| Introduction to Algorithms | 1500.00 |
+| Design Patterns            | 1300.00 |
++----------------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select title,price from books where price< 1000
+    -> ;
++------------------------------------+--------+
+| title                              | price  |
++------------------------------------+--------+
+| Java: The Complete Reference       | 950.00 |
+| Head First Java                    | 850.00 |
+| SQL for Beginners                  | 500.00 |
+| Python Crash Course                | 700.00 |
+| JavaScript: The Good Parts         | 600.00 |
+| Cracking the Coding Interview      | 900.00 |
+| The Alchemist                      | 350.00 |
+| The Great Gatsby                   | 250.00 |
+| 1984                               | 400.00 |
+| To Kill a Mockingbird              | 450.00 |
+| The Hobbit                         | 550.00 |
+| Brave New World                    | 380.00 |
+| The Catcher in the Rye             | 300.00 |
+| Harry Potter 1                     | 600.00 |
+| The Kite Runner                    | 420.00 |
+| Life of Pi                         | 390.00 |
+| Atomic Habits                      | 500.00 |
+| Deep Work                          | 450.00 |
+| Sapiens                            | 700.00 |
+| Thinking, Fast and Slow            | 650.00 |
+| The Power of Habit                 | 480.00 |
+| Rich Dad Poor Dad                  | 400.00 |
+| The Psychology of Money            | 450.00 |
+| Man Search for Meaning             | 350.00 |
+| Guns, Germs, and Steel             | 600.00 |
+| Educated                           | 500.00 |
+| The Da Vinci Code                  | 500.00 |
+| Gone Girl                          | 450.00 |
+| The Girl with the Dragon Tattoo    | 550.00 |
+| Sherlock Holmes                    | 300.00 |
+| And Then There Were None           | 350.00 |
+| Digital Fortress                   | 480.00 |
+| The Silent Patient                 | 520.00 |
+| Big Little Lies                    | 400.00 |
+| The Woman in the Window            | 440.00 |
+| Inferno                            | 550.00 |
+| A Brief History of Time            | 600.00 |
+| Cosmos                             | 650.00 |
+| The Selfish Gene                   | 580.00 |
+| Astrophysics for People in a Hurry | 400.00 |
+| The Elegant Universe               | 700.00 |
+| Brief Answers to the Big Questions | 500.00 |
+| The Gene                           | 750.00 |
+| Silent Spring                      | 400.00 |
+| Pale Blue Dot                      | 600.00 |
+| The Origin of Species              | 500.00 |
++------------------------------------+--------+
+46 rows in set (0.00 sec)
+
+mysql> select title,publication_detail from books where category = 'tech';
+ERROR 1054 (42S22): Unknown column 'publication_detail' in 'field list'
+mysql> select title,publication_date from books where category = 'Tech';
++-------------------------------+------------------+
+| title                         | publication_date |
++-------------------------------+------------------+
+| Java: The Complete Reference  | 2023-01-15       |
+| Clean Code                    | 2020-08-10       |
+| Head First Java               | 2022-05-20       |
+| SQL for Beginners             | 2021-11-11       |
+| The Pragmatic Programmer      | 2019-10-30       |
+| Introduction to Algorithms    | 2009-07-31       |
+| Design Patterns               | 1994-10-21       |
+| Python Crash Course           | 2023-03-01       |
+| JavaScript: The Good Parts    | 2008-05-01       |
+| Cracking the Coding Interview | 2015-07-01       |
++-------------------------------+------------------+
+10 rows in set (0.01 sec)
+
+mysql> select title,publication_date from books where category = 'Tech' or price <1000;
++------------------------------------+------------------+
+| title                              | publication_date |
++------------------------------------+------------------+
+| Java: The Complete Reference       | 2023-01-15       |
+| Clean Code                         | 2020-08-10       |
+| Head First Java                    | 2022-05-20       |
+| SQL for Beginners                  | 2021-11-11       |
+| The Pragmatic Programmer           | 2019-10-30       |
+| Introduction to Algorithms         | 2009-07-31       |
+| Design Patterns                    | 1994-10-21       |
+| Python Crash Course                | 2023-03-01       |
+| JavaScript: The Good Parts         | 2008-05-01       |
+| Cracking the Coding Interview      | 2015-07-01       |
+| The Alchemist                      | 1988-01-01       |
+| The Great Gatsby                   | 1925-04-10       |
+| 1984                               | 1949-06-08       |
+| To Kill a Mockingbird              | 1960-07-11       |
+| The Hobbit                         | 1937-09-21       |
+| Brave New World                    | 1932-01-01       |
+| The Catcher in the Rye             | 1951-07-16       |
+| Harry Potter 1                     | 1997-06-26       |
+| The Kite Runner                    | 2003-05-29       |
+| Life of Pi                         | 2001-09-11       |
+| Atomic Habits                      | 2018-10-16       |
+| Deep Work                          | 2016-01-05       |
+| Sapiens                            | 2011-01-01       |
+| Thinking, Fast and Slow            | 2011-10-25       |
+| The Power of Habit                 | 2012-02-28       |
+| Rich Dad Poor Dad                  | 1997-04-01       |
+| The Psychology of Money            | 2020-09-08       |
+| Man Search for Meaning             | 1946-01-01       |
+| Guns, Germs, and Steel             | 1997-01-01       |
+| Educated                           | 2018-02-20       |
+| The Da Vinci Code                  | 2003-03-18       |
+| Gone Girl                          | 2012-05-24       |
+| The Girl with the Dragon Tattoo    | 2005-08-01       |
+| Sherlock Holmes                    | 1892-10-14       |
+| And Then There Were None           | 1939-11-06       |
+| Digital Fortress                   | 1998-01-01       |
+| The Silent Patient                 | 2019-02-05       |
+| Big Little Lies                    | 2014-07-29       |
+| The Woman in the Window            | 2018-01-02       |
+| Inferno                            | 2013-05-14       |
+| A Brief History of Time            | 1988-04-01       |
+| Cosmos                             | 1980-10-01       |
+| The Selfish Gene                   | 1976-01-01       |
+| Astrophysics for People in a Hurry | 2017-05-02       |
+| The Elegant Universe               | 1999-01-01       |
+| Brief Answers to the Big Questions | 2018-10-16       |
+| The Gene                           | 2016-05-17       |
+| Silent Spring                      | 1962-09-27       |
+| Pale Blue Dot                      | 1994-01-01       |
+| The Origin of Species              | 1859-11-24       |
++------------------------------------+------------------+
+50 rows in set (0.00 sec)
+
+mysql> select title,publication_date from books where category = 'Tech' or price >1000;
++-------------------------------+------------------+
+| title                         | publication_date |
++-------------------------------+------------------+
+| Java: The Complete Reference  | 2023-01-15       |
+| Clean Code                    | 2020-08-10       |
+| Head First Java               | 2022-05-20       |
+| SQL for Beginners             | 2021-11-11       |
+| The Pragmatic Programmer      | 2019-10-30       |
+| Introduction to Algorithms    | 2009-07-31       |
+| Design Patterns               | 1994-10-21       |
+| Python Crash Course           | 2023-03-01       |
+| JavaScript: The Good Parts    | 2008-05-01       |
+| Cracking the Coding Interview | 2015-07-01       |
++-------------------------------+------------------+
+10 rows in set (0.00 sec)
+
+mysql> select title,publication_date,price from books where category = 'Tech' or price >1000;
++-------------------------------+------------------+---------+
+| title                         | publication_date | price   |
++-------------------------------+------------------+---------+
+| Java: The Complete Reference  | 2023-01-15       |  950.00 |
+| Clean Code                    | 2020-08-10       | 1200.00 |
+| Head First Java               | 2022-05-20       |  850.00 |
+| SQL for Beginners             | 2021-11-11       |  500.00 |
+| The Pragmatic Programmer      | 2019-10-30       | 1100.00 |
+| Introduction to Algorithms    | 2009-07-31       | 1500.00 |
+| Design Patterns               | 1994-10-21       | 1300.00 |
+| Python Crash Course           | 2023-03-01       |  700.00 |
+| JavaScript: The Good Parts    | 2008-05-01       |  600.00 |
+| Cracking the Coding Interview | 2015-07-01       |  900.00 |
++-------------------------------+------------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select title,publication_date,price from books where (category = 'Tech' or category = 'Fiction' or price >1000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select title,publication_date,price from books where (category = 'Tech' or category = 'Fiction') or price >1000;
++-------------------------------+------------------+---------+
+| title                         | publication_date | price   |
++-------------------------------+------------------+---------+
+| Java: The Complete Reference  | 2023-01-15       |  950.00 |
+| Clean Code                    | 2020-08-10       | 1200.00 |
+| Head First Java               | 2022-05-20       |  850.00 |
+| SQL for Beginners             | 2021-11-11       |  500.00 |
+| The Pragmatic Programmer      | 2019-10-30       | 1100.00 |
+| Introduction to Algorithms    | 2009-07-31       | 1500.00 |
+| Design Patterns               | 1994-10-21       | 1300.00 |
+| Python Crash Course           | 2023-03-01       |  700.00 |
+| JavaScript: The Good Parts    | 2008-05-01       |  600.00 |
+| Cracking the Coding Interview | 2015-07-01       |  900.00 |
+| The Alchemist                 | 1988-01-01       |  350.00 |
+| The Great Gatsby              | 1925-04-10       |  250.00 |
+| 1984                          | 1949-06-08       |  400.00 |
+| To Kill a Mockingbird         | 1960-07-11       |  450.00 |
+| The Hobbit                    | 1937-09-21       |  550.00 |
+| Brave New World               | 1932-01-01       |  380.00 |
+| The Catcher in the Rye        | 1951-07-16       |  300.00 |
+| Harry Potter 1                | 1997-06-26       |  600.00 |
+| The Kite Runner               | 2003-05-29       |  420.00 |
+| Life of Pi                    | 2001-09-11       |  390.00 |
++-------------------------------+------------------+---------+
+20 rows in set (0.01 sec)
+
+mysql> select title,publication_date,price,category from books where (category = 'Tech' or category = 'Fiction') or price >1000;
++-------------------------------+------------------+---------+----------+
+| title                         | publication_date | price   | category |
++-------------------------------+------------------+---------+----------+
+| Java: The Complete Reference  | 2023-01-15       |  950.00 | Tech     |
+| Clean Code                    | 2020-08-10       | 1200.00 | Tech     |
+| Head First Java               | 2022-05-20       |  850.00 | Tech     |
+| SQL for Beginners             | 2021-11-11       |  500.00 | Tech     |
+| The Pragmatic Programmer      | 2019-10-30       | 1100.00 | Tech     |
+| Introduction to Algorithms    | 2009-07-31       | 1500.00 | Tech     |
+| Design Patterns               | 1994-10-21       | 1300.00 | Tech     |
+| Python Crash Course           | 2023-03-01       |  700.00 | Tech     |
+| JavaScript: The Good Parts    | 2008-05-01       |  600.00 | Tech     |
+| Cracking the Coding Interview | 2015-07-01       |  900.00 | Tech     |
+| The Alchemist                 | 1988-01-01       |  350.00 | Fiction  |
+| The Great Gatsby              | 1925-04-10       |  250.00 | Fiction  |
+| 1984                          | 1949-06-08       |  400.00 | Fiction  |
+| To Kill a Mockingbird         | 1960-07-11       |  450.00 | Fiction  |
+| The Hobbit                    | 1937-09-21       |  550.00 | Fiction  |
+| Brave New World               | 1932-01-01       |  380.00 | Fiction  |
+| The Catcher in the Rye        | 1951-07-16       |  300.00 | Fiction  |
+| Harry Potter 1                | 1997-06-26       |  600.00 | Fiction  |
+| The Kite Runner               | 2003-05-29       |  420.00 | Fiction  |
+| Life of Pi                    | 2001-09-11       |  390.00 | Fiction  |
++-------------------------------+------------------+---------+----------+
+20 rows in set (0.00 sec)
+
+mysql> select book_id title,publication_date,price,category from books where (category = 'Tech' or category = 'Fiction') or price >1000
+;
++-------+------------------+---------+----------+
+| title | publication_date | price   | category |
++-------+------------------+---------+----------+
+|     1 | 2023-01-15       |  950.00 | Tech     |
+|     2 | 2020-08-10       | 1200.00 | Tech     |
+|     3 | 2022-05-20       |  850.00 | Tech     |
+|     4 | 2021-11-11       |  500.00 | Tech     |
+|     5 | 2019-10-30       | 1100.00 | Tech     |
+|     6 | 2009-07-31       | 1500.00 | Tech     |
+|     7 | 1994-10-21       | 1300.00 | Tech     |
+|     8 | 2023-03-01       |  700.00 | Tech     |
+|     9 | 2008-05-01       |  600.00 | Tech     |
+|    10 | 2015-07-01       |  900.00 | Tech     |
+|    11 | 1988-01-01       |  350.00 | Fiction  |
+|    12 | 1925-04-10       |  250.00 | Fiction  |
+|    13 | 1949-06-08       |  400.00 | Fiction  |
+|    14 | 1960-07-11       |  450.00 | Fiction  |
+|    15 | 1937-09-21       |  550.00 | Fiction  |
+|    16 | 1932-01-01       |  380.00 | Fiction  |
+|    17 | 1951-07-16       |  300.00 | Fiction  |
+|    18 | 1997-06-26       |  600.00 | Fiction  |
+|    19 | 2003-05-29       |  420.00 | Fiction  |
+|    20 | 2001-09-11       |  390.00 | Fiction  |
++-------+------------------+---------+----------+
+20 rows in set (0.00 sec)
+
+mysql> select book_id,title,publication_date,price,category from books where (category = 'Tech' or category = 'Fiction') or price >1000;
++---------+-------------------------------+------------------+---------+----------+
+| book_id | title                         | publication_date | price   | category |
++---------+-------------------------------+------------------+---------+----------+
+|       1 | Java: The Complete Reference  | 2023-01-15       |  950.00 | Tech     |
+|       2 | Clean Code                    | 2020-08-10       | 1200.00 | Tech     |
+|       3 | Head First Java               | 2022-05-20       |  850.00 | Tech     |
+|       4 | SQL for Beginners             | 2021-11-11       |  500.00 | Tech     |
+|       5 | The Pragmatic Programmer      | 2019-10-30       | 1100.00 | Tech     |
+|       6 | Introduction to Algorithms    | 2009-07-31       | 1500.00 | Tech     |
+|       7 | Design Patterns               | 1994-10-21       | 1300.00 | Tech     |
+|       8 | Python Crash Course           | 2023-03-01       |  700.00 | Tech     |
+|       9 | JavaScript: The Good Parts    | 2008-05-01       |  600.00 | Tech     |
+|      10 | Cracking the Coding Interview | 2015-07-01       |  900.00 | Tech     |
+|      11 | The Alchemist                 | 1988-01-01       |  350.00 | Fiction  |
+|      12 | The Great Gatsby              | 1925-04-10       |  250.00 | Fiction  |
+|      13 | 1984                          | 1949-06-08       |  400.00 | Fiction  |
+|      14 | To Kill a Mockingbird         | 1960-07-11       |  450.00 | Fiction  |
+|      15 | The Hobbit                    | 1937-09-21       |  550.00 | Fiction  |
+|      16 | Brave New World               | 1932-01-01       |  380.00 | Fiction  |
+|      17 | The Catcher in the Rye        | 1951-07-16       |  300.00 | Fiction  |
+|      18 | Harry Potter 1                | 1997-06-26       |  600.00 | Fiction  |
+|      19 | The Kite Runner               | 2003-05-29       |  420.00 | Fiction  |
+|      20 | Life of Pi                    | 2001-09-11       |  390.00 | Fiction  |
++---------+-------------------------------+------------------+---------+----------+
+20 rows in set (0.00 sec)
+
+mysql> select book_id,title,publication_date,price,category from books where (category = 'Tech' or category = 'Fiction') and price >1000;
++---------+----------------------------+------------------+---------+----------+
+| book_id | title                      | publication_date | price   | category |
++---------+----------------------------+------------------+---------+----------+
+|       2 | Clean Code                 | 2020-08-10       | 1200.00 | Tech     |
+|       5 | The Pragmatic Programmer   | 2019-10-30       | 1100.00 | Tech     |
+|       6 | Introduction to Algorithms | 2009-07-31       | 1500.00 | Tech     |
+|       7 | Design Patterns            | 1994-10-21       | 1300.00 | Tech     |
++---------+----------------------------+------------------+---------+----------+
+4 rows in set (0.01 sec)
+
+mysql> select book_id,title,publication_date,price,category from books where not category = 'Tech' and price >1000;
+Empty set (0.00 sec)
+
+mysql> select book_id,title,publication_date,price,category from books where not category = 'Tech' and 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select book_id,title,publication_date,price,category from books where not category = 'Tech';
++---------+------------------------------------+------------------+--------+------------+
+| book_id | title                              | publication_date | price  | category   |
++---------+------------------------------------+------------------+--------+------------+
+|      11 | The Alchemist                      | 1988-01-01       | 350.00 | Fiction    |
+|      12 | The Great Gatsby                   | 1925-04-10       | 250.00 | Fiction    |
+|      13 | 1984                               | 1949-06-08       | 400.00 | Fiction    |
+|      14 | To Kill a Mockingbird              | 1960-07-11       | 450.00 | Fiction    |
+|      15 | The Hobbit                         | 1937-09-21       | 550.00 | Fiction    |
+|      16 | Brave New World                    | 1932-01-01       | 380.00 | Fiction    |
+|      17 | The Catcher in the Rye             | 1951-07-16       | 300.00 | Fiction    |
+|      18 | Harry Potter 1                     | 1997-06-26       | 600.00 | Fiction    |
+|      19 | The Kite Runner                    | 2003-05-29       | 420.00 | Fiction    |
+|      20 | Life of Pi                         | 2001-09-11       | 390.00 | Fiction    |
+|      21 | Atomic Habits                      | 2018-10-16       | 500.00 | Self-Help  |
+|      22 | Deep Work                          | 2016-01-05       | 450.00 | Self-Help  |
+|      23 | Sapiens                            | 2011-01-01       | 700.00 | History    |
+|      24 | Thinking, Fast and Slow            | 2011-10-25       | 650.00 | Psychology |
+|      25 | The Power of Habit                 | 2012-02-28       | 480.00 | Self-Help  |
+|      26 | Rich Dad Poor Dad                  | 1997-04-01       | 400.00 | Finance    |
+|      27 | The Psychology of Money            | 2020-09-08       | 450.00 | Finance    |
+|      28 | Man Search for Meaning             | 1946-01-01       | 350.00 | Psychology |
+|      29 | Guns, Germs, and Steel             | 1997-01-01       | 600.00 | History    |
+|      30 | Educated                           | 2018-02-20       | 500.00 | Biography  |
+|      31 | The Da Vinci Code                  | 2003-03-18       | 500.00 | Thriller   |
+|      32 | Gone Girl                          | 2012-05-24       | 450.00 | Thriller   |
+|      33 | The Girl with the Dragon Tattoo    | 2005-08-01       | 550.00 | Mystery    |
+|      34 | Sherlock Holmes                    | 1892-10-14       | 300.00 | Mystery    |
+|      35 | And Then There Were None           | 1939-11-06       | 350.00 | Mystery    |
+|      36 | Digital Fortress                   | 1998-01-01       | 480.00 | Thriller   |
+|      37 | The Silent Patient                 | 2019-02-05       | 520.00 | Thriller   |
+|      38 | Big Little Lies                    | 2014-07-29       | 400.00 | Mystery    |
+|      39 | The Woman in the Window            | 2018-01-02       | 440.00 | Thriller   |
+|      40 | Inferno                            | 2013-05-14       | 550.00 | Thriller   |
+|      41 | A Brief History of Time            | 1988-04-01       | 600.00 | Science    |
+|      42 | Cosmos                             | 1980-10-01       | 650.00 | Science    |
+|      43 | The Selfish Gene                   | 1976-01-01       | 580.00 | Science    |
+|      44 | Astrophysics for People in a Hurry | 2017-05-02       | 400.00 | Science    |
+|      45 | The Elegant Universe               | 1999-01-01       | 700.00 | Science    |
+|      46 | Brief Answers to the Big Questions | 2018-10-16       | 500.00 | Science    |
+|      47 | The Gene                           | 2016-05-17       | 750.00 | Science    |
+|      48 | Silent Spring                      | 1962-09-27       | 400.00 | Science    |
+|      49 | Pale Blue Dot                      | 1994-01-01       | 600.00 | Science    |
+|      50 | The Origin of Species              | 1859-11-24       | 500.00 | Science    |
++---------+------------------------------------+------------------+--------+------------+
+40 rows in set (0.00 sec)
+
+mysql> select * from books where author is null;
+Empty set (0.00 sec)
+
+mysql> select * from books where author = null;
+Empty set (0.00 sec)
+
+mysql> select * from books where author < null;
+Empty set (0.00 sec)
+
+mysql> select * from books where author is not null;
++---------+------------------------------------+----------------------+---------+------------------+------------+----------+
+| book_id | title                              | author               | price   | publication_date | category   | in_stock |
++---------+------------------------------------+----------------------+---------+------------------+------------+----------+
+|       1 | Java: The Complete Reference       | Herbert Schildt      |  950.00 | 2023-01-15       | Tech       |       15 |
+|       2 | Clean Code                         | Robert C. Martin     | 1200.00 | 2020-08-10       | Tech       |       10 |
+|       3 | Head First Java                    | Kathy Sierra         |  850.00 | 2022-05-20       | Tech       |       20 |
+|       4 | SQL for Beginners                  | Mosh Hamedani        |  500.00 | 2021-11-11       | Tech       |       50 |
+|       5 | The Pragmatic Programmer           | Andrew Hunt          | 1100.00 | 2019-10-30       | Tech       |       12 |
+|       6 | Introduction to Algorithms         | Cormen               | 1500.00 | 2009-07-31       | Tech       |        8 |
+|       7 | Design Patterns                    | Erich Gamma          | 1300.00 | 1994-10-21       | Tech       |        5 |
+|       8 | Python Crash Course                | Eric Matthes         |  700.00 | 2023-03-01       | Tech       |       25 |
+|       9 | JavaScript: The Good Parts         | Douglas Crockford    |  600.00 | 2008-05-01       | Tech       |       14 |
+|      10 | Cracking the Coding Interview      | Gayle Laakmann       |  900.00 | 2015-07-01       | Tech       |       30 |
+|      11 | The Alchemist                      | Paulo Coelho         |  350.00 | 1988-01-01       | Fiction    |      100 |
+|      12 | The Great Gatsby                   | F. Scott Fitzgerald  |  250.00 | 1925-04-10       | Fiction    |       40 |
+|      13 | 1984                               | George Orwell        |  400.00 | 1949-06-08       | Fiction    |       60 |
+|      14 | To Kill a Mockingbird              | Harper Lee           |  450.00 | 1960-07-11       | Fiction    |       35 |
+|      15 | The Hobbit                         | J.R.R. Tolkien       |  550.00 | 1937-09-21       | Fiction    |       25 |
+|      16 | Brave New World                    | Aldous Huxley        |  380.00 | 1932-01-01       | Fiction    |       20 |
+|      17 | The Catcher in the Rye             | J.D. Salinger        |  300.00 | 1951-07-16       | Fiction    |       15 |
+|      18 | Harry Potter 1                     | J.K. Rowling         |  600.00 | 1997-06-26       | Fiction    |       80 |
+|      19 | The Kite Runner                    | Khaled Hosseini      |  420.00 | 2003-05-29       | Fiction    |       45 |
+|      20 | Life of Pi                         | Yann Martel          |  390.00 | 2001-09-11       | Fiction    |       50 |
+|      21 | Atomic Habits                      | James Clear          |  500.00 | 2018-10-16       | Self-Help  |      150 |
+|      22 | Deep Work                          | Cal Newport          |  450.00 | 2016-01-05       | Self-Help  |       40 |
+|      23 | Sapiens                            | Yuval Noah Harari    |  700.00 | 2011-01-01       | History    |       90 |
+|      24 | Thinking, Fast and Slow            | Daniel Kahneman      |  650.00 | 2011-10-25       | Psychology |       30 |
+|      25 | The Power of Habit                 | Charles Duhigg       |  480.00 | 2012-02-28       | Self-Help  |       55 |
+|      26 | Rich Dad Poor Dad                  | Robert Kiyosaki      |  400.00 | 1997-04-01       | Finance    |      200 |
+|      27 | The Psychology of Money            | Morgan Housel        |  450.00 | 2020-09-08       | Finance    |      120 |
+|      28 | Man Search for Meaning             | Viktor Frankl        |  350.00 | 1946-01-01       | Psychology |       65 |
+|      29 | Guns, Germs, and Steel             | Jared Diamond        |  600.00 | 1997-01-01       | History    |       20 |
+|      30 | Educated                           | Tara Westover        |  500.00 | 2018-02-20       | Biography  |       40 |
+|      31 | The Da Vinci Code                  | Dan Brown            |  500.00 | 2003-03-18       | Thriller   |       75 |
+|      32 | Gone Girl                          | Gillian Flynn        |  450.00 | 2012-05-24       | Thriller   |       30 |
+|      33 | The Girl with the Dragon Tattoo    | Stieg Larsson        |  550.00 | 2005-08-01       | Mystery    |       20 |
+|      34 | Sherlock Holmes                    | Arthur Conan Doyle   |  300.00 | 1892-10-14       | Mystery    |      100 |
+|      35 | And Then There Were None           | Agatha Christie      |  350.00 | 1939-11-06       | Mystery    |       85 |
+|      36 | Digital Fortress                   | Dan Brown            |  480.00 | 1998-01-01       | Thriller   |       40 |
+|      37 | The Silent Patient                 | Alex Michaelides     |  520.00 | 2019-02-05       | Thriller   |       60 |
+|      38 | Big Little Lies                    | Liane Moriarty       |  400.00 | 2014-07-29       | Mystery    |       25 |
+|      39 | The Woman in the Window            | A.J. Finn            |  440.00 | 2018-01-02       | Thriller   |       15 |
+|      40 | Inferno                            | Dan Brown            |  550.00 | 2013-05-14       | Thriller   |       50 |
+|      41 | A Brief History of Time            | Stephen Hawking      |  600.00 | 1988-04-01       | Science    |       30 |
+|      42 | Cosmos                             | Carl Sagan           |  650.00 | 1980-10-01       | Science    |       25 |
+|      43 | The Selfish Gene                   | Richard Dawkins      |  580.00 | 1976-01-01       | Science    |       15 |
+|      44 | Astrophysics for People in a Hurry | Neil deGrasse Tyson  |  400.00 | 2017-05-02       | Science    |      100 |
+|      45 | The Elegant Universe               | Brian Greene         |  700.00 | 1999-01-01       | Science    |       12 |
+|      46 | Brief Answers to the Big Questions | Stephen Hawking      |  500.00 | 2018-10-16       | Science    |       40 |
+|      47 | The Gene                           | Siddhartha Mukherjee |  750.00 | 2016-05-17       | Science    |       18 |
+|      48 | Silent Spring                      | Rachel Carson        |  400.00 | 1962-09-27       | Science    |       10 |
+|      49 | Pale Blue Dot                      | Carl Sagan           |  600.00 | 1994-01-01       | Science    |       22 |
+|      50 | The Origin of Species              | Charles Darwin       |  500.00 | 1859-11-24       | Science    |       50 |
++---------+------------------------------------+----------------------+---------+------------------+------------+----------+
+50 rows in set (0.00 sec)
+
+mysql> select * from books where author != null;
+Empty set (0.00 sec)
+
+ select * from books where title like '%SQL%'
+    -> ;
++---------+-------------------+---------------+--------+------------------+----------+----------+
+| book_id | title             | author        | price  | publication_date | category | in_stock |
++---------+-------------------+---------------+--------+------------------+----------+----------+
+|       4 | SQL for Beginners | Mosh Hamedani | 500.00 | 2021-11-11       | Tech     |       50 |
++---------+-------------------+---------------+--------+------------------+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from books where title like '%SqL%'
+    -> ;
++---------+-------------------+---------------+--------+------------------+----------+----------+
+| book_id | title             | author        | price  | publication_date | category | in_stock |
++---------+-------------------+---------------+--------+------------------+----------+----------+
+|       4 | SQL for Beginners | Mosh Hamedani | 500.00 | 2021-11-11       | Tech     |       50 |
++---------+-------------------+---------------+--------+------------------+----------+----------+
+1 row in set (0.01 sec)
+
+mysql> select * from books where title like 'the%'
+    -> ;
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+| book_id | title                           | author               | price   | publication_date | category  | in_stock |
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+|       5 | The Pragmatic Programmer        | Andrew Hunt          | 1100.00 | 2019-10-30       | Tech      |       12 |
+|      11 | The Alchemist                   | Paulo Coelho         |  350.00 | 1988-01-01       | Fiction   |      100 |
+|      12 | The Great Gatsby                | F. Scott Fitzgerald  |  250.00 | 1925-04-10       | Fiction   |       40 |
+|      15 | The Hobbit                      | J.R.R. Tolkien       |  550.00 | 1937-09-21       | Fiction   |       25 |
+|      17 | The Catcher in the Rye          | J.D. Salinger        |  300.00 | 1951-07-16       | Fiction   |       15 |
+|      19 | The Kite Runner                 | Khaled Hosseini      |  420.00 | 2003-05-29       | Fiction   |       45 |
+|      25 | The Power of Habit              | Charles Duhigg       |  480.00 | 2012-02-28       | Self-Help |       55 |
+|      27 | The Psychology of Money         | Morgan Housel        |  450.00 | 2020-09-08       | Finance   |      120 |
+|      31 | The Da Vinci Code               | Dan Brown            |  500.00 | 2003-03-18       | Thriller  |       75 |
+|      33 | The Girl with the Dragon Tattoo | Stieg Larsson        |  550.00 | 2005-08-01       | Mystery   |       20 |
+|      37 | The Silent Patient              | Alex Michaelides     |  520.00 | 2019-02-05       | Thriller  |       60 |
+|      39 | The Woman in the Window         | A.J. Finn            |  440.00 | 2018-01-02       | Thriller  |       15 |
+|      43 | The Selfish Gene                | Richard Dawkins      |  580.00 | 1976-01-01       | Science   |       15 |
+|      45 | The Elegant Universe            | Brian Greene         |  700.00 | 1999-01-01       | Science   |       12 |
+|      47 | The Gene                        | Siddhartha Mukherjee |  750.00 | 2016-05-17       | Science   |       18 |
+|      50 | The Origin of Species           | Charles Darwin       |  500.00 | 1859-11-24       | Science   |       50 |
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+16 rows in set (0.00 sec)
+
+mysql> select * from books where title like binary'the%'
+    -> ;
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from books where title like binary 'the%';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from books where title like binary 'he%';
+Empty set, 1 warning (0.00 sec)
+
+mysql> select * from books where title like binary 'The%';
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+| book_id | title                           | author               | price   | publication_date | category  | in_stock |
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+|       5 | The Pragmatic Programmer        | Andrew Hunt          | 1100.00 | 2019-10-30       | Tech      |       12 |
+|      11 | The Alchemist                   | Paulo Coelho         |  350.00 | 1988-01-01       | Fiction   |      100 |
+|      12 | The Great Gatsby                | F. Scott Fitzgerald  |  250.00 | 1925-04-10       | Fiction   |       40 |
+|      15 | The Hobbit                      | J.R.R. Tolkien       |  550.00 | 1937-09-21       | Fiction   |       25 |
+|      17 | The Catcher in the Rye          | J.D. Salinger        |  300.00 | 1951-07-16       | Fiction   |       15 |
+|      19 | The Kite Runner                 | Khaled Hosseini      |  420.00 | 2003-05-29       | Fiction   |       45 |
+|      25 | The Power of Habit              | Charles Duhigg       |  480.00 | 2012-02-28       | Self-Help |       55 |
+|      27 | The Psychology of Money         | Morgan Housel        |  450.00 | 2020-09-08       | Finance   |      120 |
+|      31 | The Da Vinci Code               | Dan Brown            |  500.00 | 2003-03-18       | Thriller  |       75 |
+|      33 | The Girl with the Dragon Tattoo | Stieg Larsson        |  550.00 | 2005-08-01       | Mystery   |       20 |
+|      37 | The Silent Patient              | Alex Michaelides     |  520.00 | 2019-02-05       | Thriller  |       60 |
+|      39 | The Woman in the Window         | A.J. Finn            |  440.00 | 2018-01-02       | Thriller  |       15 |
+|      43 | The Selfish Gene                | Richard Dawkins      |  580.00 | 1976-01-01       | Science   |       15 |
+|      45 | The Elegant Universe            | Brian Greene         |  700.00 | 1999-01-01       | Science   |       12 |
+|      47 | The Gene                        | Siddhartha Mukherjee |  750.00 | 2016-05-17       | Science   |       18 |
+|      50 | The Origin of Species           | Charles Darwin       |  500.00 | 1859-11-24       | Science   |       50 |
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+16 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from books where title like  'The%';
+
+
+   5 | The Pragmatic Programmer        | Andrew Hunt          | 1100.00 | 2019-10-30       | Tech      |       12 |
+|      11 | The Alchemist                   | Paulo Coelho         |  350.00 | 1988-01-01       | Fiction   |      100 |
+|      12 | The Great Gatsby                | F. Scott Fitzgerald  |  250.00 | 1925-04-10       | Fiction   |       40 |
+|      15 | The Hobbit                      | J.R.R. Tolkien       |  550.00 | 1937-09-21       | Fiction   |       25 |
+|      17 | The Catcher in the Rye          | J.D. Salinger        |  300.00 | 1951-07-16       | Fiction   |       15 |
+|      19 | The Kite Runner                 | Khaled Hosseini      |  420.00 | 2003-05-29       | Fiction   |       45 |
+|      25 | The Power of Habit              | Charles Duhigg       |  480.00 | 2012-02-28       | Self-Help |       55 |
+|      27 | The Psychology of Money         | Morgan Housel        |  450.00 | 2020-09-08       | Finance   |      120 |
+|      31 | The Da Vinci Code               | Dan Brown            |  500.00 | 2003-03-18       | Thriller  |       75 |
+|      33 | The Girl with the Dragon Tattoo | Stieg Larsson        |  550.00 | 2005-08-01       | Mystery   |       20 |
+|      37 | The Silent Patient              | Alex Michaelides     |  520.00 | 2019-02-05       | Thriller  |       60 |
+|      39 | The Woman in the Window         | A.J. Finn            |  440.00 | 2018-01-02       | Thriller  |       15 |
+|      43 | The Selfish Gene                | Richard Dawkins      |  580.00 | 1976-01-01       | Science   |       15 |
+|      45 | The Elegant Universe            | Brian Greene         |  700.00 | 1999-01-01       | Science   |       12 |
+|      47 | The Gene                        | Siddhartha Mukherjee |  750.00 | 2016-05-17       | Science   |       18 |
+|      50 | The Origin of Species           | Charles Darwin       |  500.00 | 1859-11-24       | Science   |       50 |
++---------+---------------------------------+----------------------+---------+------------------+-----------+----------+
+16 rows in set, 1 warning (0.00 sec)
+
+mysql> select * from books where title like '_ohn';
+Empty set (0.00 sec)
+
+mysql> select * from books where title like '_nd%';
++---------+--------------------------+-----------------+--------+------------------+----------+----------+
+| book_id | title                    | author          | price  | publication_date | category | in_stock |
++---------+--------------------------+-----------------+--------+------------------+----------+----------+
+|      35 | And Then There Were None | Agatha Christie | 350.00 | 1939-11-06       | Mystery  |       85 |
++---------+--------------------------+-----------------+--------+------------------+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from books where author like '_nd%';
++---------+--------------------------+-------------+---------+------------------+----------+----------+
+| book_id | title                    | author      | price   | publication_date | category | in_stock |
++---------+--------------------------+-------------+---------+------------------+----------+----------+
+|       5 | The Pragmatic Programmer | Andrew Hunt | 1100.00 | 2019-10-30       | Tech     |       12 |
++---------+--------------------------+-------------+---------+------------------+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from books where category in ('Tech','fiction');
++---------+-------------------------------+---------------------+---------+------------------+----------+----------+
+| book_id | title                         | author              | price   | publication_date | category | in_stock |
++---------+-------------------------------+---------------------+---------+------------------+----------+----------+
+|       1 | Java: The Complete Reference  | Herbert Schildt     |  950.00 | 2023-01-15       | Tech     |       15 |
+|       2 | Clean Code                    | Robert C. Martin    | 1200.00 | 2020-08-10       | Tech     |       10 |
+|       3 | Head First Java               | Kathy Sierra        |  850.00 | 2022-05-20       | Tech     |       20 |
+|       4 | SQL for Beginners             | Mosh Hamedani       |  500.00 | 2021-11-11       | Tech     |       50 |
+|       5 | The Pragmatic Programmer      | Andrew Hunt         | 1100.00 | 2019-10-30       | Tech     |       12 |
+|       6 | Introduction to Algorithms    | Cormen              | 1500.00 | 2009-07-31       | Tech     |        8 |
+|       7 | Design Patterns               | Erich Gamma         | 1300.00 | 1994-10-21       | Tech     |        5 |
+|       8 | Python Crash Course           | Eric Matthes        |  700.00 | 2023-03-01       | Tech     |       25 |
+|       9 | JavaScript: The Good Parts    | Douglas Crockford   |  600.00 | 2008-05-01       | Tech     |       14 |
+|      10 | Cracking the Coding Interview | Gayle Laakmann      |  900.00 | 2015-07-01       | Tech     |       30 |
+|      11 | The Alchemist                 | Paulo Coelho        |  350.00 | 1988-01-01       | Fiction  |      100 |
+|      12 | The Great Gatsby              | F. Scott Fitzgerald |  250.00 | 1925-04-10       | Fiction  |       40 |
+|      13 | 1984                          | George Orwell       |  400.00 | 1949-06-08       | Fiction  |       60 |
+|      14 | To Kill a Mockingbird         | Harper Lee          |  450.00 | 1960-07-11       | Fiction  |       35 |
+|      15 | The Hobbit                    | J.R.R. Tolkien      |  550.00 | 1937-09-21       | Fiction  |       25 |
+|      16 | Brave New World               | Aldous Huxley       |  380.00 | 1932-01-01       | Fiction  |       20 |
+|      17 | The Catcher in the Rye        | J.D. Salinger       |  300.00 | 1951-07-16       | Fiction  |       15 |
+|      18 | Harry Potter 1                | J.K. Rowling        |  600.00 | 1997-06-26       | Fiction  |       80 |
+|      19 | The Kite Runner               | Khaled Hosseini     |  420.00 | 2003-05-29       | Fiction  |       45 |
+|      20 | Life of Pi                    | Yann Martel         |  390.00 | 2001-09-11       | Fiction  |       50 |
++---------+-------------------------------+---------------------+---------+------------------+----------+----------+
+20 rows in set (0.00 sec)
+
+mysql> select * from books where category in ('TeCh','fiction');
++---------+-------------------------------+---------------------+---------+------------------+----------+----------+
+| book_id | title                         | author              | price   | publication_date | category | in_stock |
++---------+-------------------------------+---------------------+---------+------------------+----------+----------+
+|       1 | Java: The Complete Reference  | Herbert Schildt     |  950.00 | 2023-01-15       | Tech     |       15 |
+|       2 | Clean Code                    | Robert C. Martin    | 1200.00 | 2020-08-10       | Tech     |       10 |
+|       3 | Head First Java               | Kathy Sierra        |  850.00 | 2022-05-20       | Tech     |       20 |
+|       4 | SQL for Beginners             | Mosh Hamedani       |  500.00 | 2021-11-11       | Tech     |       50 |
+|       5 | The Pragmatic Programmer      | Andrew Hunt         | 1100.00 | 2019-10-30       | Tech     |       12 |
+|       6 | Introduction to Algorithms    | Cormen              | 1500.00 | 2009-07-31       | Tech     |        8 |
+|       7 | Design Patterns               | Erich Gamma         | 1300.00 | 1994-10-21       | Tech     |        5 |
+|       8 | Python Crash Course           | Eric Matthes        |  700.00 | 2023-03-01       | Tech     |       25 |
+|       9 | JavaScript: The Good Parts    | Douglas Crockford   |  600.00 | 2008-05-01       | Tech     |       14 |
+|      10 | Cracking the Coding Interview | Gayle Laakmann      |  900.00 | 2015-07-01       | Tech     |       30 |
+|      11 | The Alchemist                 | Paulo Coelho        |  350.00 | 1988-01-01       | Fiction  |      100 |
+|      12 | The Great Gatsby              | F. Scott Fitzgerald |  250.00 | 1925-04-10       | Fiction  |       40 |
+|      13 | 1984                          | George Orwell       |  400.00 | 1949-06-08       | Fiction  |       60 |
+|      14 | To Kill a Mockingbird         | Harper Lee          |  450.00 | 1960-07-11       | Fiction  |       35 |
+|      15 | The Hobbit                    | J.R.R. Tolkien      |  550.00 | 1937-09-21       | Fiction  |       25 |
+|      16 | Brave New World               | Aldous Huxley       |  380.00 | 1932-01-01       | Fiction  |       20 |
+|      17 | The Catcher in the Rye        | J.D. Salinger       |  300.00 | 1951-07-16       | Fiction  |       15 |
+|      18 | Harry Potter 1                | J.K. Rowling        |  600.00 | 1997-06-26       | Fiction  |       80 |
+|      19 | The Kite Runner               | Khaled Hosseini     |  420.00 | 2003-05-29       | Fiction  |       45 |
+|      20 | Life of Pi                    | Yann Martel         |  390.00 | 2001-09-11       | Fiction  |       50 |
++---------+-------------------------------+---------------------+---------+------------------+----------+----------+
+20 rows in set (0.00 sec)
+
+mysql> select * from books where year(publication_date) = 2023 and price < avg(salary);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select * from books where year(publication_date) = 2023 and price < (select avg(salary) from books);
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select * from books where year(publication_date) = 2023 and price < avg(price);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select * from books where year(publication_date) = 2023 and price < (select avg(price) from books);
+Empty set (0.00 sec)
+
+mysql> select * from books where year(publication_date) = 2023 and price > (select avg(price) from books);
++---------+------------------------------+-----------------+--------+------------------+----------+----------+
+| book_id | title                        | author          | price  | publication_date | category | in_stock |
++---------+------------------------------+-----------------+--------+------------------+----------+----------+
+|       1 | Java: The Complete Reference | Herbert Schildt | 950.00 | 2023-01-15       | Tech     |       15 |
+|       8 | Python Crash Course          | Eric Matthes    | 700.00 | 2023-03-01       | Tech     |       25 |
++---------+------------------------------+-----------------+--------+------------------+----------+----------+
+2 rows in set (0.00 sec)
+

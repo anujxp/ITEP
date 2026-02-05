@@ -1,0 +1,277 @@
+=============================================================================
+FILE 1: pom.xml
+(Place in the root of your project. Configured for Hibernate 5 + javax.persistence)
+=============================================================================
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.library</groupId>
+    <artifactId>library-jpa-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.15.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.1.214</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+    </dependencies>
+</project>
+
+
+=============================================================================
+FILE 2: src/main/resources/META-INF/persistence.xml
+(Configuration file. Ensure the folder structure matches exactly)
+=============================================================================
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="library-pu" transaction-type="RESOURCE_LOCAL">
+        <class>com.library.entity.Category</class>
+        <class>com.library.entity.Book</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:library_db;DB_CLOSE_DELAY=-1"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/> <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+
+=============================================================================
+FILE 3: src/main/java/com/library/entity/Category.java
+(The Parent Entity)
+=============================================================================
+package com.library.entity;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "categories")
+public class Category {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String description;
+
+    // mappedBy tells JPA that 'Book' owns the relationship.
+    // CascadeType.ALL allows deleting a Category to delete its Books automatically.
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Book> books = new ArrayList<>();
+
+    public Category() {}
+
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    // Helper method for bi-directional association
+    public void addBook(Book book) {
+        books.add(book);
+        book.setCategory(this);
+    }
+
+    // Getters and Setters
+    public Long getId() { return id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public List<Book> getBooks() { return books; }
+    public void setBooks(List<Book> books) { this.books = books; }
+}
+
+
+=============================================================================
+FILE 4: src/main/java/com/library/entity/Book.java
+(The Child Entity - Owns the Foreign Key)
+=============================================================================
+package com.library.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "books")
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+    private String author;
+    private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false) // Foreign Key
+    private Category category;
+
+    public Book() {}
+
+    public Book(String title, String author, double price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+
+    // Getters and Setters
+    public Long getId() { return id; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
+    
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", title=" + title + ", price=" + price + "]";
+    }
+}
+
+
+=============================================================================
+FILE 5: src/main/java/com/library/Main.java
+(The Runner - Performs the 5 requested operations)
+=============================================================================
+package com.library;
+
+import com.library.entity.Book;
+import com.library.entity.Category;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class Main {
+
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("library-pu");
+
+    public static void main(String[] args) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            System.out.println("=== OP 1: Create Category with 3 Books ===");
+            Long catId = createCategoryWithBooks(em);
+
+            System.out.println("\n=== OP 2: List Books in Category ===");
+            listBooksByCategory(em, catId);
+
+            System.out.println("\n=== OP 3: Update Book Price ===");
+            // Assuming IDs generated are 1, 2, 3. Let's update Book ID 1.
+            updateBookPrice(em, 1L, 29.99);
+            
+            System.out.println("\n=== OP 4: Delete Book (Keep Category) ===");
+            // Delete Book ID 2
+            deleteBookOnly(em, 2L);
+            listBooksByCategory(em, catId); // Verify deletion
+
+            System.out.println("\n=== OP 5: Delete Category (Cascade Delete Books) ===");
+            deleteCategoryCascading(em, catId);
+
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+    // 1. Add category + books
+    private static Long createCategoryWithBooks(EntityManager em) {
+        em.getTransaction().begin();
+
+        Category cat = new Category("Programming", "Tech Books");
+        
+        // Using helper method ensures 'category' field in Book is set
+        cat.addBook(new Book("Clean Code", "Robert Martin", 30.00));
+        cat.addBook(new Book("Effective Java", "Joshua Bloch", 45.00));
+        cat.addBook(new Book("Head First Design Patterns", "Freeman", 50.00));
+
+        em.persist(cat); // Cascades to books
+        em.getTransaction().commit();
+        
+        System.out.println("Created Category: " + cat.getName());
+        return cat.getId();
+    }
+
+    // 2. List books
+    private static void listBooksByCategory(EntityManager em, Long categoryId) {
+        em.clear(); // Clear cache to force DB fetch
+        Category cat = em.find(Category.class, categoryId);
+        if (cat != null) {
+            System.out.println("Category: " + cat.getName());
+            for (Book b : cat.getBooks()) {
+                System.out.println(" - " + b.getTitle() + " ($" + b.getPrice() + ")");
+            }
+        }
+    }
+
+    // 3. Update book
+    private static void updateBookPrice(EntityManager em, Long bookId, double newPrice) {
+        em.getTransaction().begin();
+        Book book = em.find(Book.class, bookId);
+        if (book != null) {
+            System.out.println("Updating " + book.getTitle() + " to $" + newPrice);
+            book.setPrice(newPrice);
+        }
+        em.getTransaction().commit();
+    }
+
+    // 4. Delete book only
+    private static void deleteBookOnly(EntityManager em, Long bookId) {
+        em.getTransaction().begin();
+        Book book = em.find(Book.class, bookId);
+        if (book != null) {
+            System.out.println("Deleting Book: " + book.getTitle());
+            book.getCategory().getBooks().remove(book); // Maintain object consistency
+            em.remove(book);
+        }
+        em.getTransaction().commit();
+    }
+
+    // 5. Delete category (cascade)
+    private static void deleteCategoryCascading(EntityManager em, Long categoryId) {
+        em.getTransaction().begin();
+        Category cat = em.find(Category.class, categoryId);
+        if (cat != null) {
+            System.out.println("Deleting Category: " + cat.getName());
+            em.remove(cat); // Will delete all books due to CascadeType.ALL
+        }
+        em.getTransaction().commit();
+    }
+}

@@ -4,7 +4,12 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      studentList: Data
+      studentList: Data,
+      roll : null,
+      name : "",
+      gender : "",
+      branch : "",
+      branchFlter : "All"
     }
   }
   addStudent = ()=>{

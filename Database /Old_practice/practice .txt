@@ -1,0 +1,239 @@
+create table department ( 
+    -> id Int PRIMARY KEY AUTO_INCREMENT,
+    -> course_name varchar(40)
+    -> );
+    
+    
+     select * from department 
+    -> ;
++----+-------------+
+| id | course_name |
++----+-------------+
+|  1 | java        |
++----+-------------+
+----------------------------------------------
+insert into employee values(1,'anuj',2000,'7999788474',20,1);
+
+select * from employee;
++----+------+--------+------------+------+---------------+
+| id | name | salary | mobile     | age  | department_id |
++----+------+--------+------------+------+---------------+
+|  1 | anuj |   2000 | 7999788474 |   20 |             1 |
++----+------+--------+------------+------+---------------+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| information_schema |
+| performance_schema |
+| testdb             |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> use college;
+Database changed
+
+mysql> create TABLE student (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(25),
+    course VARCHAR(25),
+    age INT 
+    );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(25) | YES  |     | NULL    |                |
+| course | varchar(25) | YES  |     | NULL    |                |
+| age    | int         | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> CREATE TABLE employee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    salary DECIMAL(10,2),
+    hire_date DATE,
+    address TEXT
+    );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> create table department ( 
+    id Int PRIMARY KEY AUTO_INCREMENT,
+    course_name varchar(40)
+    );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE employee (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    salary INT DEFAULT 10000,
+    mobile VARCHAR(10) UNIQUE,
+    age INT CHECK(age > 17),
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES department(id)
+    );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into department values(1, "java");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from department;
++----+-------------+
+| id | course_name |
++----+-------------+
+|  1 | java        |
++----+-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(1,'anuj',2000,'7999788474',20,1);
+Query OK, 1 row affected (0.01 sec)
+-----------------------------------------------------------------
+mysql> select * from employee;
++----+------+--------+------------+------+---------------+
+| id | name | salary | mobile     | age  | department_id |
++----+------+--------+------------+------+---------------+
+|  1 | anuj |   2000 | 7999788474 |   20 |             1 |
++----+------+--------+------------+------+---------------+
+
+
+mysql> select employee.name , department.course_name 
+    from employee 
+    inner join department on employee.department_id = department.id;
++------+-------------+
+| name | course_name |
++------+-------------+
+| anuj | java        |
++------+-------------+
+
+mysql> insert into employee values(2,'kartik',20000,'8999788474',21,1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select employee.name , department.course_name 
+    from employee 
+    inner join department on employee.department_id = department.id;
++--------+-------------+
+| name   | course_name |
++--------+-------------+
+| anuj   | java        |
+| kartik | java        |
++--------+-------------+
+2 rows in set (0.01 sec)
+-------------------------------------------------------
+ select * from department;
++----+-----------------+
+| id | department_name |
++----+-----------------+
+|  1 | HR              |
+|  2 | Development     |
+|  3 | Admin           |
+|  4 | Operation       |
++----+-----------------+
+
+--------------------------------------------------
+select id,name, department_id from employee
+    -> ;
++----+--------+---------------+
+| id | name   | department_id |
++----+--------+---------------+
+|  1 | Rahul  |             2 |
+|  2 | Cheeku |             1 |
+|  3 | Ankita |             2 |
+|  4 | Nikita |             2 |
+| 14 | Shree  |             1 |
+| 15 | Ishu   |             1 |
+| 16 | Dishu  |             1 |
++----+--------+---------------+
+-----------------------------------------------------------------
+select e.name as ename,
+    -> d.department_name 
+    -> from employee as e 
+    -> inner join department as d on e.department_id = d.id;
++--------+-----------------+
+| ename  | department_name |
++--------+-----------------+
+| Rahul  | Development     |
+| Cheeku | HR              |
+| Ankita | Development     |
+| Nikita | Development     |
+| Shree  | HR              |
+| Ishu   | HR              |
+| Dishu  | HR              |
++--------+-----------------+
+
+-----------------------------------------------------------------
+select e.name ,
+    -> e.salary,
+    -> d.department_name 
+    -> from employee as e 
+    -> inner join 
+    -> department as d on e.department_id = d.id
+    -> where 
+    -> e.salary > 100000;
++--------+---------+-----------------+
+| name   | salary  | department_name |
++--------+---------+-----------------+
+| Ankita |  150000 | Development     |
+| Nikita | 1450000 | Development     |
+| Shree  |  190000 | HR              |
++--------+---------+-----------------+
+------------------------------------------
+
+
+
+mysql> update employee set department_id = null where id = 15;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+ select e.id , e.name , e.department_id,d.department_name from employee as e  left outer join  department as d on e.department_id = d.id;
++----+--------+---------------+-----------------+
+| id | name   | department_id | department_name |
++----+--------+---------------+-----------------+
+|  1 | Rahul  |             2 | Development     |
+|  2 | Cheeku |             1 | HR              |
+|  3 | Ankita |             2 | Development     |
+|  4 | Nikita |             2 | Development     |
+| 14 | Shree  |             1 | HR              |
+| 15 | Ishu   |          NULL | NULL            |
+| 16 | Dishu  |             1 | HR              |
++----+--------+---------------+-----------------+
+
