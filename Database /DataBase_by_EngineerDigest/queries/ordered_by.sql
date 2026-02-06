@@ -1,26 +1,4 @@
-Skip to content
- 
-Search Gists
-Search...
-All gists
-Back to GitHub
-Sign in
-Sign up
-Instantly share code, notes, and snippets.
 
-@thevipulvats
-thevipulvats/order_by.sql
-Created last year
-Code
-Revisions
-1
-Stars
-1
-Forks
-1
-Clone this repository at &lt;script src=&quot;https://gist.github.com/thevipulvats/6e54909d0efcd434106da892b7eb06e7.js&quot;&gt;&lt;/script&gt;
-<script src="https://gist.github.com/thevipulvats/6e54909d0efcd434106da892b7eb06e7.js"></script>
-order_by.sql
 /*
 SQL Sorting and ORDER BY Tutorial
 ================================
@@ -114,7 +92,7 @@ SELECT *,
         WHEN stock_quantity <= 50 AND price >= 200 THEN 1
         WHEN stock_quantity <= 50 THEN 2
         ELSE 3
-    END AS priority 
+    END AS priority  
 FROM products 
 ORDER BY priority;
 
