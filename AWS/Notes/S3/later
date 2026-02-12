@@ -1,7 +1,7 @@
-arn:aws:iam::904524840911:instance-profile/EC2InstanceProfile
+arn:aws:iam::238774768771:role/EC2InstanceProfileRole
 
 
 
 
 
-arn:aws:s3:::reportbucket-904524840911
+arn:aws:s3:::reportbucket-238774768771
