@@ -1,0 +1,24 @@
+gnome 
+kde 
+xfce
+
+bash function
+
+bios 
+
+uefi
+
+networkning
+
+
+terminal  
+how systemd works 
+hwo ssh works 
+networing 
+	ufw 
+	iptable 
+	firewalld 
+	
+nano 
+vim
+
