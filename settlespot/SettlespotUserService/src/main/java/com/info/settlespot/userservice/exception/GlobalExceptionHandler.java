@@ -30,5 +30,6 @@ public class GlobalExceptionHandler {
         ErrorResponseDTO errorDTO = new ErrorResponseDTO(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
         
         return new ResponseEntity<>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        
     }
 }
