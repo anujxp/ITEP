@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,6 +20,8 @@ import com.ecommerce.service.CategoryService;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class CategoryController {
 
 
@@ -27,12 +30,15 @@ public class CategoryController {
 		this.categoryService = categoryService;
 			
 	}
-
+	@GetMapping
+	public ResponseEntity<?> getAll(){
+		return ResponseEntity.ok(categoryService.getAll());
+	}
 	@PostMapping("/saveInBulk")
 	public ResponseEntity<?> saveBulk(@RequestBody List<String> list) {
 		return ResponseEntity.ok(categoryService.saveInBulk(list));
 	}
-	@GetMapping("/save")
+	@PostMapping("/save")
 	public ResponseEntity<?> save(String name){
 		return ResponseEntity.ok(categoryService.save(name));
 	}

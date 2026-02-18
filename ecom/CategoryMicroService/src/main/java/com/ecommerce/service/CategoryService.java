@@ -58,4 +58,8 @@ public class CategoryService {
 		return categoryRepo.save(dbcategory);
 		
 	}
+	
+	public List<Category> getAll() {
+		return categoryRepo.findAll();
+	}
 }
