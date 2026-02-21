@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.entity.Category;
 import com.ecommerce.exception.ResourceNotFoundException;
+import com.ecommerce.feignclient.ProductClient;
 import com.ecommerce.repo.CategoryRepository;
 
 import jakarta.transaction.Transactional;
@@ -15,9 +16,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class CategoryService {
 	private final CategoryRepository categoryRepo;
+	private final ProductClient productFeignClient;
 
-	public CategoryService(CategoryRepository categoryRepo) {
+	public CategoryService(CategoryRepository categoryRepo,ProductClient productFeignClient) {
 		this.categoryRepo = categoryRepo;
+		this.productFeignClient = productFeignClient;
 	}
 
 	@Transactional
@@ -62,4 +65,9 @@ public class CategoryService {
 	public List<Category> getAll() {
 		return categoryRepo.findAll();
 	}
+	
+	public List<Object> fetchProduct(String category){
+		 return productFeignClient.fetchProductByCategory(category);
+	  }
+	
 }

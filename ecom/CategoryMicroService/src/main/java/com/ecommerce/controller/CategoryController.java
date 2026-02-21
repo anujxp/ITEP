@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.entity.Category;
@@ -55,4 +56,8 @@ public class CategoryController {
 	public ResponseEntity<?> update(@RequestBody Category category){
 		return ResponseEntity.ok(categoryService.update(category));
 	}
+	 @GetMapping("/product")
+	   public ResponseEntity<?> fetchProduct(@RequestParam("category") String category){
+		   return ResponseEntity.ok(categoryService.fetchProduct(category));
+	   }
 }
