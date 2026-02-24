@@ -1,0 +1,106 @@
+!SESSION 2026-01-22 11:17:37.158 -----------------------------------------------
+eclipse.buildId=4.38.0.202512052019
+java.version=25.0.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_IN
+Framework arguments:  -product org.springframework.boot.ide.branding.springtools
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.springtools
+
+This is a continuation of log file C:\Users\annip\OneDrive\Desktop\Jan_Test2\.metadata\.bak_0.log
+Created Time: 2026-01-22 11:27:40.194
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:27:40.195
+!MESSAGE 11:27:39.912 [pool-3-thread-23] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/controller/UserProfileController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:27:40.243
+!MESSAGE 11:27:40.240 [pool-3-thread-25] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/controller/UserProfileController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:26.967
+!MESSAGE 11:31:26.955 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 1
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:26.994
+!MESSAGE 11:31:26.989 [pool-3-thread-28] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.114
+!MESSAGE 11:31:27.112 [pool-5-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.125
+!MESSAGE 11:31:27.114 [pool-3-thread-27] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.252
+!MESSAGE 11:31:27.250 [pool-3-thread-26] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.467
+!MESSAGE 11:31:27.267 [pool-3-thread-26] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.469
+!MESSAGE 11:31:27.271 [pool-3-thread-28] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.473
+!MESSAGE 11:31:27.271 [pool-3-thread-26] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:27.477
+!MESSAGE 11:31:27.271 [pool-3-thread-28] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:28.636
+!MESSAGE 11:31:27.480 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.126
+!MESSAGE 11:31:31.125 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.130
+!MESSAGE 11:31:31.128 [pool-8-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.165
+!MESSAGE 11:31:31.163 [pool-3-thread-29] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.222
+!MESSAGE 11:31:31.220 [pool-5-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Parsed successfully CU for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.224
+!MESSAGE 11:31:31.221 [pool-5-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.255
+!MESSAGE 11:31:31.249 [pool-8-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.379
+!MESSAGE 11:31:31.377 [pool-3-thread-27] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:31.631
+!MESSAGE 11:31:31.630 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:32.297
+!MESSAGE 11:31:31.636 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:39.292
+!MESSAGE 11:31:39.138 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 1
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:39.383
+!MESSAGE 11:31:39.301 [pool-3-thread-29] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/service/CustomUserDetailService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:39.400
+!MESSAGE 11:31:39.398 [pool-3-thread-27] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/service/CustomUserDetailService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:39.403
+!MESSAGE 11:31:39.402 [pool-3-thread-29] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/service/CustomUserDetailService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:31:39.649
+!MESSAGE 11:31:39.647 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/service/CustomUserDetailService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 11:32:01.377
+!MESSAGE 11:31:39.651 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/service/CustomUserDetailService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 13:12:59.204
+!MESSAGE 11:32:01.407 [pool-3-thread-27] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/entity/User.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 13:12:59.237
+!MESSAGE 13:12:59.234 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - Closed: file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Blogmicroservice/src/main/java/com/info/exception/GlobalExceptionHandler.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 13:12:59.243
+!MESSAGE 13:12:59.238 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 13:12:59.245
+!MESSAGE 13:12:59.244 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/SecurityConfig.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-22 13:12:59.252
+!MESSAGE 13:12:59.247 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///C:/Users/annip/OneDrive/Desktop/Jan_Test2/Usermicroservice/src/main/java/com/info/service/CustomUserDetailService.java

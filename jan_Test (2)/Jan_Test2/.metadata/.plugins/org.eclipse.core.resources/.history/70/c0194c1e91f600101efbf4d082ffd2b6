@@ -1,0 +1,39 @@
+package com.info.service;
+
+import org.springframework.stereotype.Service;
+
+import com.info.dto.UserProfileDto;
+import com.info.entity.User;
+import com.info.entity.UserProfile;
+import com.info.exception.UserNotFoundException;
+import com.info.repo.UserProfileRepo;
+import com.info.repo.UserRepo;
+
+@Service
+public class UserProfileService {
+	private UserProfileRepo repo;
+	private UserRepo userRepo;
+	public UserProfileService(UserProfileRepo repo, UserRepo userRepo) {
+		this.repo = repo;
+		this.userRepo = userRepo;
+	}
+	
+	public String create(UserProfileDto dto) {
+		System.out.println(dto.getUser_id());
+		User user = userRepo.findById(dto.getUser_id()).orElseThrow(()-> new UserNotFoundException("user not found with id " + dto.getUser_id()));
+		UserProfile userProfile = new UserProfile();
+		userProfile.setBio(dto.getBio());
+		userProfile.setFollowers(dto.getFollowers());
+		userProfile.setFollowing(dto.getFollowing());
+		userProfile.setUsername(dto.getUsername());
+		userProfile.setUser(user);
+		
+		repo.save(userProfile);
+		return "Profile Created Successfully";
+	}
+	
+	
+	public UserProfileDto viewProfile(int user_id) {
+		UserProfile dbProfile = repo.getByUserId(user_id).orElseThrow(()-> new UserProfileNotFoundException("profile not found for user id "+ user_id));
+	}
+}
