@@ -22,7 +22,6 @@ import com.ecommerce.service.CategoryService;
 @RestController
 @RequestMapping("/category")
 @CrossOrigin(origins = "http://localhost:5173")
-
 public class CategoryController {
 
 

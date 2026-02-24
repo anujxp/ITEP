@@ -199,7 +199,10 @@ public class ProductService {
 		  }
 		  dto.setImages(imagesDTOList);
 		  dtoList.add(dto);
+		  
 	  }
+	  System.out.println(dbList);
+	  System.out.println(dtoList);
 	  return dtoList;
   }
 }
