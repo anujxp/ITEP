@@ -31,6 +31,7 @@ const App = () => {
     status: "active",
   });
   const [TaskList, setTaskList] = useState([]);
+  
   useEffect(() => {
     loadTask();
   }, []);
@@ -161,7 +162,7 @@ const App = () => {
   <select
     name="status"
     value={task.status}
-    onChange={(e) => setTask({ ...task, status: e.target.value })}
+    onChange={(e) => setTask({ ...task, status: e.target.value})}
     className="form-control"
   >
     <option value="active">Active</option>
