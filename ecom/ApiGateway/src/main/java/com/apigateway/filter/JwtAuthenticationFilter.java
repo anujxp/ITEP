@@ -34,11 +34,10 @@ public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
 		ServerHttpRequest request =  exchange.getRequest();
 		String requestedRoute =  request.getURI().getPath();
 		System.out.println(requestedRoute);
-		 // ✅ Allow preflight CORS requests
 	    if (request.getMethod().name().equals("OPTIONS")) {
 	        return chain.filter(exchange);
 	    }	
-	    if(requestedRoute.equalsIgnoreCase("/category/") || requestedRoute.startsWith("/product")) {
+	    if(requestedRoute.equalsIgnoreCase("/category") || requestedRoute.equalsIgnoreCase("/product")) {
 	    	return chain.filter(exchange);
 	    }
 		if(requestedRoute.startsWith("/auth") || requestedRoute.startsWith("/auth/signin"))
@@ -67,16 +66,3 @@ public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

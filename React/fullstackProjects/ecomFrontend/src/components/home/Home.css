@@ -1,5 +1,45 @@
-.card-container{
+.card-container {
+    margin-top: 10px;
+    min-height: 400px;
     width: 100%;
-    min-height: 300px;
-    box-shadow: 10px 10px 10px grey;
+    background: #fff;
+    border: 1px solid #eee; /* Light border instead of heavy shadow */
+    transition: all 0.3s ease-in-out;
+    overflow: hidden; /* Keeps image corners rounded */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Lift effect on hover */
+.card-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: #ffc107; /* Matches your warning button color */
+}
+
+.product-image {
+    object-fit: contain; /* Ensures image isn't stretched */
+    border-bottom: 1px solid #f9f9f9;
+    margin-bottom: 15px;
+    transition: transform 0.5s;
+}
+
+.card-container:hover .product-image {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.product-title {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    height: 3rem; /* Ensures all titles align regardless of text length */
+    overflow: hidden;
+}
+
+.price-tag {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
 }

@@ -1,0 +1,210 @@
+spring.application.name=USERMICROSERVICE
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/user_db
+spring.datasource.username=root
+spring.datasource.password=root
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=true
+
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+eureka.instance.prefer-ip-address=true
+server.port = 8083
+
+spring.application.name = APIGATEWAY
+server.port=8080
+
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.instance.prefer-ip-address=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+
+
+spring.cloud.gateway.routes[0].id=user-service
+spring.cloud.gateway.routes[0].uri=lb://USERMICROSERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/auth/**
+
+spring.cloud.gateway.routes[1].id=product-service
+spring.cloud.gateway.routes[1].uri=lb://PRODUCTMICROSERVICE
+spring.cloud.gateway.routes[1].predicates[0]=Path=/product/**
+
+spring.cloud.gateway.routes[2].id=product-service
+spring.cloud.gateway.routes[2].uri=lb://CATEGORYMICROSERVICE
+spring.cloud.gateway.routes[2].predicates[0]=Path=/category/**
+
+
+spring.cloud.gateway.globalcors.corsConfigurations.[/**].allowedOrigins=http://localhost:5173
+spring.cloud.gateway.globalcors.corsConfigurations.[/**].allowedMethods=GET,POST,PUT,DELETE,OPTIONS
+spring.cloud.gateway.globalcors.corsConfigurations.[/**].allowedHeaders=*
+spring.cloud.gateway.globalcors.corsConfigurations.[/**].allowCredentials=true
+
+
+==========util===============================================
+
+package com.apigateway.util;
+
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtUtil {
+  private final String SECRETKEY = "fadklfdrerieriovnmvncmmbberhkhgfkhkfhghdfghdfreriogflhjfk";
+  
+  public Claims extractClaims(String token) {
+	  return Jwts.parserBuilder()
+	  .setSigningKey(Keys.hmacShaKeyFor(SECRETKEY.getBytes()))
+	  .build()
+	  .parseClaimsJws(token)
+	  .getBody();
+  }
+  public void validateToken(String token) {
+	  extractClaims(token);
+  }
+}
+
+=============================================configuration===============================
+
+
+package com.apigateway.filter;
+
+
+import java.net.http.HttpRequest;
+
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+
+import com.apigateway.util.JwtUtil;
+
+import reactor.core.publisher.Mono;
+import reactor.netty.http.server.HttpServer;
+
+@Component
+public class JwtAuthenticationFilter implements GlobalFilter,Ordered{
+    private final JwtUtil jwt;
+	public JwtAuthenticationFilter(JwtUtil jwt) {
+		this.jwt = jwt;
+	}
+	@Override
+	public int getOrder() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		ServerHttpRequest request =  exchange.getRequest();
+		String requestedRoute =  request.getURI().getPath();
+		System.out.println(requestedRoute);
+	    if (request.getMethod().name().equals("OPTIONS")) {
+	        return chain.filter(exchange);
+	    }	
+	    if(requestedRoute.equalsIgnoreCase("/category") || requestedRoute.equalsIgnoreCase("/product")) {
+	    	return chain.filter(exchange);
+	    }
+		if(requestedRoute.startsWith("/auth") || requestedRoute.startsWith("/auth/signin"))
+			return chain.filter(exchange);
+		
+		if(!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
+		  return unauthorized(exchange, "Authorization header is missing");
+		
+		String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+		System.out.println(authHeader);
+		if(authHeader == null || !authHeader.startsWith("Bearer "))
+		   return unauthorized(exchange,"Invalid Authorization Header");
+		
+		String token =  authHeader.substring(7);
+		try {
+			jwt.validateToken(token);
+		}
+		catch(Exception e) {
+		 return	unauthorized(exchange, "Invalid Jwt Token");
+		}
+		return chain.filter(exchange);
+	}
+    public Mono<Void> unauthorized(ServerWebExchange exchange, String message){
+	   exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+	   return exchange.getResponse().setComplete();
+	}
+	
+}
+
+
+===================================================================
+
+=====================================userutil======================package com.user.util;
+
+import java.util.Date;
+import java.util.Map;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
+@Component
+public class JwtUtil {
+  private final String SECRETKEY = "fadklfdrerieriovnmvncmmbberhkhgfkhkfhghdfghdfreriogflhjfk";
+  
+  public String generateToken(UserDetails user) {
+	  String token = Jwts.builder()
+	  .setSubject(user.getUsername())
+	  .setClaims(Map.of("role",user.getAuthorities()))
+	  .setIssuedAt(new Date())
+	  .setExpiration(new Date(System.currentTimeMillis()+60*60*1000))
+	  .signWith(Keys.hmacShaKeyFor(SECRETKEY.getBytes()), SignatureAlgorithm.HS256)
+	  .compact();
+	  return token;  
+  }
+}
+
+
+=============================userjwtconfiguration======================
+
+
+package com.user.config;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+	 @Bean
+	   public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+		   http.csrf(csrf->csrf.disable())
+		   .authorizeHttpRequests(auth->auth.requestMatchers("/auth","/auth/signin").permitAll());
+		   return http.build();
+	   }
+	   
+	   @Bean
+	   public PasswordEncoder passwordEncoder() {
+		   return new BCryptPasswordEncoder();
+	   }
+	   @Bean
+	   AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
+		   return config.getAuthenticationManager();
+		   
+	   }
+}
