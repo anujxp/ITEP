@@ -1,0 +1,36 @@
+package com.info.service;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.info.dto.UserRequestDto;
+import com.info.dto.UserResponseDto;
+import com.info.entity.User;
+import com.info.repo.UserRepo;
+
+@Service
+public class UserService {
+	 private UserRepo repo;
+	 private PasswordEncoder encoder;
+	 public UserService(UserRepo repo, PasswordEncoder encoder) {
+		 this.repo = repo;
+		 this.encoder = encoder;
+	 }
+	 
+	 public UserResponseDto registerUser(UserRequestDto dto) {
+		 String encodedPassword = encoder.encode(dto.getPassword());
+		 User user = new User();
+		 user.setEmail(dto.getEmail());
+		 user.setName(dto.getName());
+		 user.setPassword(encodedPassword);
+		 
+		 user = repo.save(user);
+		 
+		 UserResponseDto resDto = new UserResponseDto();
+		 resDto.setId(user.getId());
+		 resDto.setEmail(user.getEmail());
+		 resDto.setName(user.getName());
+		 
+		 return resDto;
+	 }
+}

@@ -1,0 +1,22 @@
+package com.info.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.info.dto.UserProfileDto;
+import com.info.service.UserProfileService;
+
+@RestController
+public class UserProfileController {
+	private UserProfileService service;
+	public UserProfileController (UserProfileService service) {
+		this.service = service;
+	}
+	
+	@PostMapping
+	public ResponseEntity<String> create(UserProfileDto dto){
+		return ResponseEntity.ok(service.create(dto));
+	}
+	
+}

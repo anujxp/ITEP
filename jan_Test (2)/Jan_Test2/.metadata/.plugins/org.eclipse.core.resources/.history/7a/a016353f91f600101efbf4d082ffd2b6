@@ -1,0 +1,5 @@
+package com.info.exception;
+
+public class UserProfileNotFoundException {
+
+}

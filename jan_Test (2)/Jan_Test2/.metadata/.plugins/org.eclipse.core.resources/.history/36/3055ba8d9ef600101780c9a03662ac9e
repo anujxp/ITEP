@@ -1,0 +1,62 @@
+package com.info.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.info.dto.UserDto;
+import com.info.entity.Blog;
+import com.info.exception.BlogNotFoundException;
+import com.info.exception.UserNotFoundException;
+import com.info.externalService.UserClient;
+import com.info.repo.BlogRepository;
+
+import jakarta.transaction.Transactional;
+
+
+@Service
+public class BlogService {
+	private BlogRepository repo;
+	private UserClient client;
+	public BlogService(BlogRepository repo, UserClient client) {
+		this.repo = repo;
+		this.client = client;
+	}
+	
+	@Transactional
+	public Blog insert(Blog blog) {
+		System.out.println(blog.getUserID());
+		UserDto dto = client.getUserById(blog.getUserID());
+		if(dto == null) {
+			throw new UserNotFoundException("user not found with id "+ blog.getUserID());
+		}
+		return repo.save(blog);
+	}
+	
+	public List<Blog> getAll(){
+		return repo.findAll();
+	}
+	
+	public Blog getById(int id) {
+		Blog blog = repo.findById(id).orElseThrow(()->new BlogNotFoundException("Blog not found with id "+ id));
+		return blog;
+	}
+	
+	@Transactional
+	public Blog updateBlog(Blog blog) {
+		Blog dbBlog = repo.findById(blog.getId()).orElse(null);
+		
+		if(dbBlog==null) throw new BlogNotFoundException("Blog not found with id "+ blog.getId());
+		
+		dbBlog.setTitle(blog.getTitle());
+		dbBlog.setDescription(blog.getDescription());
+		UserDto dto = client.getUserById(blog.getUserID());
+		if(dto == null) {
+			throw new UserNotFoundException("user not found with id "+ blog.getUserID());
+		}
+		dbBlog.setUserID(dto.getId());
+		
+		repo.save(dbBlog);
+		return dbBlog;
+	}
+}

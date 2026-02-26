@@ -1,0 +1,13 @@
+package com.info.repo;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.info.entity.UserProfile;
+
+@Repository
+public interface UserProfileRepo  extends JpaRepository<UserProfile, Integer>{
+	Optional<UserProfile> getByUserId(int id);
+}
