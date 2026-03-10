@@ -1,0 +1,101 @@
+
+## 1. The Root: Collection Hierarchy & Interfaces
+
+* **The Root:** The hierarchy starts with the `java.util.Collection` interface.
+* **The Exception:** The **Map interface** is the only one that does **not** extend or implement the `Collection` interface.
+* **Reason:** Collections are containers for a single type of element (objects), while Maps are based on **Key-Value pairs** ($K, V$). The method signatures differ—`Collection` uses `add(E e)`, whereas `Map` uses `put(K key, V value)`.
+
+
+* **The Core Branches:**
+* **List:** Ordered, allows duplicates, supports index-based search and random access.
+* **Set:** Unordered (generally), strictly unique elements (no duplicates), no index-based search.
+* **Queue:** Follows **FIFO** (First-In-First-Out). Elements are added at the rear and removed from the front.
+
+
+
+---
+
+## 2. List Interface: Implementation Details
+
+| Class | Resizing Logic | Synchronization | Data Structure / Notes |
+| --- | --- | --- | --- |
+| **ArrayList** | Increases by **50%** of original size. | Non-synchronized. | Dynamic array. Best for frequent searches. |
+| **Vector** | **Doubles (100%)** its size when full. | **Synchronized**. | Legacy class. Thread-safe but slower than ArrayList. |
+| **LinkedList** | N/A (Node-based). | Non-synchronized. | Implements both `List` and `Deque`. Doubly linked list. No random access. |
+| **Stack** | Inherits from Vector. | Synchronized. | Extends Vector. Follows **LIFO** (Last-In-First-Out). |
+
+---
+
+## 3. Set Interface: Uniqueness & Sorting
+
+* **HashSet:** * Uses a **Hash Table** internally.
+* Contains only unique elements.
+* Allows **exactly one** null element.
+* Completely unordered; insertion order is not preserved.
+
+
+* **LinkedHashSet:**
+* An ordered version of HashSet.
+* Maintains a **Doubly Linked List** across all elements to preserve **insertion order**.
+
+
+* **SortedSet (Interface) & TreeSet (Class):**
+* Stores elements in **ascending order**.
+* All custom objects added to a TreeSet must implement the `Comparable` interface to define sorting logic.
+* **Internal Data Structure:** Uses a **Red-Black Tree** (a self-balancing binary search tree) for fast retrieval and insertion.
+
+
+
+---
+
+## 4. Queue & Deque (Double-Ended Queue)
+
+* **PriorityQueue:** Not based on insertion order. Each element has an associated priority. Highest priority elements are served first.
+* **Deque (Interface):** A "doubly ended queue" where elements can be added or removed from **both ends** (front and rear).
+* **ArrayDeque:** A resizable array implementation of Deque. It has no capacity restrictions and is faster than Stack/LinkedList for queue operations.
+
+---
+
+## 5. Map Interface: Key-Value Management
+
+* **HashMap:** Non-synchronized. Allows **one null key** and multiple null values.
+* **Hashtable:** Synchronized (Thread-safe). **Does not allow** any null keys or null values.
+* **TreeMap (SortedMap):** Maintains entries in ascending order of keys using a **Red-Black Tree**. Does not allow null keys (similar to Hashtable).
+
+---
+
+## 6. Advanced Interview Concepts
+
+### Fail-Fast vs. Fail-Safe Iterators
+
+* **Fail-Fast:** Throws a `ConcurrentModificationException` immediately if the collection is structurally modified (added/deleted) while a thread is iterating over it. (Example: `ArrayList`, `HashMap`).
+* **Fail-Safe:** Does **not** throw an exception. It operates on a **clone (copy)** of the collection rather than the original. Modifications to the original are not reflected in the iterator. (Example: `CopyOnWriteArrayList`).
+
+### BlockingQueue (`java.util.concurrent`)
+
+* Represented as a thread-safe queue where multiple threads can insert/take data concurrently.
+* **Specialty:** It blocks a thread trying to `take()` from an empty queue or `put()` into a full queue until the condition is met.
+
+### Lock Stripping (Synchronized vs. Concurrent)
+
+This is the core difference in how thread safety is achieved:
+
+* **Synchronized Collections (e.g., Hashtable):** When a thread writes to the collection, the **entire collection is locked**. No other thread can read or write to any part of it until the lock is released. This causes major performance bottlenecks.
+* **Concurrent Collections (e.g., ConcurrentHashMap):** Uses **Lock Stripping**. The collection is divided into multiple **segments**.
+* If Thread A is writing to Segment 1, only Segment 1 is locked.
+* Threads B, C, and D can simultaneously read or write to Segments 2, 3, or 4.
+* This significantly increases performance and scalability in multi-threaded environments.
+
+
+
+---
+
+## 7. Internal Working of HashMap (Step-by-Step)
+
+1. **Hashing:** When you call `put(K, V)`, the `hashCode()` method of the key is called to generate a hash value.
+2. **Bucket Location:** This hash value is converted into an **index**, which determines the "bucket" in the hash table where the entry will be stored.
+3. **Map.Entry:** HashMap stores a `Map.Entry` object, which contains **both the Key and the Value**.
+4. **Collision Handling:** If two different keys generate the same index, a **Linked List** is formed at that bucket index. The new entry is appended to the list.
+5. **Retrieval (`get`):** The map calculates the bucket index via hash code. It then traverses the linked list at that bucket using the `equals()` method to compare the keys. When `equals()` returns `true`, the corresponding value is returned.
+
+
