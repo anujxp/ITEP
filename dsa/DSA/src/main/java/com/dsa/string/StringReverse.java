@@ -21,7 +21,6 @@ class StackChar {
         stack[++top] = data;
     }
 
-
     public char pop() {
         if (top == -1) {
             System.out.println("Stack UnderFlow");
@@ -29,6 +28,7 @@ class StackChar {
         }
         return stack[top--];
     }
+
 }
 public class StringReverse {
     public static String getReverse(String str){
