@@ -1,0 +1,51 @@
+1.
+You are working as a junior developer for an education-tech company. The company provides digital tools for teachers to analyze students' test scores. A teacher enters the test scores of students into a grid (2D array), where each row represents a student and each column represents a test.
+
+Your task is to write a Java program that helps the teacher quickly calculate:
+
+The sum of all even test scores.
+
+The sum of all odd test scores.
+
+This helps the teacher understand score patterns more easily for planning further practice sessions.
+
+
+2
+You are given a 2D array of integers. Write a Java program to count how many prime numbers are present in the array.
+
+3.
+You're developing a data analysis feature for a math competition platform. Teachers upload a 2D array of student scores from practice tests. The platform wants to highlight perfect numbers within this array—numbers where the sum of their proper divisors equals the number itself (e.g., 6, 28).
+
+Your job is to write a Java program that:
+
+Finds all the perfect numbers in the 2D array.
+
+Counts them.
+
+Displays the total number of perfect scores.
+
+4.
+
+An element is called a peak element if its value is not smaller than the value of its adjacent elements(if they exists).
+Given an array arr[] of size N, find the index of any one of its peak elements.
+Note: The generated output will always be 1 if the index that you return is correct. Otherwise output will be 0.
+
+Example 1:
+Input:
+N = 3
+arr[] = {1,2,3}
+Output: 1
+Explanation: index 2 is 3.
+It is the peak element as it is 
+greater than its neighbour 2.
+Example 2:
+Input: 
+N = 2
+arr[] = {3,4}
+Output: 1
+Explanation: 4 (at index 1) is the 
+peak element as it is greater than 
+its only neighbour element 3.
+Constraints:
+1 ≤ N ≤ 105
+1 ≤ A[] ≤ 106

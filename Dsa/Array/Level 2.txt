@@ -1,0 +1,32 @@
+1.
+Write a Java program to find the maximum value in a given array. Define a method findMax that takes an integer array as an argument and returns the maximum value.
+Code constraints :
+The input array should have at least one element.
+Sample test cases :
+Input 1 :
+5
+10
+20
+30
+40
+50
+Output 1 :
+The maximum value in n the array is: 50
+
+
+2.Write a Java program to reverse a given array. Define a method reverseArray that takes an integer array as an argument and returns a new array with the elements in reverse order.
+
+
+
+3.Write a Java program to concatenate two given arrays. Define a method concatenateArrays that takes two integer arrays as arguments and returns a new array containing all elements of the first array followed by all elements of the second array.
+Code constraints :
+The input arrays can be of any length, including empty.
+Sample test cases :
+Input 1 :
+int[] array1 = {1, 2, 3};
+int[] array2 = {4, 5, 6};
+Output 1 :
+1 2 3 4 5 6 
+
+4.
+WAP to create employee class with attribute id,name,salary,address. create 5 objects of this class and store them in array and display them.

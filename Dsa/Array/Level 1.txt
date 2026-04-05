@@ -1,0 +1,5 @@
+1. WAP to read array length and elements from user and display them using for loop, while loop, for each loop and do-while loop.
+2. WAP to read array length and elements from user and display sum of all the elements of the array.
+3.WAP to read array length and elements from user and display multiplication of all the elements of the array.
+4.WAP to read array length and elements from user and display only even numbers from that array.
+5. WAP to read array length and elements from user and reverse that array and display that reversed array.
