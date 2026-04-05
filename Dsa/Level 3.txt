@@ -1,0 +1,54 @@
+
+1.
+Check if two strings are anagrams using String.
+
+Input:
+
+Enter the first string: listen  
+Enter the second string: silent
+
+Output:
+
+Are the strings anagrams? Yes
+
+2.Reverse each word in a sentence using StringBuffer.
+
+Input:
+
+Enter a sentence: Welcome to Java
+
+Output:
+
+Reversed words: emocleW ot avaJ
+
+3. Replace all occurrences of a substring in a string using String.
+
+Input:
+
+Enter the main string: I love programming and programming is fun  
+Enter the substring to replace: programming  
+Enter the new substring: coding
+
+Output:
+
+Modified string: I love coding and coding is fun
+4.
+Question: Reverse the order of words in a sentence using StringBuilder.
+
+Input:
+
+Enter a sentence: Java is powerful
+
+Output:
+
+Reversed sentence: powerful is Java
+
+5. Question: Remove all special characters from a string using String.
+
+Input:
+
+Enter a string: Hello@World#2025!
+
+Output:
+
+String without special characters: HelloWorld2025

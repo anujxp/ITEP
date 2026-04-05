@@ -1,0 +1,27 @@
+1 . Replace all occurrences of a character in a string with another character.
+
+Input: Original String: "banana"
+Replace 'a' with 'o'
+Expected Output: "bonono"
+
+
+2. Write a program to find the first non-repeated character in a string using StringBuffer or StringBuilder.
+input :"swiss"
+output :The first non-repeated character is: "w"
+
+Explanation: The program uses StringBuffer to track character counts and returns the first character that occurs only once in the string.
+
+3. Remove all duplicate characters from a string and return the modified string using StringBuilder.
+
+input :"programming"
+output: "progamin"
+ 
+4.  Write a program to remove all digits from a string and return the modified string using StringBuilder.
+
+input : "J4av1a P2rogramming"
+output: "Java Programming"
+
+5. Write a program to find the shortest word in a sentence using String.
+
+input :"Java is fun and powerful"
+output: Shortest word: "is"

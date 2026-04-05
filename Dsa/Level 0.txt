@@ -1,0 +1,8 @@
+1. Write a program to read a string from user and count How many vowels are there in that String.
+2. WAP to read a String from user and count how many spaces are available in that String.
+3. WAP to read a string from user,Read a character from user and count how many times that character occurred in that string.
+4. WAP to read a string from user and convert all the vowels of that string into upper case without predefined method , and display that characters
+5. WAP to read String from user ,  and count how many consonents are there in String.
+
+
+

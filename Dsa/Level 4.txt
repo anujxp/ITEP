@@ -1,0 +1,54 @@
+1.
+Count the number of words in a sentence using String.
+
+Input:
+
+Enter a sentence: Java is a versatile language
+
+Output:
+
+Number of words: 5
+
+2.
+Find the length of a string without using the length() method.
+
+Input:
+
+Enter a string: HelloWorld
+
+Output:
+
+Length of the string: 10
+
+3.  
+Reverse every second word in a sentence using StringBuilder.
+
+Input:
+
+Enter a sentence: Java is very interesting
+
+Output:
+
+Modified sentence: Java si very gnitseretni
+
+4.
+ Convert each character of a string to its ASCII value using String.
+
+Input:
+
+Enter a string: ABC
+
+Output:
+
+ASCII values: 65 66 67
+
+5. 
+Find the character that occurs the most in a string.
+
+Input:
+
+Enter a string: success
+
+Output:
+
+Most frequent character: s (3 times)

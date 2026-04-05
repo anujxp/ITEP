@@ -1,0 +1,25 @@
+1.
+Palindrome Check
+Write a program to check if a given string is a palindrome (reads the same backward as forward).
+
+Example Input: madam
+Example Output: Yes, it's a palindrome.
+
+2.
+Count Vowels and Consonants
+Write a program to count the number of vowels and consonants in a string.
+
+Example Input: hello world
+Example Output: Vowels: 3, Consonants: 7
+3.
+String Reversal
+Write a program to reverse a given string.
+Example Input: Java
+Example Output: avaJ
+Remove Whitespace
+4.
+Remove all spaces from a given string without using built-in methods.
+Example Input: I love coding
+Example Output: Ilovecoding
+5. WAP to read strin from user and count how many spaces available in that string.
+6.Write a program to check string contains special characters($, @, #) or not..
