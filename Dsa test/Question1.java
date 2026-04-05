@@ -1,0 +1,81 @@
+import java.util.Scanner;
+class Stack{
+
+    private int[]stack;
+    private int top;
+    private int size;
+    public  Stack(int size){
+        stack = new int[size];
+        this.size = size;
+        top = -1;
+}
+
+    public void push(int data) {
+        if(top == size-1) {
+            System.out.println("Stack overflow");
+            return;
+        }
+            stack[++top] = data;
+    }
+
+    public int pop(){
+        if(top==-1){
+            System.out.println("Stack UnderFlow");
+            return 0;
+        }
+    return stack[top--];
+    }
+
+}
+
+	
+class Main{
+
+	private static boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+
+    public static int evaluate(String s) {
+
+        Stack stack = new Stack(s.length());
+
+		for (int i = s.length() - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+
+            if (isOperator(c)) {
+                
+                int op1 = stack.pop();
+                int op2 = stack.pop();
+
+                switch (c) {
+                    case '+': 
+						stack.push(op1 + op2); 
+						break;
+                    case '-': 
+						stack.push(op1 - op2); 
+						break;
+                    case '*': 
+						stack.push(op1 * op2); 
+						break;
+                    case '/': 
+                        if (op2 != 0) stack.push(op1 / op2); 
+                        else stack.push(0); // Basic divide-by-zero handling
+                        break;
+                }
+            } else if (Character.isDigit(c)) {
+                stack.push(c - '0');
+            }
+        }
+        return stack.pop();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (sc.hasNext()) {
+            String input = sc.next();
+            System.out.println(evaluate(input));
+        }
+        
+        sc.close();
+    }
+}

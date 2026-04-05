@@ -1,0 +1,49 @@
+class Singelton{
+	private static final Siingelton INSTANCE;
+	private Singelton(){	
+	}
+	public static Singelton getInstance(){
+	if(INSTANCE==null)
+	instance = new Singelton();
+	}
+	return INSTANCE;
+}
+
+
+
+Weekly Internship Report
+Name: Anuj Gupta
+Role: Java Intern
+Week: Week 1
+
+*Work Done:*
+
+Worked on Task
+Attended daily stand-up meetings
+Revised the weak one module
+
+*Learning:*
+
+learned some extra internal concepts of java
+learned to handle situations in meeting 
+learned to manage time
+
+*Challenges:*
+
+Faced issue to join the meetings
+Managing multiple tasks at the same time
+Completing tasks within deadlines
+Managing multiple tasks at the same time
+Taking more time than expected to complete tasks
+
+
+
+*Solutions:*
+Took guidance from mentor
+Took help from teammates
+
+
+*Plan for Next Week:*
+
+work on Remaining module
+Work on advanced Java concepts

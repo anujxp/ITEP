@@ -1,0 +1,51 @@
+1. Prefix Evaluation
+
+You are developing a Financial Analytics System for a fintech company. The system processes complex mathematical expressions written in Prefix Notation to calculate investment returns dynamically.
+
+Due to performance requirements, the system uses a stack-based evaluation algorithm instead of converting expressions into infix form.
+
+-> Problem Statement
+
+Your system receives a prefix expression representing a financial formula. Each expression contains:
+
+Integers (positive or negative)
+Operators: +, -, *, /
+
+You need to evaluate the expression and return the final result.
+
+-> Input
+
+A single string representing a valid prefix expression.
+
+Example:
+
+- + * 2 3 * 5 4 9
+-> Output
+
+An integer result after evaluating the expression.
+
+Example:
+
+17
+
+
+
+2.
+ Emergency Call Center System
+
+You are developing a system for an emergency call center. Incoming calls are stored in a queue (FIFO – First Come First Serve), where each call is handled in the order it arrives.
+However, during a system failure, the call order gets corrupted, and the system needs to reverse the order of pending calls so that the most recent calls are handled first.
+To solve this problem, you are allowed to use a stack (LIFO – Last In First Out) as a helper data structure.
+=> Problem Statement
+Write a program to:
+Accept n call IDs (integers or strings) and insert them into a queue.
+Reverse the queue using a stack.
+Display:
+Original Queue
+Reversed Queue
+=> Input Format
+First line: Integer n (number of calls)
+Next n lines: Call IDs
+=> Output Format
+Print original queue
+Print reversed queue
