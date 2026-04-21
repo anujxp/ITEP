@@ -1,0 +1,176 @@
+🔹 Basic (1–15)
+Retrieve all employees from the employees table.
+Select only name and salary columns.
+Find employees with salary greater than 50,000.
+List employees hired after 2020.
+Find employees whose name starts with 'A'.
+Get distinct department names.
+Count total number of employees.
+Find minimum and maximum salary.
+Sort employees by salary descending.
+Find employees with NULL manager_id.
+Replace NULL salary with 0.
+Display employee names in uppercase.
+Calculate annual salary (monthly * 12).
+Find employees whose salary is between 30k and 70k.
+Limit output to top 5 rows.
+🔹 Intermediate (16–35)
+Find total salary per department.
+Count employees in each department.
+Find departments with more than 5 employees.
+Join employees with departments table.
+Find employees without a department.
+Get highest salary in each department.
+Find second highest salary.
+Find duplicate emails.
+Delete duplicate records keeping one.
+Find employees earning above average salary.
+Use subquery to get employees in same dept as ‘John’.
+Find employees who are managers.
+List employees and their manager names (self join).
+Find departments with no employees.
+Update salary by 10% for a specific department.
+Insert records from one table to another.
+Find employees hired in last 30 days.
+Calculate difference between two dates.
+Use CASE to categorize salary (Low/Medium/High).
+Find top 3 salaries in company.
+🔹 Advanced (36–50)
+Find top 3 salaries per department.
+Calculate running total of salaries.
+Rank employees by salary.
+Find employees with same salary.
+Find consecutive login days.
+Find missing IDs in sequence.
+Calculate median salary.
+Pivot department-wise salary data.
+Use recursive query to show employee hierarchy.
+Find employees who never took leave.
+Detect duplicate transactions in banking data.
+Calculate month-over-month growth.
+Find customers with highest purchases per region.
+Write a query to identify slow-performing queries (conceptual).
+Optimize a query with multiple joins (conceptual).
+=========================================================================
+1. Find the Second Highest Salary
+
+Problem:
+Given an employees table, find the second highest salary.
+
+SELECT MAX(salary) AS second_highest
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);
+
+👉 Tests: subqueries, aggregate functions
+
+2. Find Duplicate Records
+
+Problem:
+Find duplicate emails in a table.
+
+SELECT email, COUNT(*) 
+FROM users
+GROUP BY email
+HAVING COUNT(*) > 1;
+
+👉 Tests: GROUP BY, HAVING
+
+3. Remove Duplicate Rows
+DELETE FROM users
+WHERE id NOT IN (
+    SELECT MIN(id)
+    FROM users
+    GROUP BY email
+);
+
+👉 Tests: data cleanup logic
+
+4. Nth Highest Salary (General Case)
+SELECT salary
+FROM employees e1
+WHERE N-1 = (
+    SELECT COUNT(DISTINCT salary)
+    FROM employees e2
+    WHERE e2.salary > e1.salary
+);
+
+👉 Tests: correlated subqueries
+
+5. Find Employees with No Manager
+SELECT *
+FROM employees
+WHERE manager_id IS NULL;
+
+👉 Tests: NULL handling
+
+6. Join Three Tables
+
+Problem: Retrieve employee name, department, and salary.
+
+SELECT e.name, d.department_name, s.salary
+FROM employees e
+JOIN departments d ON e.dept_id = d.id
+JOIN salaries s ON e.id = s.emp_id;
+
+👉 Tests: joins (INNER JOIN)
+
+7. Find Highest Salary in Each Department
+SELECT dept_id, MAX(salary)
+FROM employees
+GROUP BY dept_id;
+
+👉 Advanced version:
+
+SELECT *
+FROM employees e
+WHERE salary = (
+    SELECT MAX(salary)
+    FROM employees
+    WHERE dept_id = e.dept_id
+);
+
+👉 Tests: grouping + subqueries
+
+8. Running Total (Window Function)
+SELECT id, salary,
+       SUM(salary) OVER (ORDER BY id) AS running_total
+FROM employees;
+
+👉 Tests: window functions (very important in modern interviews)
+
+9. Find Consecutive Days (Streak Problem)
+SELECT DISTINCT a.date
+FROM attendance a, attendance b
+WHERE DATEDIFF(a.date, b.date) = 1;
+
+👉 Tests: date logic, self join
+
+10. Pivot Data
+
+Convert rows into columns:
+
+SELECT 
+    SUM(CASE WHEN gender = 'M' THEN 1 ELSE 0 END) AS male,
+    SUM(CASE WHEN gender = 'F' THEN 1 ELSE 0 END) AS female
+FROM users;
+
+👉 Tests: CASE statements
+
+11. Top 3 Salaries Per Department
+SELECT *
+FROM (
+    SELECT e.*, 
+           DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk
+    FROM employees e
+) t
+WHERE rnk <= 3;
+
+👉 Tests: window functions + ranking
+
+12. Find Missing Numbers
+SELECT t1.id + 1 AS missing_id
+FROM table1 t1
+LEFT JOIN table1 t2 ON t1.id + 1 = t2.id
+WHERE t2.id IS NULL;
+
+-------------------------------------------------------------------------------------
