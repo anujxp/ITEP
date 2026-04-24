@@ -1,0 +1,40 @@
+NOTE: Complete all the programs in STS IDE
+1.
+Print the following pattern for n rows: read value of n from user.
+
+*
+**
+***
+****
+*****
+
+
+2.
+Print the following pattern for n rows: read value of n from user.
+1
+22
+333
+4444
+55555
+
+
+3.
+Print the following pattern for n rows: read value of n from user.
+
+1
+2 2
+3 3 3
+4 4 4 4
+5 5 5 5 5
+
+
+4.
+Print the following pattern for n rows: read value of n from user.
+
+1
+* *
+1 2 3
+* * * *
+1 2 3 4 5
+* * * * * *
+
