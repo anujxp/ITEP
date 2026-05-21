@@ -1,0 +1,107 @@
+•	Tell me something about yourself.
+Good morning/afternoon, my name is Sneha Chimote. I am currently pursuing my MCA, and I am also part of the ITEP program at Info Beans.
+I’ve always been passionate about computers—my interest began in 9th grade when I first started learning HTML and CSS with the help of my teachers. That led me to choose software development as my career path.
+I consider myself ambitious, hardworking, and dedicated. I consistently push myself to improve and set higher goals, not just for personal growth but also to contribute effectively to any team I work with. I believe in staying committed to the work I take up, maintaining discipline, and always being open to learning new skills.
+As a part of the ITEP program, I’ve been gaining hands-on exposure to industry-oriented technologies and professional work culture, which has strengthened both my technical abilities and teamwork skills.
+I believe my qualities can add value to your company by bringing consistent effort, a learning-driven mindset, and a sincere approach to responsibilities. I don’t just aim to complete tasks—I aim to contribute meaningfully, adapt quickly, and grow with the organisation while helping it achieve its goals.
+Thank you for the opportunity.
+-------------------------------------------------------------•	
+Why does this role interest you? Or why have you applied for this job?
+I want to start my career with an organization that provides both learning and growth opportunities.
+This organization seems like the right place because it works with modern technologies and diverse clients, and also emphasises a strong team culture.
+I believe I can learn a lot here, contribute my skills, and grow as a software developer.
+----------------------------------------------------------------------
+•	Why do you think we should take you for this job?
+I believe I am a good fit for this job because my skillset aligns with the technologies your company works on, such as (..........). I am highly interested in full-stack development and would love to contribute to your products while continuously improving under the guidance of experienced seniors. My goal is to grow with the company and add long-term value, not just seek a job.
+-------------------------------------------------------------•	
+Are you an Introvert or an Extrovert?
+I consider myself an ambivert. I enjoy collaborating with team members, sharing ideas, and communicating clearly when working on group tasks. At the same time, I’m equally comfortable working independently and focusing deeply on technical tasks like coding and debugging. I balance social interaction with focused productivity based on the situation and project needs.
+-------------------------------------------------------------------------------------------
+•	What is your greatest strength?
+My greatest strength is that I am highly goal-oriented. Once I set a task or target, I stay focused, plan my work, and complete it within the expected time. Whether it's learning a new technology or finishing a project module, I stay committed to achieving the result. For example, during my project work, I set weekly milestones and completed modules like database integration and UI development before deadlines.
+
+Another strength is that I am loyal and responsible toward my work and the organization I am part of. I believe in long-term association, honesty, and giving my best to the company that trusts me. As When I take up a task, I make sure I follow through and support my team until work is finished. I believe in long-term commitment rather than switching work frequently.
+-------------------------------------------------------------------------------------------
+•	What do you want to achieve in the next 5 years?
+In the next five years, I want to grow into a skilled full-stack developer by working on real-world projects, learning new technologies, and improving my problem-solving abilities. I want to gain strong experience in backend development using Java and frameworks like Spring/Hibernate, while also strengthening my frontend skills.
+
+As I grow technically, I would also like to take on more responsibilities—such as leading small modules, mentoring juniors, and contributing to decision-making in the development process.
+
+If I move toward management in the future, I would like to pursue additional certifications or part-time courses in project management or product development. My long-term goal is to grow within the organization and contribute to its success, not just upgrade my skills.
+-------------------------------------------------------------------------------------------
+•	Would you be open to changing your project/profile when required?
+Yes, absolutely. I am flexible and willing to take on different projects or profiles based on the company’s needs. I see it as an opportunity to learn new skills, understand business requirements, and broaden my experience.
+-------------------------------------------------------------------------------------------
+•	What skills do you want to develop to succeed in this role?
+I want to enhance my backend development skills, particularly in Spring Boot, REST APIs, and Hibernate. I also want to improve my frontend development by learning frameworks like React or Angular to become a full-stack developer. Additionally, I would like to develop strong debugging and performance optimization skills to build efficient and scalable applications.Along with technical growth, I also want to develop skills like teamwork, problem-solving, and handling real-time project requirements. These skills will help me contribute effectively and grow within the organization.
+-------------------------------------------------------------------------------------------
+•	Are you planning to go for further studies?
+Yes, I am interested in improving my knowledge, but through part-time or online courses while working.Right now, I want to begin my professional career. In the future, if I plan further studies like an MBA or MTech, I would prefer doing it part-time or through distance learning or any alternative so that it doesn’t interrupt my work.
+-------------------------------------------------------------------------------------------
+•	What newspaper/magazine/book do you read?
+I regularly read online tech blogs and news portals like Geeks for Geeks, Medium (Tech), and the official Java documentation. For general awareness, I refer to The Times of India and Economic Times. I like content that helps me stay updated on technology, software trends, and current affairs.
+-------------------------------------------------------------------------------------------
+•	Tell me something about yourself that is not written in your resume
+Something not included in my resume is that I completed an internship with Karmata Robotics, where I learned basic robotics and automation concepts. It helped me improve my logical approach and practical application of coding. I’m also very goal-oriented and continuously learn new technologies outside the curriculum.
+-------------------------------------------------------------------------------------------
+•	Do you know anyone who works with this company?
+No, I don’t personally know anyone working in this company. However, I have researched the organization online, and I was really impressed by the learning environment, work culture, and the kind of projects the company is involved in. That is one of the reasons I’m very interested in working here.
+-------------------------------------------------------------------------------------------
+•	What is your greatest weakness?
+my weaknesses is that I tend to overthink situations, especially when I want to deliver the best possible results. Sometimes I spend extra time analyzing options before finalizing a decision.
+However, I’m actively working on this by setting clear time limits for decision-making and prioritizing tasks based on impact. It's helping me stay more efficient without compromising quality.
+----------------------------------------------------------------------------------------
+•	What is your greatest achievement?
+Deciding early on to pursue software development and staying consistent with that goal is my biggest achievement. Instead of jumping between different career options, I focused on improving myself in programming through regular coding practice, internships, and hands-on projects. This long-term commitment is what shaped my technical skills and future direction.
+-----------------------------------------------------------------------------------------
+•	What was your biggest mistake?
+Earlier in school, I made the mistake of isolating myself from co-curricular activities and concentrating only on studies. Eventually, I understood that teamwork and communication are essential skills. So I started volunteering, and later I was selected to host several school events. This helped me develop confidence and stage presence, which I carry with me today.
+-------------------------------------------------------------------------------------------
+•	You do not have all the experience we are seeking for this position.
+That’s true, I’m a fresher and still building practical experience. However, I have a strong learning attitude, and I’m good at grasping new technologies quickly. During my robotics internship and personal coding projects, I learned many skills independently, which shows I can pick up new tools and technologies fast. With the right environment, I can bridge the gap soon.
+-------------------------------------------------------------------------------------------
+•	Where do you see yourself 5 years from now?
+Five years from now, I see myself as a skilled and responsible software developer who can contribute to important projects and take ownership of tasks. I want to grow technically, gain real-world experience, and eventually handle responsibilities like mentoring juniors or leading small modules. I believe this company can provide the right opportunities for such growth.
+-------------------------------------------------------------------------------------------
+•	Are you speaking to some other companies? Or how is your job search going?
+Currently, I am mainly focused on this opportunity. I am applying selectively to roles that match my skills and career goals rather than applying everywhere. I believe this position aligns well with my interests in Java development.
+-------------------------------------------------------------------------------------------•	Which companies are you talking to?
+I am in touch with a few companies that have openings in Java and backend development. However, I respect their hiring confidentiality, so I would prefer not to disclose their names. But the roles are similar to what I am applying for here.
+------------------------------------------------------------------------------------------
+•	Why haven’t you got a job yet?
+I wanted to strengthen my technical skills before starting my professional journey, so I invested time in improving Java, MySQL, HTML/CSS, and Hibernate through practice projects and online learning. I feel more industry-ready now and am actively applying for the right opportunities.
+------------------------------------------------------------------------------------------
+•	Are you ready to relocate?
+Yes, I am open to relocation. I believe relocating can provide better exposure, learning opportunities, and a chance to work closely with diverse teams. As long as the role supports my career goals, I’m flexible with location.
+-------------------------------------------------------------------------------------------
+•	How do you feel about doing repetitive work?
+I understand that every job has repetitive tasks, and I'm comfortable doing them. I believe consistency and accuracy are important, especially in development and testing. At the same time, I always try to approach repetitive work with a mindset of improving efficiency—either by optimizing the process or automating parts of it where possible.
+-------------------------------------------------------------------------------------------•	Are there any kinds of people you can not work with?
+I generally get along well with different kinds of people and try to maintain a collaborative attitude. I believe every person has a unique working style, and adapting to that is part of teamwork. However, I do find it challenging to work with people who consistently avoid responsibility or have a negative attitude, because it affects the entire team’s productivity. But even in such cases, I try to communicate professionally and focus on solutions rather than conflicts.
+-------------------------------------------------------------------------------------------
+•	If you face a problem with your own performance, what would you do?
+If I feel that my performance is not up to the mark, the first step I take is self-evaluation. I try to analyze where the gap is—whether it's a lack of understanding, time management, or skill. Then I work on improving through learning, practice, or better planning. If needed, I would not hesitate to ask guidance from seniors or teammates to ensure that my performance aligns with expectations
+-------------------------------------------------------------------------------------------
+•	How many local trains run in Mumbai?
+I don't have the exact number right now, so I’ll try to estimate it logically. Mumbai has Western, Central, and Harbour lines, each running trains at frequent intervals, roughly every 5–10 minutes during peak hours. If we assume around 12 trains per hour per line over about 18 active hours a day, that could roughly be:
+
+12 trains × 18 hrs × 3 lines = around 600–650 trains a day (approx.)
+
+This may not be exact, but based on estimation, the number should be somewhere in that range. If required, I can verify the exact figure.
+-------------------------------------------------------------------------------------------
+•	In a catastrophic situation like a fire, what will you do?
+In a situation like a fire, my first priority would be ensuring my own safety and alerting others around me. I would immediately inform the company’s safety team or fire department and call emergency services. If the situation is under control and I can help others without risking additional harm, I would assist people in evacuating safely. My approach would be calm, responsible, and focused on safety first.
+-------------------------------------------------------------------------------------------
+•	How much salary do you expect?
+As a fresher, my main focus is on learning and growing in a professional environment. I trust that your company offers a fair package for entry-level developers. So I am comfortable with the standard salary range you offer to fresh graduates.
+-----------------------------------------------------------------------------------------
+•	Do you have any other offers at hand?
+Currently, I don’t have any other offers in hand. I’m focusing on finding the right opportunity where I can start my career and grow professionally, and your company aligns well with what I’m looking for.
+-------------------------------------------------------------------------------------------
+•	What will you do if you are offered a job with a salary higher than this?
+I understand salary is important, but I try to look at long-term opportunities—learning, role, and career path. If those aspects are strong, I wouldn’t leave just for a slight salary difference.
+-------------------------------------------------------------------------------------------
+•	Do you want to ask us something about the company?
+Could you tell me more about the learning and development opportunities for freshers in this role?
+How is performance evaluated here, and how often are reviews conducted?
+Can you tell me more about the team structure and collaboration process?
