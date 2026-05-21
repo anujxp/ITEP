@@ -1,42 +1,21 @@
 package com.info.settlespot.bookingservice.dto;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
 public class BookingRequestDTO {
+
+	@NotNull(message = "Property ID is required")
 	private Integer propertyId;
-	private Integer tenantId;
+
+	@NotNull(message = "Check-in date is required")
 	private LocalDate checkInDate;
+
+	@NotNull(message = "Check-out date is required")
 	private LocalDate checkOutDate;
-
-	public Integer getPropertyId() {
-		return propertyId;
-	}
-
-	public void setPropertyId(Integer propertyId) {
-		this.propertyId = propertyId;
-	}
-
-	public Integer getTenantId() {
-		return tenantId;
-	}
-
-	public void setTenantId(Integer tenantId) {
-		this.tenantId = tenantId;
-	}
-
-	public LocalDate getCheckInDate() {
-		return checkInDate;
-	}
-
-	public void setCheckInDate(LocalDate checkInDate) {
-		this.checkInDate = checkInDate;
-	}
-
-	public LocalDate getCheckOutDate() {
-		return checkOutDate;
-	}
-
-	public void setCheckOutDate(LocalDate checkOutDate) {
-		this.checkOutDate = checkOutDate;
-	}
+	// tenantId is extracted from JWT header, not from body
 }

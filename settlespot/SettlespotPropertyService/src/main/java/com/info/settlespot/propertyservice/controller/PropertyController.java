@@ -1,83 +1,131 @@
 package com.info.settlespot.propertyservice.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import com.info.settlespot.propertyservice.dto.ApiResponse;
+import com.info.settlespot.propertyservice.dto.ApprovalRequest;
 import com.info.settlespot.propertyservice.dto.PropertyDTO;
 import com.info.settlespot.propertyservice.enums.PropertyType;
 import com.info.settlespot.propertyservice.service.PropertyService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/properties")
+@RequiredArgsConstructor
 public class PropertyController {
 
     private final PropertyService propertyService;
 
-    public PropertyController(PropertyService propertyService) {
-        this.propertyService = propertyService;
-    }
-
+    // ─── HOST: Add new property (goes to pending approval) ────────────────────
     @PostMapping
-    public ResponseEntity<PropertyDTO> addProperty(@RequestBody PropertyDTO propertyDTO) {
-        PropertyDTO savedProperty = propertyService.addProperty(propertyDTO);
-        return new ResponseEntity<>(savedProperty, HttpStatus.CREATED);
+    public ResponseEntity<ApiResponse<PropertyDTO>> addProperty(
+            @Valid @RequestBody PropertyDTO dto,
+            @RequestHeader("X-User-Id") String hostId) {
+        dto.setHostId(Integer.parseInt(hostId));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success("Property submitted for admin approval",
+                        propertyService.addProperty(dto)));
     }
 
-    
+    // ─── PUBLIC: Get single property ──────────────────────────────────────────
     @GetMapping("/{id}")
-    public ResponseEntity<PropertyDTO> getPropertyById(@PathVariable Integer id) {
-        PropertyDTO property = propertyService.getPropertyById(id);
-        return ResponseEntity.ok(property);
+    public ResponseEntity<ApiResponse<PropertyDTO>> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(
+                ApiResponse.success("Property found", propertyService.getPropertyById(id)));
     }
 
-    
-    // Endpoint: GET /properties/search?city=Pune&type=PG&area=Hinjewadi
+    // ─── TENANT: Browse approved + available properties ───────────────────────
+    @GetMapping("/available")
+    public ResponseEntity<ApiResponse<List<PropertyDTO>>> getAvailable() {
+        return ResponseEntity.ok(
+                ApiResponse.success("Available properties", propertyService.getAvailableProperties()));
+    }
+
+    // ─── HOST: View own properties ────────────────────────────────────────────
+    @GetMapping("/my-properties")
+    public ResponseEntity<ApiResponse<List<PropertyDTO>>> getMyProperties(
+            @RequestHeader("X-User-Id") String hostId) {
+        return ResponseEntity.ok(
+                ApiResponse.success("Your properties",
+                        propertyService.getPropertiesByHost(Integer.parseInt(hostId))));
+    }
+
+    // ─── ADMIN: View pending properties ──────────────────────────────────────
+    @GetMapping("/admin/pending")
+    public ResponseEntity<ApiResponse<List<PropertyDTO>>> getPending() {
+        return ResponseEntity.ok(
+                ApiResponse.success("Pending properties", propertyService.getPendingProperties()));
+    }
+
+    // ─── ADMIN: Approve / Reject a property ──────────────────────────────────
+    @PatchMapping("/admin/{id}/review")
+    public ResponseEntity<ApiResponse<PropertyDTO>> reviewProperty(
+            @PathVariable Integer id,
+            @RequestBody ApprovalRequest req) {
+        return ResponseEntity.ok(
+                ApiResponse.success("Property " + req.getAction().toLowerCase() + "d",
+                        propertyService.approveOrRejectProperty(id, req)));
+    }
+
+    // ─── SEARCH ───────────────────────────────────────────────────────────────
     @GetMapping("/search")
-    public ResponseEntity<List<PropertyDTO>> searchProperties(
+    public ResponseEntity<ApiResponse<List<PropertyDTO>>> search(
             @RequestParam String city,
             @RequestParam PropertyType type,
             @RequestParam String area) {
-        List<PropertyDTO> properties = propertyService.findByCityAndTypeAndArea(city, type, area);
-        return ResponseEntity.ok(properties);
-    }
-    
-    
- // 4. Update Property
-    // Endpoint: PUT /properties/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<PropertyDTO> updateProperty(
-            @PathVariable Integer id, 
-            @RequestBody PropertyDTO propertyDTO) {
-        
-        PropertyDTO updatedProperty = propertyService.updateProperty(id, propertyDTO);
-        return ResponseEntity.ok(updatedProperty);
+        return ResponseEntity.ok(
+                ApiResponse.success("Search results",
+                        propertyService.findByCityAndTypeAndArea(city, type, area)));
     }
 
-    // 5. Delete Property
-    // Endpoint: DELETE /properties/{id}
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProperty(@PathVariable Integer id) {
-        propertyService.deleteProperty(id);
-        return ResponseEntity.ok("Property deleted successfully with ID: " + id);
-    }
- // Inside PropertyController.java (in the Property Service project)
-    @PutMapping("/{id}/availability")
-    public ResponseEntity<Void> updateAvailability(@PathVariable Integer id, @RequestParam boolean isAvailable) {
-        propertyService.updateAvailability(id, isAvailable);
-        return ResponseEntity.ok().build();
-    }
-    
+    // ─── FILTER ───────────────────────────────────────────────────────────────
     @GetMapping("/filter")
-    public ResponseEntity<List<PropertyDTO>> filterProperties(
+    public ResponseEntity<ApiResponse<List<PropertyDTO>>> filter(
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) Double minPrice,
-            @RequestParam(required = false) Double maxPrice) 
-    {
-        List<PropertyDTO> results = propertyService.getFilteredProperties(city, type, minPrice, maxPrice);
-        return ResponseEntity.ok(results);
+            @RequestParam(required = false) Double maxPrice) {
+        return ResponseEntity.ok(
+                ApiResponse.success("Filtered results",
+                        propertyService.getFilteredProperties(city, type, minPrice, maxPrice)));
+    }
+
+    // ─── HOST: Update property ────────────────────────────────────────────────
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<PropertyDTO>> update(
+            @PathVariable Integer id,
+            @Valid @RequestBody PropertyDTO dto) {
+        return ResponseEntity.ok(
+                ApiResponse.success("Property updated (re-submitted for approval)",
+                        propertyService.updateProperty(id, dto)));
+    }
+
+    // ─── HOST: Delete property ────────────────────────────────────────────────
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {
+        propertyService.deleteProperty(id);
+        return ResponseEntity.ok(ApiResponse.success("Property deleted"));
+    }
+
+    // ─── INTERNAL: Update availability (called by Booking Service) ────────────
+    @PutMapping("/{id}/availability")
+    public ResponseEntity<Void> updateAvailability(
+            @PathVariable Integer id,
+            @RequestParam boolean isAvailable) {
+        propertyService.updateAvailability(id, isAvailable);
+        return ResponseEntity.ok().build();
+    }
+
+    // ─── INTERNAL: Update rating (called by Booking Service) ──────────────────
+    @PutMapping("/internal/{id}/rating")
+    public ResponseEntity<Void> updateRating(
+            @PathVariable Integer id,
+            @RequestParam double rating) {
+        propertyService.updateRating(id, rating);
+        return ResponseEntity.ok().build();
     }
 }

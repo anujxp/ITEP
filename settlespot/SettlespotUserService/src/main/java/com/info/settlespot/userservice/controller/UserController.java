@@ -1,73 +1,45 @@
 package com.info.settlespot.userservice.controller;
 
-import com.info.settlespot.userservice.dto.HostResponseDTO;
-import com.info.settlespot.userservice.dto.LoginRequestDTO;
-import com.info.settlespot.userservice.dto.TenantResponseDTO;
-import com.info.settlespot.userservice.entity.Host;
-import com.info.settlespot.userservice.entity.Tenant;
-import com.info.settlespot.userservice.service.HostService;
-import com.info.settlespot.userservice.service.TenantService;
-import org.springframework.http.HttpStatus;
+import com.info.settlespot.userservice.dto.ApiResponse;
+import com.info.settlespot.userservice.dto.response.UserResponse;
+import com.info.settlespot.userservice.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This controller is used by other microservices via Feign Client.
+ * Internal endpoints do NOT require authentication (called service-to-service).
+ */
 @RestController
-@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
 
-    private final TenantService tenantService;
-    private final HostService hostService;
+    private final UserService userService;
 
-    public UserController(TenantService tenantService, HostService hostService) {
-        this.tenantService = tenantService;
-        this.hostService = hostService;
+    // ─── Internal Feign Client endpoints ──────────────────────────────────────
+    // These match the paths the Feign clients in Booking and Property services call
+
+    @GetMapping("/internal/users/hosts/{id}")
+    public UserResponse getHostByIdInternal(@PathVariable Integer id) {
+        return userService.getHostById(id);
     }
 
-    @PostMapping("/tenants/register")
-    public ResponseEntity<TenantResponseDTO> registerTenant(@RequestBody Tenant tenant) {
-        TenantResponseDTO newTenant = tenantService.registerTenant(tenant);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newTenant);
+    @GetMapping("/internal/users/tenants/{id}")
+    public UserResponse getTenantByIdInternal(@PathVariable Integer id) {
+        return userService.getTenantById(id);
     }
 
-    @PostMapping("/tenants/login")
-    public ResponseEntity<TenantResponseDTO> loginTenant(@RequestBody LoginRequestDTO loginRequest) {
-        TenantResponseDTO tenantDTO = tenantService.loginTenant(loginRequest);
-        return ResponseEntity.ok(tenantDTO);
+    @GetMapping("/internal/users/{id}/exists")
+    public boolean userExists(@PathVariable Integer id) {
+        return userService.getUserById(id) != null;
     }
 
-    @GetMapping("/tenants/{id}")
-    public ResponseEntity<TenantResponseDTO> getTenant(@PathVariable Integer id) {
-        TenantResponseDTO tenantDTO = tenantService.getTenantById(id);
-        return ResponseEntity.ok(tenantDTO);
-    }
-    // =============================================================================================================
-    //                                                   HOST APIs
-    // ==============================================================================================================
+    // ─── Authenticated user endpoints ─────────────────────────────────────────
 
-    @PostMapping("/hosts/register")
-    public ResponseEntity<HostResponseDTO> registerHost(@RequestBody Host host) {
-        HostResponseDTO newHost = hostService.registerHost(host);
-        // Returns Status 201 (Created)
-        return ResponseEntity.status(HttpStatus.CREATED).body(newHost);
-    }
-
-    @PostMapping("/hosts/login")
-    public ResponseEntity<HostResponseDTO> loginHost(@RequestBody LoginRequestDTO loginRequest) {
-        HostResponseDTO hostDTO = hostService.loginHost(loginRequest);
-    
-        return ResponseEntity.ok(hostDTO);
-    }
-
-    @GetMapping("/hosts/{id}")
-    public ResponseEntity<HostResponseDTO> getHost(@PathVariable Integer id) {
-        HostResponseDTO hostDTO = hostService.getHostById(id);
-        return ResponseEntity.ok(hostDTO);
-    }
-
-   
-    @GetMapping("/hosts/{id}/exists")
-    public ResponseEntity<Boolean> doesHostExist(@PathVariable Integer id) {
-        boolean exists = hostService.hostExists(id);
-        return ResponseEntity.ok(exists);
+    @GetMapping("/users/profile/{id}")
+    public ResponseEntity<ApiResponse<UserResponse>> getProfile(@PathVariable Integer id) {
+        return ResponseEntity.ok(
+                ApiResponse.success("Profile fetched", userService.getUserById(id)));
     }
 }
