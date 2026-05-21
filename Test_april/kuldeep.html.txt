@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title> odd even</>
+</head>
+<body>
+<script>
+
+let num = prompt("enter number")
+
+if(num%2==0)
+{
+    document.write("even number");
+	}
+else{
+     document.write("odd number")
+}
+</script>
+</body>
+</html>
+    

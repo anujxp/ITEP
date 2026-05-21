@@ -1,0 +1,42 @@
+1.Postfix Evaluation
+
+You are developing a Transaction Processing Engine for a fintech company. The system handles complex mathematical formulas written in Postfix Notation to calculate commissions, taxes, and profit margins in real time.
+
+To improve execution speed, the engine uses a stack-based evaluation algorithm instead of converting expressions into infix form.
+
+-> Problem Statement
+
+Your system receives a postfix expression representing a financial formula. Each expression contains:
+
+Integers (positive or negative)
+Operators: +, -, *, /
+
+You need to evaluate the expression and return the final result.
+
+-> Input
+
+A single string representing a valid postfix expression.
+
+Example:
+
+2 3 * 5 4 * + 9 -
+
+-> Output
+
+An integer result after evaluating the expression.
+
+Example:
+
+17
+
+
+2.
+Employee Salary Management
+
+A company stores employee salaries unsorted. HR wants salaries arranged in ascending order for payroll analysis. Use Insertion Sort.
+
+-> Input
+Number of employees and salary values.
+
+-> Output
+Sorted salary list.
