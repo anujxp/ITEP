@@ -23,7 +23,11 @@ family value
 
 
 which website have you seen and that 
-what kind of technology you can develop if you imagine 
 
-how is technology effected your life  you are spending to many times 
+what kind of technology you can develop if you imagine  
+If I could develop any technology, I would build a mind-controlled AI system. The idea is that users would only need to think about a task, and the AI would understand their intent and perform the required actions automatically. This technology would combine Brain-Computer Interfaces with AI to create a direct connection between the human brain and machines.
+
+how is technology effected your life  you are spending to many times
 give a positive sides that technology offers 
+Technology has had a significant impact on my life because it has transformed the way I learn and solve problems. As someone interested in software development, I use technology daily for coding, building projects, learning new frameworks, exploring AI tools, and staying updated with industry trends. It has helped me become more productive, improve my technical skills, and continuously adapt to new innovations.
+
