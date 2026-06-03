@@ -1,4 +1,5 @@
 import './App.css' // Ensure your CSS file is imported
+import Counter from './component/Counter'
 import Password from './component/Password'
 import ReducerCounter from './component/ReducerCounter'
 
@@ -14,6 +15,7 @@ function App() {
         </p>
        
       <Password/>
+      <Counter/>
       </div>
     </div>
   )
