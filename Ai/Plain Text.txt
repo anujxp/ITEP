@@ -1,0 +1,18 @@
+Agentic Ai - multiple agent will work  
+ai agent-  only one task should performe 
+
+GenAi - llm - Largelanguage model waste amount of data 
+
+LLm input token 0 embeding transformer vectors- Output 
+
+Context window how much input ai can take 
+
+how to solve context window problem it actually summarize the previous 
+
+
+Output -  embeding model - text to embedings 
+
+			
+open ai text embeding models pinecone croma db 
+
+
