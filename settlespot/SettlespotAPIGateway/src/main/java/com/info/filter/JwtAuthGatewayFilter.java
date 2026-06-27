@@ -31,9 +31,6 @@ public class JwtAuthGatewayFilter implements GlobalFilter, Ordered {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    /**
-     * Paths that DO NOT require a JWT token.
-     */
     private static final List<String> PUBLIC_PATHS = Arrays.asList(
             "/auth/login",
             "/auth/tenants/register"
@@ -97,12 +94,12 @@ public class JwtAuthGatewayFilter implements GlobalFilter, Ordered {
                     .header("X-User-Name", fullName != null ? fullName : "")
                     .build();
 
-            log.debug("JWT valid — User: {}, Role: {}, Path: {}", email, role, path);
+//            log.debug("JWT valid — User: {}, Role: {}, Path: {}", email, role, path);
 
             return chain.filter(exchange.mutate().request(mutatedRequest).build());
 
         } catch (Exception e) {
-            log.warn("JWT validation failed for path {}: {}", path, e.getMessage());
+//            log.warn("JWT validation failed for path {}: {}", path, e.getMessage());
             return onError(exchange, "Invalid or expired token", HttpStatus.UNAUTHORIZED);
         }
     }

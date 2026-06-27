@@ -29,7 +29,7 @@ public class AdminDataInitializer implements ApplicationRunner {
                     .isActive(true)
                     .build();
             userRepository.save(admin);
-            log.info("✅ Default admin created → Email: admin@settlespot.com | Password: Admin@123");
+//            log.info("✅ Default admin created → Email: admin@settlespot.com | Password: Admin@123");
         }
     }
 }

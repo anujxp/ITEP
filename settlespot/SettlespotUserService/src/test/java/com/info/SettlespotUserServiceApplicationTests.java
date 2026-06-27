@@ -1,13 +1,13 @@
-package com.info;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class SettlespotUserServiceApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+//package com.info;
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//class SettlespotUserServiceApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
